@@ -1,6 +1,6 @@
 name: "caa"
 navbar:
-  title: "Computer Aided Archaeology"
+  title: "Statistical Methods for Archaeological Data Analysis"
   left:
     - text: ""
       icon: fa-home fa-lg
