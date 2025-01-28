@@ -1,2 +1,2 @@
 # smada
-Statistical Methods for Archaeological Data Analysis - course website repository
+Statistical methods for archaeological data analysis - course website repository.
