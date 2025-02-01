@@ -1,55 +1,16 @@
 date,session_nr,title,topics,slides,slides_pdf,reading,video,lab_video,data,instructor,homework,hw_solution,hw_topics,homework_date
-18.09.24,1,Introduction ,Overview;Types of Maps;Spatial Data;GIS Basics;First Simple Map,gis_in_archaeology_01,gis_in_archaeology_01, ,, https://tube.switch.ch/videos/3bd09536;https://tube.switch.ch/videos/10f43af3;https://tube.switch.ch/videos/c58db704,,,"* Style the polygons however you'd like
-* Change the outline color or add a pattern
-* Style the labels
-* Change the font, the font size, or other attributes
-* Send me a screenshot",,,01.10.24
-25.09.24,,*no class*, , , , , ,,,, ,,,
-02.10.24,2,Working with QGIS,Layer Control;Data Formats;Filter and Query;Zoom and Pan;Export;Projections,gis_in_archaeology_02,gis_in_archaeology_02, , ,https://tube.switch.ch/videos/f2fba649;https://tube.switch.ch/videos/231b56f4;https://tube.switch.ch/videos/d3a11675,,,"* Add the files you can download from the homework page to QGIS (note: the projection epsg is in the filename) 
-  * background_4326.tif
-  * cities_2056.csv
-  * lakes_3857.gpkg
-* Style as you like
-* Send me a screenshot",,,08.10.24
-09.10.24,3,Making Maps,Selection;Styling;Basemaps;Print Composer;,gis_in_archaeology_03,gis_in_archaeology_03, , ,https://tube.switch.ch/videos/7943b704;https://tube.switch.ch/videos/87ae1172;https://tube.switch.ch/videos/21f53714;https://tube.switch.ch/videos/13235fcb;https://tube.switch.ch/videos/a1ad3c67;https://tube.switch.ch/videos/7f1e66a1;https://tube.switch.ch/videos/27e22e98,,,"* Filter for service requests in your borough
-* Try and find something interesting
-* Change the style of the point, either to a different shape, color, or icon
-* Export your selection as a new shapefile
-* Get a background map
-* Make a decent Map
-* Send me an exported map (png or pdf) and the exported shapefile (all the files that make up the shapefile)",,,16.10.24
-16.10.24,4,Georeferencing,Georeferencing;Digitising;,gis_in_archaeology_04,gis_in_archaeology_04, , ,https://tube.switch.ch/videos/ced6a6f9; https://tube.switch.ch/videos/51fb9bf6,,,"* Select an arbitrary map from archaeological literature (individual burial ground to europe wide mapping).
-* Digitise the information (point or polygon)
-* Send me the resulting shapefile/geopackage and the (georeferenced) original map.",,,23.10.24
-23.10.24,5,Handling Spatial Data ,Manipulation of Vector Data;Extraction from Raster;Thematic Map,gis_in_archaeology_05,gis_in_archaeology_05, , ,https://tube.switch.ch/videos/b9e4173e; https://tube.switch.ch/videos/b2c29aad; https://tube.switch.ch/videos/efd0a4ca; https://tube.switch.ch/videos/6e10de34; https://tube.switch.ch/videos/82519690,,,"* Get the north and the south part of the Kanton of Bern
-* Unite them to get a map of the whole Kanton
-* Get the Location of archaeological sites of the Kanton of Bern
-* Count the number of sites in each 'Amtsbezirk'
-* Make a Map showing the number of sites color coded
-* Send me the map",,,30.10.24
-30.10.24,6,Densities,Reprojection;Heatmap;Point Pattern Analysis,gis_in_archaeology_06,gis_in_archaeology_06, , , https://tube.switch.ch/videos/718254c1; https://tube.switch.ch/videos/94a4f92e; https://tube.switch.ch/videos/ac38e22c; https://tube.switch.ch/videos/b4429bcb,,,"* Select a arbitray point layer (the more archaeological the better) 
-* Make a heatmap 
-* Conduct a Nearest Neighbor Analysis 
-* Send me the shapefile of the points, a map of the resulting heatmap and the result of the Nearest Neighbor Analysis",,,13.11.24
-06.11.24,,*no class*, , , , , ,,,, ,,,
-13.11.24,7,Interpolation,Interpolation Basics;Gridding;Thiessen Polygons;Nearest Neighbor Interpolation;TIN;IDW;Contours,gis_in_archaeology_07,gis_in_archaeology_07, , ,https://tube.switch.ch/videos/qq0tPFePRZ; https://tube.switch.ch/videos/h3h5uD7T8G; https://tube.switch.ch/videos/WFSXPVfzVF; https://tube.switch.ch/videos/ooydM4SNwV; https://tube.switch.ch/videos/pR5YTEPtUe; https://tube.switch.ch/videos/zE3ML9Mdy9,,,"* Get the archaeological sites of the Kanton bern with elevation (field: altitude1)
-* try out different interpolation algorithms
-* Which algorithm gives the best result for interpolation of elevation?
-* Send me your assessement and the best result via email (martin.hinz@iaw.unibe.ch) as screenshot or exported map",,,20.11.24
-20.11.24,8,Making nicer Maps,Basemap advanced;Basemap from Scratch;Hillshading;Overview Map,gis_in_archaeology_08,gis_in_archaeology_08, , ,https://tube.switch.ch/videos/52650b8c; https://tube.switch.ch/videos/798f310f; https://tube.switch.ch/videos/27e22e98,,,No Homework,,,
-27.11.24,9,Terrain Data,DEM Basics;Raster Manipulation;Slope;Aspect;TPI;Landforms;Terrain Analysis,gis_in_archaeology_09,gis_in_archaeology_09, , ,https://tube.switch.ch/videos/4Xm15rGk0o; https://tube.switch.ch/videos/HXcZESM7Oa; https://tube.switch.ch/videos/jm1tv0K5Lx; https://tube.switch.ch/videos/GmLf7BIFib; https://tube.switch.ch/videos/G6T3ah9MCW,,,"* Get the SRTM data from Ireland
-* calculate the TPI
-* send me a screen shot",,,04.12.24
-04.12.24,10,Least Cost Path Analysis,LCP Basics;Cost functions;Dijkstra;Iso/anistropic;Walking Distance,gis_in_archaeology_10,gis_in_archaeology_10, , ,https://tube.switch.ch/videos/NDTr0ThOIq; https://tube.switch.ch/videos/dPM2HT72ie; https://tube.switch.ch/videos/Gd8HioHFMX,,,"* Select two locations of your choice (in Switzerland or the world)
-* Calculate the least cost path between them
-* Send me a screenshot",,,11.12.24
-11.12.24,11,Site Catchment Analysis,Least Cost Corridors;SCA Background;Data Extraction,gis_in_archaeology_11,gis_in_archaeology_11, , ,https://tube.switch.ch/videos/Xc03lVgZHC; https://tube.switch.ch/videos/s376iVrz9u; https://tube.switch.ch/videos/lSkP2xiPiD; https://tube.switch.ch/videos/Q6IOMMpDJH,,,"*  Select a locations of your choice (in Switzerland or the world)
-* Get the DEM from SRTM
-* Calculate the 1h Catchment
-* Evaluate a parameter of your choice in terms of the percentage of the catchment (slope is probably the easiest…)
-* Send me a screenshot",,,18.12.24
-18.12.24,12,Visibility Analysis ,Visibility Analysis Basics;Viewshed;Intervisibility;Cumulative Viewshed;Intervisibility Network;Total Viewshed,gis_in_archaeology_12,gis_in_archaeology_12, , ,https://tube.switch.ch/videos/77c0qSnsbo; https://tube.switch.ch/videos/gbMvSKWrCC; https://tube.switch.ch/videos/6x6qcL2s7Q; https://tube.switch.ch/videos/tFVfiakm1U,,,"* Get a DEM of a location of your choice (tip: make it not too big! And have it in projected coordinate/meter based)
-* Make a vector point layer with one position in the landscape
-* Make a viewpoint layer from it
-* Calculate a viewshed from it
-* Send me a screenshot of the result",,,16.02.25
+18.02.25,1,Introduction ,Basic terms; Literature; Data; Levels of Measurement; Data Collection,,,,,,,,,,,
+25.02.25,2,Introduction into R,R programming; Data types & structures; Basic calculations; Data import/export; Variables & operations,,,,,,,,,,,
+04.03.25,3,Explorative Statistics/Graph. Display,Plots; Plots; Plots,,,,,,,,,,,
+11.03.25,4,Descriptive Statistics,Data Distribution; Central Tendency; Dispersion Measures; Shape of Distributions,,,,,,,,,,,
+18.03.25,5,Nonparametric Tests,Inductive Statistics; Hypothesis Testing; Nonparametric Tests; Chi-Square Test; Kolmogorov-Smirnov Test,,,,,,,,,,,
+25.03.25,6,*no class*,,,,,,,,,,,,
+01.04.25,7,Basic Probability Theory,Probability Theory; Statistical Tests; Sampling & Population; Combinatorics; Binomial Distribution,,,,,,,,,,,
+08.04.25,8,Parametric Tests,Data Sampling; Parametric vs. Non-Parametric Tests; Normality Testing; t-Test & F-Test; ANOVA,,,,,,,,,,,
+15.04.25,9,Regression & Correlation,Regression Analysis; Correlation; Data Visualization; Statistical Modelling,,,,,,,,,,,
+22.04.25,10,*no class*,,,,,,,,,,,,
+29.04.25,11,Cluster Analysis,Distance Measures; Hierarchical Clustering; Non-Hierarchical Clustering,,,,,,,,,,,
+06.05.25,12,*no class*,,,,,,,,,,,,
+13.05.25,13,Correspondence Analysis,Correspondence Analysis; Multidimensional Data & Data Representation; Data Normalisation,,,,,,,,,,,
+20.05.25,14,*no class*,,,,,,,,,,,,
+27.05.25,15,Test,blood; toil; tears; sweat,,,,,,,,,,,
