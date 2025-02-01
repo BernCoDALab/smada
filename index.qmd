@@ -12,9 +12,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-To be added
+Statistics has become an indispensable tool in prehistoric archaeology. This course is intended on the one hand to give the participants the skills to understand and reproduce statistical analyses in literature and on the other hand to enable them to use such analyses for their scientific work themselves.
 
-The course consists of lectures, practical exercises, and tutorials. Assessment will be based on practical assignments and a final exam (theoretical and/or practical).
+Basic statistical concepts will be explained and simple uni- and bivariate methods of descriptive, explorative and inductive statistics will be presented. An important part is the practical application of these methods. This is to be carried out with the help of the statistics software R, a open source and free-of-charge, yet extremely powerful computing environment.
+
+The course is suitable for students of all semesters; no statistical knowledge or expertise in special computer programs is required. It consists of lectures, practical exercises, and tutorials. Assessment will be based on practical assignments and a final exam (theoretical and/or practical).
 
 The course will be taught in English.
 
@@ -24,7 +26,7 @@ Will be made available soon.
 
 # Learning objectives
 
-To be added
+Students are familiar with basic statistical procedures and can apply them to archaeological case studies. Furthermore, they are familiar with the basic usage of the statistics programme R.
 
 # Instructors
 
@@ -37,7 +39,7 @@ To be added
 ::: {.g-col-9}
 [__Martin Hinz__](https://www.iaw.unibe.ch/ueber_uns/arp_amp_pa_personen/dr_hinz_martin/)  
 Senior Researcher (Oberassistent), IAW Bern  
-[martin.hinz@iaw.unibe.ch](mailto:martin.hinz@iaw.unibe.ch)
+[martin.hinz@unibe.ch](mailto:martin.hinz@unibe.ch)
 :::
 
 :::
@@ -56,6 +58,6 @@ to be announced
 
 # Pre-requisites
 
-None except motivation and the desire to learn, as well as the readiness to work independently and to collaborate in groups to complete your project.
+None except motivation and the desire to learn, as well as the readiness to work independently.
 
 <center>*This site was last updated at `r format(Sys.time(), "%H:%M")` on `r format(Sys.Date(), "%d %b %Y")`*</center>
