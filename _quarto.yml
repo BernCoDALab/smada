@@ -6,7 +6,7 @@ project:
     - "!lectures/"
 
 website:
-  title: "GIS in Archaeology"
+  title: "Statistical Methods for Archaeological Data Analysis"
 
   page-navigation: true
 

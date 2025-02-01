@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Course overview – Statistical Methods for Archaeological Data Analysis</title>
+<title>Lectures – Statistical Methods for Archaeological Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -88,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./lectures.html"> 
+    <a class="nav-link active" href="./lectures.html" aria-current="page"> 
 <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
@@ -122,30 +122,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#key-dates" id="toc-key-dates" class="nav-link active" data-scroll-target="#key-dates">Key dates</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#instructors" id="toc-instructors" class="nav-link" data-scroll-target="#instructors">Instructors</a></li>
-  <li><a href="#meeting-times-locations" id="toc-meeting-times-locations" class="nav-link" data-scroll-target="#meeting-times-locations">Meeting times &amp; locations</a>
-  <ul class="collapse">
-  <li><a href="#lectures" id="toc-lectures" class="nav-link" data-scroll-target="#lectures">Lectures</a></li>
-  <li><a href="#office-hours" id="toc-office-hours" class="nav-link" data-scroll-target="#office-hours">Office hours</a></li>
-  </ul></li>
-  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Course overview</h1>
-<p class="subtitle lead">IAW &nbsp; University of Bern &nbsp; Spring Semester odd years</p>
+<h1 class="title">Lectures</h1>
 </div>
 
 
@@ -162,53 +147,589 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Statistics has become an indispensable tool in prehistoric archaeology. This course is intended on the one hand to give the participants the skills to understand and reproduce statistical analyses in literature and on the other hand to enable them to use such analyses for their scientific work themselves.</p>
-<p>Basic statistical concepts will be explained and simple uni- and bivariate methods of descriptive, explorative and inductive statistics will be presented. An important part is the practical application of these methods. This is to be carried out with the help of the statistics software R, a open source and free-of-charge, yet extremely powerful computing environment.</p>
-<p>The course is suitable for students of all semesters; no statistical knowledge or expertise in special computer programs is required. It consists of lectures, practical exercises, and tutorials. Assessment will be based on practical assignments and a final exam (theoretical and/or practical).</p>
-<p>The course will be taught in English.</p>
-<section id="key-dates" class="level1">
-<h1>Key dates</h1>
-<p>Will be made available soon.</p>
-</section>
-<section id="learning-objectives" class="level1">
-<h1>Learning objectives</h1>
-<p>Students are familiar with basic statistical procedures and can apply them to archaeological case studies. Furthermore, they are familiar with the basic usage of the statistics programme R.</p>
-</section>
-<section id="instructors" class="level1">
-<h1>Instructors</h1>
-<div class="grid">
-<div class="g-col-3">
-<p><img src="images/martin_portrait_200x200.jpg" class="img-fluid"></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="sjlbpptobq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sjlbpptobq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sjlbpptobq thead, #sjlbpptobq tbody, #sjlbpptobq tfoot, #sjlbpptobq tr, #sjlbpptobq td, #sjlbpptobq th {
+  border-style: none;
+}
+
+#sjlbpptobq p {
+  margin: 0;
+  padding: 0;
+}
+
+#sjlbpptobq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sjlbpptobq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sjlbpptobq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sjlbpptobq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sjlbpptobq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sjlbpptobq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sjlbpptobq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sjlbpptobq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sjlbpptobq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sjlbpptobq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sjlbpptobq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sjlbpptobq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sjlbpptobq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sjlbpptobq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sjlbpptobq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjlbpptobq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sjlbpptobq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sjlbpptobq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sjlbpptobq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjlbpptobq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sjlbpptobq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjlbpptobq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sjlbpptobq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjlbpptobq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sjlbpptobq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sjlbpptobq .gt_left {
+  text-align: left;
+}
+
+#sjlbpptobq .gt_center {
+  text-align: center;
+}
+
+#sjlbpptobq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sjlbpptobq .gt_font_normal {
+  font-weight: normal;
+}
+
+#sjlbpptobq .gt_font_bold {
+  font-weight: bold;
+}
+
+#sjlbpptobq .gt_font_italic {
+  font-style: italic;
+}
+
+#sjlbpptobq .gt_super {
+  font-size: 65%;
+}
+
+#sjlbpptobq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sjlbpptobq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sjlbpptobq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sjlbpptobq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sjlbpptobq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sjlbpptobq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sjlbpptobq .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#sjlbpptobq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#sjlbpptobq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="title" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">title</th>
+<th id="topics" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">topics</th>
+<th id="slides" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">slides</th>
+<th id="slides_pdf" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">slides_pdf</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="date">18.02.25</td>
+<td class="gt_row gt_left" headers="title">Introduction</td>
+<td class="gt_row gt_center" headers="topics">Basic terms, Literature, Data, Levels of Measurement, Data Collection</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/01/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/01/.pdf"></a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="date">25.02.25</td>
+<td class="gt_row gt_left" headers="title">Introduction into R</td>
+<td class="gt_row gt_center" headers="topics">R programming, Data types &amp; structures, Basic calculations, Data import/export, Variables &amp; operations</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/02/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/02/.pdf"></a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="date">04.03.25</td>
+<td class="gt_row gt_left" headers="title">Explorative Statistics/Graph. Display</td>
+<td class="gt_row gt_center" headers="topics">Plots, Plots, Plots</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/03/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/03/.pdf"></a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="date">11.03.25</td>
+<td class="gt_row gt_left" headers="title">Descriptive Statistics</td>
+<td class="gt_row gt_center" headers="topics">Data Distribution, Central Tendency, Dispersion Measures, Shape of Distributions</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/04/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/04/.pdf"></a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="date">18.03.25</td>
+<td class="gt_row gt_left" headers="title">Nonparametric Tests</td>
+<td class="gt_row gt_center" headers="topics">Inductive Statistics, Hypothesis Testing, Nonparametric Tests, Chi-Square Test, Kolmogorov-Smirnov Test</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/05/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/05/.pdf"></a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="date">25.03.25</td>
+<td class="gt_row gt_left" headers="title">*no class*</td>
+<td class="gt_row gt_center" headers="topics"></td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/06/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/06/.pdf"></a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="date">01.04.25</td>
+<td class="gt_row gt_left" headers="title">Basic Probability Theory</td>
+<td class="gt_row gt_center" headers="topics">Probability Theory, Statistical Tests, Sampling &amp; Population, Combinatorics, Binomial Distribution</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/07/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/07/.pdf"></a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="date">08.04.25</td>
+<td class="gt_row gt_left" headers="title">Parametric Tests</td>
+<td class="gt_row gt_center" headers="topics">Data Sampling, Parametric vs. Non-Parametric Tests, Normality Testing, t-Test &amp; F-Test, ANOVA</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/08/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/08/.pdf"></a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="date">15.04.25</td>
+<td class="gt_row gt_left" headers="title">Regression &amp; Correlation</td>
+<td class="gt_row gt_center" headers="topics">Regression Analysis, Correlation, Data Visualization, Statistical Modelling</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/09/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/09/.pdf"></a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="date">22.04.25</td>
+<td class="gt_row gt_left" headers="title">*no class*</td>
+<td class="gt_row gt_center" headers="topics"></td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/10/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/10/.pdf"></a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="date">29.04.25</td>
+<td class="gt_row gt_left" headers="title">Cluster Analysis</td>
+<td class="gt_row gt_center" headers="topics">Distance Measures, Hierarchical Clustering, Non-Hierarchical Clustering</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/11/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/11/.pdf"></a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="date">06.05.25</td>
+<td class="gt_row gt_left" headers="title">*no class*</td>
+<td class="gt_row gt_center" headers="topics"></td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/12/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/12/.pdf"></a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="date">13.05.25</td>
+<td class="gt_row gt_left" headers="title">Correspondence Analysis</td>
+<td class="gt_row gt_center" headers="topics">Correspondence Analysis, Multidimensional Data &amp; Data Representation, Data Normalisation</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/13/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/13/.pdf"></a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="date">20.05.25</td>
+<td class="gt_row gt_left" headers="title">*no class*</td>
+<td class="gt_row gt_center" headers="topics"></td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/14/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/14/.pdf"></a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="date">27.05.25</td>
+<td class="gt_row gt_left" headers="title">Test</td>
+<td class="gt_row gt_center" headers="topics">blood, toil, tears, sweat</td>
+<td class="gt_row gt_left" headers="slides"><p><a href="lectures/15/.html"></a></p></td>
+<td class="gt_row gt_left" headers="slides_pdf"><p><a href="lectures/15/.pdf"></a></p></td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div class="g-col-9">
-<p><a href="https://www.iaw.unibe.ch/ueber_uns/arp_amp_pa_personen/dr_hinz_martin/"><strong>Martin Hinz</strong></a><br>
-Senior Researcher (Oberassistent), IAW Bern<br>
-<a href="mailto:martin.hinz@unibe.ch">martin.hinz@unibe.ch</a></p>
 </div>
 </div>
-</section>
-<section id="meeting-times-locations" class="level1">
-<h1>Meeting times &amp; locations</h1>
-<section id="lectures" class="level3">
-<h3 class="anchored" data-anchor-id="lectures">Lectures</h3>
-<p>Tuesday from 12:15-14:00, Seminarraum 016, <a href="https://goo.gl/maps/ridV1XPk4BLY3bLYA">Mittelstrasse 43, 3012 Bern</a></p>
-<p>The course will be held in presence. The teaching content is additionally provided by means of videos and other material. Students are encouraged to work on this independently and to deepen it if necessary. I will respond as quickly as possible to questions sent to me via email.</p>
-<p>Your own computer equipment is recommended. If you have any problems in this regard, please let me know in advance. We will work exclusively with free software, if possible with open source solutions.</p>
-</section>
-<section id="office-hours" class="level3">
-<h3 class="anchored" data-anchor-id="office-hours">Office hours</h3>
-<p>to be announced</p>
-</section>
-</section>
-<section id="pre-requisites" class="level1">
-<h1>Pre-requisites</h1>
-<p>None except motivation and the desire to learn, as well as the readiness to work independently.</p>
-<center>
-<em>This site was last updated at 15:46 on 01 Feb 2025</em>
-</center>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
