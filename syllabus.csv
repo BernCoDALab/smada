@@ -1,16 +1,28 @@
 date,session_nr,title,topics,slides,slides_pdf,reading,video,lab_video,data,instructor,homework,hw_solution,hw_topics,homework_date
-18.02.25,1,Introduction ,Basic terms; Literature; Data; Levels of Measurement; Data Collection,,,,,,,,,,,
-25.02.25,2,Introduction into R,R programming; Data types & structures; Basic calculations; Data import/export; Variables & operations,,,,,,,,,,,
-04.03.25,3,Explorative Statistics/Graph. Display,Plots; Plots; Plots,,,,,,,,,,,
-11.03.25,4,Descriptive Statistics,Data Distribution; Central Tendency; Dispersion Measures; Shape of Distributions,,,,,,,,,,,
-18.03.25,5,Nonparametric Tests,Inductive Statistics; Hypothesis Testing; Nonparametric Tests; Chi-Square Test; Kolmogorov-Smirnov Test,,,,,,,,,,,
-25.03.25,6,*no class*,,,,,,,,,,,,
-01.04.25,7,Basic Probability Theory,Probability Theory; Statistical Tests; Sampling & Population; Combinatorics; Binomial Distribution,,,,,,,,,,,
-08.04.25,8,Parametric Tests,Data Sampling; Parametric vs. Non-Parametric Tests; Normality Testing; t-Test & F-Test; ANOVA,,,,,,,,,,,
-15.04.25,9,Regression & Correlation,Regression Analysis; Correlation; Data Visualization; Statistical Modelling,,,,,,,,,,,
-22.04.25,10,*no class*,,,,,,,,,,,,
-29.04.25,11,Cluster Analysis,Distance Measures; Hierarchical Clustering; Non-Hierarchical Clustering,,,,,,,,,,,
-06.05.25,12,*no class*,,,,,,,,,,,,
-13.05.25,13,Correspondence Analysis,Correspondence Analysis; Multidimensional Data & Data Representation; Data Normalisation,,,,,,,,,,,
-20.05.25,14,*no class*,,,,,,,,,,,,
-27.05.25,15,Test,blood; toil; tears; sweat,,,,,,,,,,,
+18.02.25,1,Introduction ,Basic terms; Literature; Data; Levels of Measurement; Data Collection,smada01,smada01,,,,,,"Choose one of the following five groups and collect the data about the participants accordingly
+
+Data to collect for the groups
+
+- A) Email, number of the computer in front of you
+- B) Sex, Age
+- C) laptop yes/no, foot size
+- D) actual cash in your purse, height
+- E) homecountry, operation system used at home
+
+Collect the data matrix, determine the level of measurement of each variable and send me your data collection via email until weekend.
+
+Make it a group work! organise yourself! No one is an island!",,,24.02.25
+25.02.25,2,Introduction into R,R programming; Data types & structures; Basic calculations; Data import/export; Variables & operations,,,02-chapter,,,,, ,,,
+04.03.25,3,Explorative Statistics/Graph. Display,Plots; Plots; Plots,,,,,,,, ,,,
+11.03.25,4,Descriptive Statistics,Data Distribution; Central Tendency; Dispersion Measures; Shape of Distributions,,,,,,,, ,,,
+18.03.25,5,Nonparametric Tests,Inductive Statistics; Hypothesis Testing; Nonparametric Tests; Chi-Square Test; Kolmogorov-Smirnov Test,,,,,,,, ,,,
+25.03.25,6,*no class*,,,,,,,,, ,,,
+01.04.25,7,Basic Probability Theory,Probability Theory; Statistical Tests; Sampling & Population; Combinatorics; Binomial Distribution,,,,,,,, ,,,
+08.04.25,8,Parametric Tests,Data Sampling; Parametric vs. Non-Parametric Tests; Normality Testing; t-Test & F-Test; ANOVA,,,,,,,, ,,,
+15.04.25,9,Regression & Correlation,Regression Analysis; Correlation; Data Visualization; Statistical Modelling,,,,,,,, ,,,
+22.04.25,10,*no class*,,,,,,,,, ,,,
+29.04.25,11,Cluster Analysis,Distance Measures; Hierarchical Clustering; Non-Hierarchical Clustering,,,,,,,, ,,,
+06.05.25,12,*no class*,,,,,,,,, ,,,
+13.05.25,13,Correspondence Analysis,Correspondence Analysis; Multidimensional Data & Data Representation; Data Normalisation,,,,,,,, ,,,
+20.05.25,14,*no class*,,,,,,,,, ,,,
+27.05.25,15,Test,blood; toil; tears; sweat,,,,,,,, ,,,

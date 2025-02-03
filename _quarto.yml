@@ -25,6 +25,9 @@ website:
         href: comp_labs.html
       - text: "Homework"
         href: homework.html
+      - text: "The book"
+        href: book/index.html
+        target: _blank
 
 format:
   html:
