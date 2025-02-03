@@ -1,0 +1,18 @@
+---
+title: "Statistical Methods for Archaeological Data Analysis"
+author: "Martin Hinz"
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: book
+    pdf-engine: xelatex
+---
+
+```{r echo=FALSE}
+options(knitr.table.format = 'html')
+```
+
+# Preface
+
+Hallo Welt!

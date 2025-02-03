@@ -1,0 +1,21 @@
+project:
+  type: book
+  output-dir: ../docs/book
+  execute-dir: file  # Forces a new working directory for each chapter
+
+book:
+  title: "Statistical Methods for Archaeological Data Analysis"
+  author: "Martin Hinz"
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - 02-chapter.qmd
+    - 03-chapter.qmd
+    - 04-chapter.qmd
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: book
+    pdf-engine: xelatex

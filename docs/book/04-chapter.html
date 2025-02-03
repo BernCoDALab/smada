@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Descriptive Statistics – Statistical Methods for Archaeological Data Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-chapter.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-chapter.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Methods for Archaeological Data Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Methods for Archaeological Data Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction into R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Explorative statistics &amp; graphical display</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">4.1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#parameters-of-distributions" id="toc-parameters-of-distributions" class="nav-link" data-scroll-target="#parameters-of-distributions"><span class="header-section-number">4.1.1</span> Parameters of distributions</a></li>
+  <li><a href="#loading-data-for-the-following-steps" id="toc-loading-data-for-the-following-steps" class="nav-link" data-scroll-target="#loading-data-for-the-following-steps"><span class="header-section-number">4.1.2</span> Loading data for the following steps</a></li>
+  </ul></li>
+  <li><a href="#central-tendency-1" id="toc-central-tendency-1" class="nav-link" data-scroll-target="#central-tendency-1"><span class="header-section-number">4.2</span> Central tendency</a>
+  <ul class="collapse">
+  <li><a href="#mean" id="toc-mean" class="nav-link" data-scroll-target="#mean"><span class="header-section-number">4.2.1</span> Mean</a></li>
+  <li><a href="#median" id="toc-median" class="nav-link" data-scroll-target="#median"><span class="header-section-number">4.2.2</span> Median</a></li>
+  <li><a href="#mode" id="toc-mode" class="nav-link" data-scroll-target="#mode"><span class="header-section-number">4.2.3</span> Mode</a></li>
+  <li><a href="#comparing-central-tendency-parameters" id="toc-comparing-central-tendency-parameters" class="nav-link" data-scroll-target="#comparing-central-tendency-parameters"><span class="header-section-number">4.2.4</span> Comparing Central tendency parameters</a></li>
+  </ul></li>
+  <li><a href="#dispersion-1" id="toc-dispersion-1" class="nav-link" data-scroll-target="#dispersion-1"><span class="header-section-number">4.3</span> Dispersion</a>
+  <ul class="collapse">
+  <li><a href="#range" id="toc-range" class="nav-link" data-scroll-target="#range"><span class="header-section-number">4.3.1</span> Range</a></li>
+  <li><a href="#towards-a-better-parameter-for-dispersion" id="toc-towards-a-better-parameter-for-dispersion" class="nav-link" data-scroll-target="#towards-a-better-parameter-for-dispersion"><span class="header-section-number">4.3.2</span> Towards a better parameter for dispersion</a></li>
+  <li><a href="#empirical-variance" id="toc-empirical-variance" class="nav-link" data-scroll-target="#empirical-variance"><span class="header-section-number">4.3.3</span> (empirical) variance</a></li>
+  <li><a href="#empirical-standard-deviation" id="toc-empirical-standard-deviation" class="nav-link" data-scroll-target="#empirical-standard-deviation"><span class="header-section-number">4.3.4</span> (empirical) standard deviation</a></li>
+  <li><a href="#coefficient-of-variation" id="toc-coefficient-of-variation" class="nav-link" data-scroll-target="#coefficient-of-variation"><span class="header-section-number">4.3.5</span> Coefficient of variation</a></li>
+  <li><a href="#quantile" id="toc-quantile" class="nav-link" data-scroll-target="#quantile"><span class="header-section-number">4.3.6</span> Quantile</a></li>
+  </ul></li>
+  <li><a href="#shape-of-the-distribution" id="toc-shape-of-the-distribution" class="nav-link" data-scroll-target="#shape-of-the-distribution"><span class="header-section-number">4.4</span> Shape of the distribution</a>
+  <ul class="collapse">
+  <li><a href="#skewness" id="toc-skewness" class="nav-link" data-scroll-target="#skewness"><span class="header-section-number">4.4.1</span> Skewness</a></li>
+  <li><a href="#kurtosis" id="toc-kurtosis" class="nav-link" data-scroll-target="#kurtosis"><span class="header-section-number">4.4.2</span> Kurtosis</a></li>
+  </ul></li>
+  <li><a href="#take-home" id="toc-take-home" class="nav-link" data-scroll-target="#take-home"><span class="header-section-number">4.5</span> Take Home</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The field of descriptive statistics serves as a mean to summarise and make accessible more complicated data. The main difference to the field of hypothesis testing, That’s also called inferential statistics, is, that with descriptive statistics we are describing the sample, and do not make any inferences about the underlying population.</p>
+<p>What specifically belongs to descriptive statistics, is not perfectly fixed. In some way, also contingency tables or graphical representation of data, like charts, can also be understand as descriptive statistics. In its more narrow sense, determines the calculation of certain parameters, this describes features of the sample, or more precisely, its distribution. Most widely used are two aspects: the central tendency and dispersion. We will learn about those aspects more in the next section.</p>
+<p>The videos for this chapter can be found <a href="http://vitutr.archaeological.science/categories/Statistical+methods+for+archaeological+data+analysis+I+2019/index.html">here</a>, relevant are number 17, 18 and 19.</p>
+<section id="introduction" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">4.1</span> Introduction</h2>
+<p>A distribution is the collection of all the outcomes in the sample. More precisely, you can imagine it as a way to describe the frequency of certain outcomes. Let’s imagine the following example:</p>
+<p>After their final exam, the students of a mathematical class go to the football field, and line them self up according to their scores in the exam. Starting from the 0 yard line, they move so many yards as they have scored points in the test. Now, if we count the number of students in certain areas of the football field, we get their frequency distribution among the values. So, with a distribution, we are not talking about the individual value, but about their general distribution. From this it is clear, that it only makes sense to talk about distributions if we have more than one value (although technically also individual value is a distribution).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/04_session/distr_football_field.png" class="img-fluid figure-img"></p>
+<figcaption>source: Phillips 1997</figcaption>
+</figure>
+</div>
+<p>But not only students can form distributions, also other data sets can. You will see, that depending on the data type, different manifestations of distributions are possible. Nevertheless, all these versions are data distributions. The characteristics of the different distribution can be described using certain parameters.</p>
+<section id="parameters-of-distributions" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="parameters-of-distributions"><span class="header-section-number">4.1.1</span> Parameters of distributions</h3>
+<section id="central-tendency" class="level4" data-number="4.1.1.1">
+<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="central-tendency"><span class="header-section-number">4.1.1.1</span> Central tendency</h4>
+<p>The central tendency can be understand as a description of those values, that are central or “typical” for a certain distribution. This also can be called centre or location of that distribution. There are multiple specific values, that can be used, to describe this specific centre, depending on the scientific question and the data. For example, certain data quality can be described only with certain central tendency parameters. The most commonly used central tendency parameters are the <em>mean</em>, <em>median</em>, and the <em>mode</em>.</p>
+</section>
+<section id="dispersion" class="level4" data-number="4.1.1.2">
+<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="dispersion"><span class="header-section-number">4.1.1.2</span> Dispersion</h4>
+<p>While the central tendency describes the most centres or most typical value, the dispersion describes how much the values in the whole sample vary around this central value. It is therefore also a measure of how much variety is in the sample. The most intuitive measure of dispersion is the <em>range.</em> We will see, that it’s not a perfect measure for the whole dataset. Instead, in statistics often the <em>variance</em> or the <em>standard deviation</em> is used. We will also learn about the <em>coefficient of variation</em> as a means to compare the dispersion of different distributions.</p>
+</section>
+<section id="shape" class="level4" data-number="4.1.1.3">
+<h4 data-number="4.1.1.3" class="anchored" data-anchor-id="shape"><span class="header-section-number">4.1.1.3</span> Shape</h4>
+<p>Also not so often used explicitly in quantified descriptive statistics, of course the shape of the distribution also is very important for its interpretation. For example, the question if distribution is similar shaped on both sides of the central value, might give us quite an insight into this processes leading to this distribution. There are two other parameters that can be used to describe the shape of distribution in a quantitative way: <em>skewness</em> and <em>curtosis</em>. We will see, how we can calculate these values, and what their meaning is.</p>
+</section>
+</section>
+<section id="loading-data-for-the-following-steps" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="loading-data-for-the-following-steps"><span class="header-section-number">4.1.2</span> Loading data for the following steps</h3>
+<p>Also in this example, I would like to use the Münsingen data to demonstrate some concepts. Please download the data and then load this data into your R environment:</p>
+<section id="download-data" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="download-data"><span class="header-section-number">4.1.2.1</span> download data</h4>
+<ul>
+<li><a href="data:text/csv;base64,O0dyYXZlO01ubztGTDtCSDtCRkE7RkE7Q0Q7QlJBO0VEO0ZFTDtDO0JXO0JUO0ZFVztDb2lscztMZW5ndGg7ZmlidWxhX3NjaGVtZQoxOzEyMTszNDg7Mjg7MTc7MTsxMDsxMDsyOzg7NjsyMDsyLDU7Miw2OzIsMjs0OzUzO0IKMjsxMzA7NTQ1OzI5OzE1OzM7ODs2OzM7NjsxMDsxNzsxMSw3OzMsOTs2LDQ7Njs0NztCCjM7MTMwOzU0OTsyMjsxNTszOzg7NzszOzEzOzE7MTc7NTs0LDY7Miw1OzEwOzQ3O0IKODsxNTc7ODU7MjM7MTM7Mzs4OzY7MjsxMDs3OzE1OzUsMjsyLDc7NSw0OzEyOzQxO0IKMTE7MTgxOzIxMjs5NDsxNTs3OzEwOzEyOzU7MTE7MzE7NTA7NCwzOzQsMztOQTs2OzEyODtDCjEyOzE5Mzs2MTE7Njg7MTg7Nzs5Ozk7NzszOzUwOzE4OzksMzs2LDU7TkE7NDsxMTA7QwoxMzsyMzs2NDM7MTU7MTg7MTsxMDsxMDsxOzU7MDsxNTszLDU7Myw1OzA7NDs0MDtBCjE0OzMxOzgxMjsyMzsyNjs0Ozc7OTs1OzEyOzE7MTY7NiwyOzcsNzsyLDg7NDs3NDtBCjE1OzQ0Ozc1MjsxMDsxMDsyOzEwOzY7MjsyO05BOzk7MjsyLDM7MiwyOzM7MjY7QQoxNjs0ODs3ODg7MTU7MTk7Mjs4Ozc7MzszOzQ7MTI7Myw3OzMsNTsxLDk7NDs1NjtCCjE3OzQ5Ozc5ODsyMDsyMzsyOzg7NzsxOzg7NTsxNjs3LDc7NSwyOzIsNjs2OzY4O0IKMTg7Njs2NzM7Mjc7MTU7Njs4Ozc7NTszOzExOzExOzMsNzszLDU7MSw4OzQ7NTU7QQoxOTs2MTs4MjE7MjA7MTM7NTs4OzU7MjsxMDs1OzEwOzQsNDs0LDQ7NSwxOzY7MzY7QgoyMDs2MTs4MzA7MjA7MTQ7MTs4OzY7MTszOzQ7MTQ7MTQsMzsxLDQ7MSw3OzY7NDQ7QgoyMTs2ODs1ODc7MjI7MTg7MTs4Ozc7MTs1Ozg7MTc7OCw4OzM7Miw0OzY7NTk7QgoyMjs4MDs1Mjk7MTI7MjI7MTs2Ozk7MTs5OzA7MTE7Niw4OzYsNDswOzQ7NDU7QgoyMzs5MTs0NjQ7MjA7MTU7Mjs3Ozc7Mzs2OzEwOzEyOzUsNTszLDg7Myw5OzY7NTA7Qgo=" download="muensingen_fib.csv">muensingen_fib.csv</a></li>
+</ul>
+</section>
+<section id="read-the-data-on-muensingen-fibulae" class="level4" data-number="4.1.2.2">
+<h4 data-number="4.1.2.2" class="anchored" data-anchor-id="read-the-data-on-muensingen-fibulae"><span class="header-section-number">4.1.2.2</span> Read the Data on Muensingen Fibulae</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>muensingen <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"muensingen_fib.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(muensingen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   X Grave Mno FL BH BFA FA CD BRA ED FEL  C   BW  BT FEW Coils Length
+1  1   121 348 28 17   1 10 10   2  8   6 20  2.5 2.6 2.2     4     53
+2  2   130 545 29 15   3  8  6   3  6  10 17 11.7 3.9 6.4     6     47
+3  3   130 549 22 15   3  8  7   3 13   1 17  5.0 4.6 2.5    10     47
+4  8   157  85 23 13   3  8  6   2 10   7 15  5.2 2.7 5.4    12     41
+5 11   181 212 94 15   7 10 12   5 11  31 50  4.3 4.3  NA     6    128
+6 12   193 611 68 18   7  9  9   7  3  50 18  9.3 6.5  NA     4    110
+  fibula_scheme
+1             B
+2             B
+3             B
+4             B
+5             C
+6             C</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="central-tendency-1" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="central-tendency-1"><span class="header-section-number">4.2</span> Central tendency</h2>
+<p>Let’s start with those parameters to describe the location of the distribution. This means, with these parameters we can describe where the whole distribution is centred in the range of possible values of that variable. Some of those parameters you will probably know already very well, some might be not so familiar to you.</p>
+<section id="mean" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="mean"><span class="header-section-number">4.2.1</span> Mean</h3>
+<p>The arithmetic mean is one of the most widespread used parameter to describe the central tendency of a dataset, also in everyday life. But that doesn’t mean, but it’s the best value for describing this feature of distribution in every individual case. It is only suitable for metric data (interval or ratio). Why this is the case, becomes apparent if you look to the formula how to calculate it.</p>
+<p><span class="math display">\[ \bar{x} = \frac {\sum_{i=1}^{n} x_i} {n} \]</span> In this formula, we at first sum all the <em>n</em> values up, starting from the first (index 1) and ending with the last (index <em>n</em>). After this, we divide by the number of values. As we have seen already, in R we can recreate this formula, using some of all the values and divided by the length. But of course, since it’s such an important descriptive parameter, there is a specific function for calculating the <code>mean()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(muensingen<span class="sc">$</span>Length) <span class="sc">/</span> <span class="fu">length</span>(muensingen<span class="sc">$</span>Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 57.58824</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(muensingen<span class="sc">$</span>Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 57.58824</code></pre>
+</div>
+</div>
+<p>Dividing all the values by their number means, that we compare the differences of these values. This can only meaningful be done in situations, where the distances between values have a defined metric. For this reason, we cannot use the arithmetic mean to analyse the central tendency ordinal or nominal data. Also, since with the sum every individual value is included in the way in the calculation of the mean, it describes the whole distribution and not certain values within.</p>
+<p>Although the arithmetic mean is the most commonly used central tendency value, it has certain features that are not optimal for describing the whole dataset. Especially, it is very sensitive to outliers, as we will see below. Alternative is the median, which is not used so often, but whose philosophy is also quite easy to be understood.</p>
+</section>
+<section id="median" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="median"><span class="header-section-number">4.2.2</span> Median</h3>
+<p>Different from the arithmetic mean, the median is a parameter that can be calculated for metric, but also for ordinal variables. And this calculation is rather trivial: if we have an uneven number of values, to get the median result all the values and then selecting the middle value. That means, literally the value that is in the middle of the sorted vector.</p>
+<p>In our example, we have the values from 1 to 7. If we sort them and determine the middle value, it will be 4. So 4 is the median for this distribution.</p>
+<pre><code>1 2 3 4 5 6 7
+      |</code></pre>
+<p>In R, the calculation of the median is not more complicated than the calculation of the mean. Also, we don’t have to sort the vector ourselves, R is doing that for us. The command is <code>median()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>A bit different is the situation, when we have an even number of values. Here, there is no middle value as such. In that case, the median is calculated by taking the mean between the two middlemost values. Assume, we have to numbers from 1 to 8. The median will be the mean of the values four and five.</p>
+<pre><code>1 2 3 4 5 6 7 8
+       |</code></pre>
+<p>Also in this case, the calculation of the median is not more complicated an R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.5</code></pre>
+</div>
+</div>
+</section>
+<section id="mode" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="mode"><span class="header-section-number">4.2.3</span> Mode</h3>
+<p>The last of the parameters that I want to introduce here to you for central tendency is the mode. This is simply the most frequent value of a vector. So it fulfils our definition from above, that it is the most typical value. Also, since it relies only on counting, the mode can be determined for every data quality: nominal, ordinal and metric data.</p>
+<p>Let’s assume, that we have the animal bones from an excavation and we can determine the minimal number of individuals for goat, sheep, cattle and pig. In that case, goat will be the most frequent value, and by that the mode of that distribution.</p>
+<p>goat sheep goat cattle cattle goat pig goat</p>
+<p>mode: goat</p>
+<p>In R, since for nominal values the mode is trivial, and for other data types it can be rather complicated, there is no specific function to calculate the mode. Instead, in the example of nominal values, we can calculate the frequency using the function <code>table()</code>, and then determine which of the frequencies is the biggest, using the function <code>which.max()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"goat"</span>, <span class="st">"sheep"</span>, <span class="st">"goat"</span>, <span class="st">"cattle"</span>,<span class="st">"cattle"</span>, <span class="st">"goat"</span>, <span class="st">"pig"</span>, <span class="st">"goat"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>goat 
+   2 </code></pre>
+</div>
+</div>
+</section>
+<section id="comparing-central-tendency-parameters" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="comparing-central-tendency-parameters"><span class="header-section-number">4.2.4</span> Comparing Central tendency parameters</h3>
+<p>As I’ve said already, for certain data types or levels of measurement only certain central tendency parameters are available. You can see a visualisation of this in the table below:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">nominal</th>
+<th style="text-align: center;">ordinal</th>
+<th style="text-align: center;">intervall+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">mode</td>
+<td style="text-align: center;">mode</td>
+<td style="text-align: center;">mode</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">median</td>
+<td style="text-align: center;">median</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">mean</td>
+</tr>
+</tbody>
+</table>
+<p>But every ability for different data quality is not the only reason, why are you should consider having a look to other parameters for central tendency beside the mean. What other reason is, that the mean is strongly affected by outliers. This is not so much to keep the median, and the mood is hardly affected by any outliers at all. To demonstrate that in a practical matter, let’s look at the following distribution. Here we have most of the time the value is between one and nine but only one time the value 120. This value does not very well represent any typical value of this distribution. So far a good value for central tendency it should not have so much of an influence.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we calculate the mean of this dataset, it will be above any other value then the one outlier. So in that case it’s not really the central tendency of the whole dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.64706</code></pre>
+</div>
+</div>
+<p>On the other hand, the median is virtually unchanged by this extreme value. Because it’s only one very high value, it also counts in the calculation of the median only as 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>And the same is true for the mode: because this outlier is only one time present, it will also not affect the mode.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">table</span>(test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3 
+3 </code></pre>
+</div>
+</div>
+<p>Although the mode is very insensitive to outliers, from a practical perspective in most of the cases it also represents very well essential value of the distribution, when it comes to metric or ordinal data. Only when a more or less symmetric distribution is present, the mode might be helpful, like in the example below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">table</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">7</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4 
+4 </code></pre>
+</div>
+</div>
+<p>We haven’t talked about symmetry so much, but also when it comes to distributions, this concept is quite intuitive. When we have a small amount of items with small values, a major amount of items with intermediate values, and again a small amount of items with small values, then we have something that can be considered as a symmetrical distribution. When we have more small values then intermediate or higher values, or more high values then intermediate in small values, then we have a skewed distribution, which is not symmetrical. You can see examples of this in the image below. Here, you can also see, what happens to the different parameters of central tendency in respect to each other, when we have a positive or negative skewed distribution.</p>
+<p><img src="../images/04_session/dist_comp_1.png" class="img-fluid"></p>
+<p>In case of a positive skew, the median will be smaller than the mean, since the meeting is strongly influenced by outliers. So a small number of high values will ‘drag’ mean towards the higher values. Conversely, if we have more high values than low values, then the main will be smaller than the median, for the same, but inverted reasons. This means, just by comparing these two parameters of central tendency, we can already make a statement about the shape of the distribution, without even having to plot it.</p>
+<div class="exercise">
+<p>Analyse the measurements of the width of cups (in cm) from the burial ground Walternienburg (Müller 2001, 534; selection):</p>
+<ul>
+<li><a href="data:text/csv;base64,IiI7IngiCiIxIjsxMgoiMiI7MTksNQoiMyI7MTgsNgoiNCI7MTIsOQoiNSI7MTMsMgoiNiI7OSw5CiI3IjsxOSw1CiI4Ijs4LDQKIjkiOzIxCiIxMCI7MTgsOQoiMTEiOzcsNQoiMTIiOzE4LDkKIjEzIjs4LDEKIjE0Ijs5CiIxNSI7Nyw4CiIxNiI7OSw5CiIxNyI7MTAsMgoiMTgiOzgsMQoiMTkiOzEyCiIyMCI7OQoiMjEiOzI2LDEKIjIyIjsyMCw0Cg==" download="tassen.csv">tassen.csv</a></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tassen<span class="ot">&lt;-</span><span class="fu">read.csv2</span>(<span class="st">"tassen.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tassen<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 12.0 19.5 18.6 12.9 13.2  9.9 19.5  8.4 21.0 18.9  7.5 18.9  8.1  9.0  7.8
+[16]  9.9 10.2  8.1 12.0  9.0 26.1 20.4</code></pre>
+</div>
+</div>
+<p>Identify the mode, median and mean and determine if the distribution is symmetric, positive or negative skewed.</p>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(tassen<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13.67727</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(tassen<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">table</span>(tassen<span class="sc">$</span>x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>8.1 
+  3 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The median is smaller than the mean. The distribution has a positive skew with more smaller than larger values.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+</section>
+</section>
+<section id="dispersion-1" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="dispersion-1"><span class="header-section-number">4.3</span> Dispersion</h2>
+<p>In the previous chapter, we have learnt different ways how to express to central tendency of the dataset. But with specifying the location, we have not sufficiently described our dataset yet. One of the more relevant characteristics of the dataset is, if the data are rather close together, or if they are distributed over a larger range of the values. Consider for example the distributions below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/04_session/dist_comp_2.png" class="img-fluid figure-img"></p>
+<figcaption>source: Phillips 1997</figcaption>
+</figure>
+</div>
+<p>The upper image shows two distributions with the same centre, but with different spreads. The figures below show the same situation, but this time with actual values. You can see, that both distributions are centred around the value zero, but the upper distribution ranges from -45 to 45, while the distribution below is much more centred.</p>
+<p>To describe the differences, we have parameters of dispersion, that quantify, how wide the data are distributed over the range of values.</p>
+<section id="range" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="range"><span class="header-section-number">4.3.1</span> Range</h3>
+<p>The simplest of this parameters is the range. The range gives the range from minimum to the maximum value of the dataset. Practically, usually the range is constituted of two values, the minimum and maximum. In R, the function to get the vector of the range of the dataset is <code>range()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(muensingen<span class="sc">$</span>Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  26 128</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(tassen<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  7.5 26.1</code></pre>
+</div>
+</div>
+<p>With the range, by definition we get the highest and the lowest value. This means on the one hand, that by constructing the range only two values are considered, just these two. All the other values in the dataset do not play any role in the calculation of the range. Therefore, the range does not describe the whole dataset very well. Also, by definition we consider the most extreme values of the dataset. This means, that the range is very sensitive for outliers.</p>
+<p>A better measurement for the dispersion of the data should have the following characteristics:</p>
+<ul>
+<li>Less sensitive to outliers</li>
+<li>Broader representation of all the data in the dataset</li>
+</ul>
+</section>
+<section id="towards-a-better-parameter-for-dispersion" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="towards-a-better-parameter-for-dispersion"><span class="header-section-number">4.3.2</span> Towards a better parameter for dispersion</h3>
+<p>We have already seen, that the mean, although also sensitive to outliers, at least consider all the values in the dataset as constitutional elements for the parameter. A good description for the dispersion might be the mean distance of all values from the mean. The following plot shows us the values of the Münsingen dataset from a different perspective. Every line represents one fibula. We have substracted the mean of the length of the different fibulae from the individual values. Again, we can see our two unusual long fibulae as high values. The bars each represents how much smaller or bigger the fibulae are in respect to the mean.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-chapter_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, to get a value for the dispersion of the dataset to consider all individual items, we have to calculate the mean distance from the main. But we cannot simply substract the mean from each value and calculate the mean from it because this would result in zero. The reason for this is the very definition of the mean.</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} (x_i - \bar{x}) = 0
+\]</span></p>
+<p>In our calculation, we must ignore if the difference is negative or positive. We have to consider the absolute difference, not the relative one. To get rid of the sign, easiest way is to square the result.</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} (x_i - \bar{x})^2
+\]</span> Now we get to some of the squared differences of each value to the mean. To get to mean after differences, we have to divided by the number of cases.</p>
+<p><span class="math display">\[
+\sigma^2 = \frac {\sum_{i=1}^{n} (x_i - \bar{x})^2} {n}
+\]</span> With this, we have tools to calculate the mean differences from the mean. The formula above shows the calculation of the so-called variance for the population. It’s notation is using the Greek letter sigma to the square. But because we are dealing here with a sample, and not the full population, the resulting estimation of this mean difference might be biased. For that reason, this bias must be corrected. For reasons, we cannot explain fully here, the easiest way for correcting against a bias that case is to substract one from the number of cases. This gives us our first parameter for dispersion: the empirical variance.</p>
+</section>
+<section id="empirical-variance" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="empirical-variance"><span class="header-section-number">4.3.3</span> (empirical) variance</h3>
+<p>As explained and introduced above, the empirical variance is a measure for the variability in the data that is more insensitive against outlier then the range. It is equal to the sum of the squares distances from the main divided by the number of observations -1. Formula notation is <span class="math inline">\(s^2\)</span>.</p>
+<p><span class="math display">\[
+s^2 = \frac {\sum_{i=1}^{n} (x_i - \bar{x})^2} {n-1}
+\]</span></p>
+<p>Let’s use this formula above, transform it into R code, and compare it to the results of the actual function <code>var()</code> from R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((tassen<span class="sc">$</span>x<span class="sc">-</span><span class="fu">mean</span>(tassen<span class="sc">$</span>x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="fu">length</span>(tassen<span class="sc">$</span>x)<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 31.11136</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(tassen<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 31.11136</code></pre>
+</div>
+</div>
+<p>In this case, we have compared the diameter of the cups. The diameter themselves are measured in centimetres. Since in the formula above we square the measurement, the unit is square centimetre. Also the resulting unit of the variance is square centimetre. The values themselves are squared centimetres. Of course, it is much more convenient, to have a measurement of the mean distance from the mean that is in the units of the actual measurement. To get rid of this square in the units as well as in the values, of course we can just take the square root. If we are doing that, we end up with what is called standard deviation.</p>
+</section>
+<section id="empirical-standard-deviation" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="empirical-standard-deviation"><span class="header-section-number">4.3.4</span> (empirical) standard deviation</h3>
+<p>The formula for the standard deviation is essentially the same as for the variance. The only differences, like we have explained above, is that we take the square root.</p>
+<p><span class="math display">\[
+s = \sqrt{\frac {\sum_{i=1}^{n} (x_i - \bar{x})} {n-1}}
+\]</span></p>
+<p>Again, if we compare the results from the recorded formula to the actual functioning are, the function <code>sd()</code>, the results should be the same. Keep in mind, that we are talking about the empirical version of these calculations, suited for samples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>((tassen<span class="sc">$</span>x<span class="sc">-</span><span class="fu">mean</span>(tassen<span class="sc">$</span>x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="fu">length</span>(tassen<span class="sc">$</span>x)<span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.577756</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(tassen<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.577756</code></pre>
+</div>
+</div>
+<p>With this, finally we have the mean differences from the mean for our dataset. This parameter of dispersion is one of the most widespread used for describing distributions. It has some specific features that make it very useful. Some of them we will learn about later in the course.</p>
+<p>With what we just achieved, the measurement of the standard deviation is in the exact same units as the measurements themselves. Most of the time, this is desirable. Especially, if we would like to understand better what this mean distance mean fall our individual values. But sometimes, you might like to compare spreads of distributions, that have different central tendencies, or to put it in other words, different locations. For this case, it is more helpful, to have a measurement of dispersion that is unitless. This is the last parameter of the dispersion from this branch that we will learn about.</p>
+</section>
+<section id="coefficient-of-variation" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="coefficient-of-variation"><span class="header-section-number">4.3.5</span> Coefficient of variation</h3>
+<p>Let’s assume, we wonder whether the length of the fibulae in our Münsingen case it’s more variable then the foot length or the other way round. We cannot simply compare the standard deviations, because the feet of the fibulae are shorter than the whole fibula by definition. Consequently, also the variability will have smaller values for the foot than for the total length.</p>
+<p>In such situations, we need a unitless measurements. We would like to make the value independent from the location of the distribution. To make something independent, most of the time you have to divide by it. So if we divide the standard deviation (measured in the unit of the measurement) by the mean (measured in the unit of the measurement), we get a parameter that is independent from the location (and also, since the units negate each other, has no unit). This coefficient of variation can be used to compare distributions that do not share the same location in the value range. We can compare apples with oranges.</p>
+<p>In R, there is no specific come out for that. But it’s easy to calculate it anyway. All we have to do, is to divide the standard deviation <code>sd()</code> by the mean <code>mean()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(muensingen<span class="sc">$</span>Length)<span class="sc">/</span><span class="fu">mean</span>(muensingen<span class="sc">$</span>Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4508988</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(muensingen<span class="sc">$</span>FL)<span class="sc">/</span><span class="fu">mean</span>(muensingen<span class="sc">$</span>FL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7732486</code></pre>
+</div>
+</div>
+<p>The result is, that the variation coefficient for the length is smaller than the valuation coefficient from the foot length. It seems, that the feet of the fibulae differ more relatively then the total length.</p>
+</section>
+<section id="quantile" class="level3" data-number="4.3.6">
+<h3 data-number="4.3.6" class="anchored" data-anchor-id="quantile"><span class="header-section-number">4.3.6</span> Quantile</h3>
+<p>The concept of the standard deviation and related measurements is very similar to the concept of the mean, that we have learnt as one of the parametres for location of the dataset. Another way to describe the dispersion of the dataset is the concept of quantiles, it is more related to the concept of the median that we also learnt about above. We already have introduce this concept, when we have talked about the box plot.</p>
+<p>Quantile in general are arbitrary points in the range of a dataset where this can be divided into parts. Specific quantiles are the quartiles. Quartiles divide the data into four equal parts, that means, parts of equal number of items. So let’s assume, we have 16 items. The first quartile consists of the first four of this sorted items and so on.</p>
+<p>Let’s assume, we have 13 values from 1 to 13. If we sort them and marked the beginning of each quarter of the items, We would end up dividing our dataset by one (the beginning of our dataset), 4 (beginning of the second quarter of a dataset), 7 (the median of our dataset), 10 (the beginning of the fourth quarter of our dataset), and finally 13 (the highest value at the end of our sorted the dataset). When we have an even number of items, the same rule applies like in the case of the median: we take to mean of the two centremost values.</p>
+<pre>1 2 3 4 5 6 7 8 9 10 11 12 13
+|_____|_____|_____| _______|
+</pre>
+<p>If we now plot our data on an X axis with the actual values, we can mark the positions of the quantile stare. Such a plot could look like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/04_session/dist_skewed_left.png" class="img-fluid figure-img"></p>
+<figcaption>Phillips 1997</figcaption>
+</figure>
+</div>
+<p>In R, the command to calculate the quantiles is quantile. To make the confusion total, the default setting of the quantiles is to calculate the quartiles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(tassen<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  0%  25%  50%  75% 100% 
+ 7.5  9.0 12.0 18.9 26.1 </code></pre>
+</div>
+</div>
+<p>But we also can parameterised it differently. For example, we can calculate the so-called percentiles. And example below, we calculated the position of the cut points in that way, that we get the 10% intervals of the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(tassen<span class="sc">$</span>x, <span class="at">probs=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   0%   10%   20%   30%   40%   50%   60%   70%   80%   90%  100% 
+ 7.50  8.10  8.52  9.27 10.02 12.00 13.08 18.81 19.38 20.31 26.10 </code></pre>
+</div>
+</div>
+<p>The position of the quantiles (or the quartiles) depends on the spread of the data. In case of the quintiles, the first and the last value that is calculated here represents the minimum of the maximum value. So it is clear, that their position is strongly related to the spread of the data. But also the position of the beginning of the second and the third quartile is dependent on how strong the dispersion is. If it’s higher, it’s distance will be bigger. That is the reason why the distance between the beginning of the second and beginning of the fourth quartile is a measurement of the spread. Its relationship to the standard deviation is the same like the relationship between the mean and median in respect to the location of the dataset. This measurement is also called the Interquartile Range or <code>IQR()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(tassen<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.9</code></pre>
+</div>
+</div>
+<p>Like the median is more insensitive to outlast in the main, the Interquartile Range is less sensitive to all clients that the standard deviation. But since we only consider the centre at half of the data for the calculation of this measure, we lose some information about the so-called tails of the distribution, that is (in this case) the lowest and highest quarter.</p>
+<div class="exercise">
+<p>Analyse the sizes of areas visible from different megalithic graves of the Altmark (Demnick 2009):</p>
+<ul>
+<li><a href="data:text/csv;base64,IiI7InNpY2h0ZmxhZWNoZSI7InJlZ2lvbiIKIkxhMDEiOzIsNzI7Ik1pdHRlIgoiTGcxIjsyNiw3ODsiTWl0dGUiCiJMaTAyIjsyNiw5NjsiTWl0dGUiCiJTYTAxIjsyNywwNTsiTWl0dGUiCiJMaTA2IjszMiw5MzsiTWl0dGUiCiJL9jAxIjszNCw3NjsiTWl0dGUiCiJMaTA0IjszNSw3NzsiTWl0dGUiCiJXczA2IjszNiw5ODsiTWl0dGUiCiJMaTA1IjszNyw2OyJNaXR0ZSIKIkplMDIiOzQ1LDk5OyJNaXR0ZSIKIkplMDEiOzQ4LDUzOyJNaXR0ZSIKIkxpMDEiOzEyMywxNjsiTWl0dGUiCiJMaTAzIjsxMzYsODU7Ik1pdHRlIgoiRG8wMSI7MjI3LDA4OyJNaXR0ZSIKIkdnMDIiOzIsMTM7Ik9zdCIKIlNmMSI7NiwwODsiT3N0IgoiQnI1Ijs3LDY3OyJPc3QiCiJEejEiOzEwLDIzOyJPc3QiCiJEejIiOzExLDQ0OyJPc3QiCiJHZzAxIjsxNSw3NzsiT3N0IgoiR3IyIjsxOCw4ODsiT3N0IgoiR3IwMSI7MjEsNzc7Ik9zdCIKIkhGMDEiOzI1LDk0OyJPc3QiCiJCcjQiOzMxLDMyOyJPc3QiCiJLbDAyIjs0MCwzMzsiT3N0IgoiQncwMSI7NDUsNzE7Ik9zdCIKIktsMDEiOzUwLDExOyJPc3QiCiJLbDAzIjs1NCw5NjsiT3N0IgoiS2wwNCI7NTYsMzsiT3N0IgoiR0IwMSI7NjAsMjQ7Ik9zdCIKIlNmNiI7NzIsNDsiT3N0IgoiQncxIjs4MCw3MTsiT3N0IgoiS2wxIjs5MSw5NDsiT3N0IgoiQvwxIjsxMTYsNzc7Ik9zdCIKIkJyMyI7MTE4LDc1OyJPc3QiCiJCcjEiOzE2OSw2MzsiT3N0IgoiQnIyIjsxODgsODc7Ik9zdCIKIkFoMDEiOzIxLDgyOyJXZXN0IgoiQWgwMiI7MzEsNTM7Ildlc3QiCiJBaDAzIjs0MSw3ODsiV2VzdCIKIkFoMDQiOzUsOTg7Ildlc3QiCiJBaDA1Ijs2LDA5OyJXZXN0IgoiQmkwMSI7MTksMjsiV2VzdCIKIkJpMDExIjsyNiwyMTsiV2VzdCIKIkJpMDEyIjsyNyw0NzsiV2VzdCIKIkJpMDIiOzcxLDg4OyJXZXN0IgoiQmkwMyI7MTIzLDI5OyJXZXN0IgoiQmkwNSI7MTYsNjE7Ildlc3QiCiJCaTA2IjsxNyw1MTsiV2VzdCIKIkJpMDciOzE4LDk1OyJXZXN0IgoiQmkwOCI7MTksNjc7Ildlc3QiCiJCaTA5IjsyNiw2NTsiV2VzdCIKIkJpMSI7MjYsNjE7Ildlc3QiCiJCczAxIjs1MiwxODsiV2VzdCIKIkJzMDIiOzQsOTU7Ildlc3QiCiJCczAzIjszNiw1MTsiV2VzdCIKIkJzMSI7MjcsMjsiV2VzdCIKIkJzMiI7MzAsNDY7Ildlc3QiCiJEaTAxIjszNyw2ODsiV2VzdCIKIkRpMDIiOzMzLDEyOyJXZXN0IgoiRGkwMyI7MywwMTsiV2VzdCIKIkRpMDQiOzEwLDQ0OyJXZXN0IgoiRGkwNSI7OCw2MzsiV2VzdCIKIkRpMDYiOzEsODsiV2VzdCIKIkRpMSI7NjYsNjM7Ildlc3QiCiJEaTIiOzEyLDIxOyJXZXN0IgoiRGkzIjs1OCwxNTsiV2VzdCIKIkRyMDEiOzI4LDE1OyJXZXN0IgoiRHIwMiI7NDMsNjsiV2VzdCIKIkRyMDMiOzQzLDAyOyJXZXN0IgoiRHIyIjsyNCw1OTsiV2VzdCIKIkltMDEiOzQ3LDE4OyJXZXN0IgoiSW0wMiI7Miw4MzsiV2VzdCIKIkltMDQiOzE2LDc2OyJXZXN0IgoiSW0xIjs2OSw0NTsiV2VzdCIKIkltMiI7MTgsNjE7Ildlc3QiCiJMZTAxIjs1Nyw5OyJXZXN0IgoiTGUxIjs1NSw1ODsiV2VzdCIKIkxlMiI7NTgsODg7Ildlc3QiCiJMZTMiOzU5LDI7Ildlc3QiCiJMZTQiOzYwLDI5OyJXZXN0IgoiTGU1Ijs2MSw5NTsiV2VzdCIKIkxlNiI7ODUsNzc7Ildlc3QiCiJMZTciOzEzNSwwMTsiV2VzdCIKIkxlOCI7MTM4LDA2OyJXZXN0IgoiTPwwMSI7NCw3NTsiV2VzdCIKIkz8MDIiOzQsOTk7Ildlc3QiCiJM/DEiOzEsOTg7Ildlc3QiCiJM/DIiOzEsNTQ7Ildlc3QiCiJM/DMiOzIsNTI7Ildlc3QiCiJM/DQiOzQsMDQ7Ildlc3QiCiJM/DUiOzIsODk7Ildlc3QiCiJM/DYiOzI5LDU1OyJXZXN0IgoiTWUyIjs3LDE5OyJXZXN0IgoiTWUzIjs2LDM1OyJXZXN0IgoiTWwwMSI7MTYsODI7Ildlc3QiCiJNbDAyIjswLDMyOyJXZXN0IgoiTW8wMSI7Nyw0NDsiV2VzdCIKIk1vMDIiOzksODE7Ildlc3QiCiJNbzAzIjsxOCw1NzsiV2VzdCIKIk1vMDQiOzE3LDUzOyJXZXN0IgoiTW8wNSI7ODUsNzU7Ildlc3QiCiJNbzA2Ijs4LDc2OyJXZXN0IgoiTW8wNyI7MTMsMTg7Ildlc3QiCiJNbzEiOzY4LDQ0OyJXZXN0IgoiTW80Ijs3LDY4OyJXZXN0IgoiTmUxIjszNyw0OyJXZXN0IgoiTnQxIjsxMSw4NTsiV2VzdCIKIlD8MDEiOzMwLDAxOyJXZXN0IgoiUmUwMSI7Miw4NDsiV2VzdCIKIlJpMDEiOzE0OyJXZXN0IgoiUmkwMiI7MTIsMjE7Ildlc3QiCiJSaTAzIjsxMywxMTsiV2VzdCIKIlJpMDQiOzE0LDE1OyJXZXN0IgoiUm8wMSI7NDcsMTk7Ildlc3QiCiJSbzAyIjs0Niw0OTsiV2VzdCIKIlJvMDMiOzI4LDQ4OyJXZXN0IgoiU2gxIjs0LDE4OyJXZXN0IgoiU3cwMSI7NjUsMTc7Ildlc3QiCiJTdzAyIjs1Niw4NjsiV2VzdCIKIlN3MSI7MTcsMTQ7Ildlc3QiCiJTdzIiOzUsNzM7Ildlc3QiCiJTdzMiOzQsNDk7Ildlc3QiCiJUYTEiOzgsNjsiV2VzdCIKIlRhMyI7NDksNTI7Ildlc3QiCiJUYTQiOzQ1LDU4OyJXZXN0IgoiVGE1Ijs1MSwyMTsiV2VzdCIKIlRhNiI7Nyw3MjsiV2VzdCIKIlRhNyI7MTUsOTU7Ildlc3QiCiJXaTEiOzI3LDc3OyJXZXN0Igo=" download="altmark_denis2.csv">altmark_denis2.csv</a></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>altmark<span class="ot">&lt;-</span><span class="fu">read.csv2</span>(<span class="st">"altmark_denis2.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(altmark)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        sichtflaeche region
+La01            2.72  Mitte
+Lg1            26.78  Mitte
+Li02           26.96  Mitte
+Sa01           27.05  Mitte
+Li06           32.93  Mitte
+K\xf601        34.76  Mitte</code></pre>
+</div>
+</div>
+<p>Evaluate in which region the visible area is more equal (less disperse).</p>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are 3 regions in the dataset:</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(altmark<span class="sc">$</span>region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mitte   Ost  West 
+   14    23    93 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lets use the region as separator and</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the coefficient of variation</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (because each region might have different terrain):</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>va_east <span class="ot">&lt;-</span> altmark<span class="sc">$</span>sichtflaeche[altmark<span class="sc">$</span>region <span class="sc">==</span> <span class="st">"Ost"</span>]</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>va_west <span class="ot">&lt;-</span> altmark<span class="sc">$</span>sichtflaeche[altmark<span class="sc">$</span>region <span class="sc">==</span> <span class="st">"West"</span>]</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>va_mid <span class="ot">&lt;-</span> altmark<span class="sc">$</span>sichtflaeche[altmark<span class="sc">$</span>region <span class="sc">==</span> <span class="st">"Mitte"</span>]</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(va_east)<span class="sc">/</span><span class="fu">mean</span>(va_east)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9118925</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(va_west)<span class="sc">/</span><span class="fu">mean</span>(va_west)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9447072</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(va_mid)<span class="sc">/</span><span class="fu">mean</span>(va_mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.005665</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># it seems, that the visible areas differ</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the most in the center of the working area</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+</section>
+</section>
+<section id="shape-of-the-distribution" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="shape-of-the-distribution"><span class="header-section-number">4.4</span> Shape of the distribution</h2>
+<p>As interesting as it might be, as difficult it is to describe the shape of a distribution in a single quantitative way. There are multiple ways how distributions can differ from each other: might it be related to the skewness, to dispersion of the data, to the symmetry or to the number of peaks.</p>
+<p>Below, there is an image from Bortz 2006 dead visualise some of these possible parameters.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/04_session/dist_shapes.png" class="img-fluid figure-img"></p>
+<figcaption>Shape of distributions (after Bortz 2006)</figcaption>
+</figure>
+</div>
+<p>As already announced, we will discuss here to shape parameters that can be calculated: First, the skewness, of which we have already seen that it can be positive or negative. But there is also a way to calculate the value of the positivity or negativity. The second parameter is called Curtosis (curvature). This parameter indicates if the distribution is a letter or a steeper, compared to the so-called standard normal distribution.</p>
+<p>In both cases, it might make sense to plot data and then calculate the values to get a feeling what they do mean. On the other hand, these values are rarely used in practise, so we will use this opportunity to introduce a new concept in our: how to make your own functions.</p>
+<section id="skewness" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="skewness"><span class="header-section-number">4.4.1</span> Skewness</h3>
+<p><img src="../images/04_session/dist_comp_1.png" class="img-fluid"></p>
+<p>It’s already introduced, skewness is a measure of how skewed your dataset is. On the one hand, it can be distinguished between positive and negative skew. This can be estimated by comparing the mean and median of the dataset. Also, you can try to describe how intense the skewing of the dataset is. For this, probably the easiest option is to look at the plot and describe it. But there is also a way to calculate that, given by the formula below:</p>
+<p><span class="math display">\[
+\hat{S} = \frac {\sum_{i=1}^n (x_i - \bar{x})^3} {n * s^3}
+\]</span></p>
+<p>Here we will not take a part of this formula, but use it as a cooking recipe to produce our own function. For the interpretation, it should be said, that positive values of skewness indicates a positive skew, while negative values indicate a negative skew. The reason, why it’s reasonable to create your own function here, is the fact, that there do not exist a ready-made function for this purpose in the base package of R. So lets build our own:</p>
+<p>As I have already indicated, everything in R is a variable. This is also true for functions. There are specific function to feel a variable with a function. You will not be surprised that the name of the function is <code>function()</code>. Whatever is inside of the (this time currently) brackets off the function call will be evaluated every time the function is called. In the round bracket of the function <code>function()</code> there are the variables that might be evaluated inside of the function.</p>
+<p>So in our case, the skewness is calculated by dividing the sum of the differences of the individual values to the power of three by the number of the values times the standard deviation, also to the power of three. This is what takes place inside of the function definition. Let’s dissect that from bottom to top. The last line <code>skew</code> is the value that is returned after the function has been called. This variable <code>skew</code> has to be filled. This takes place in the line before that. The value m3 is divided by the denominator of the formula. Of course, this value M3 is filled with the numerator of the same formula. Also, you can see inside of this function body the variable <code>x</code>. This variable comes from the outside of the function and represents the actual dataset. That this function expects this variable <code>x</code> is indicated by the fact, that in the rounds brackets of the function call <code>function()</code> this <code>x</code> is mentioned.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>skewness <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  m3 <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">3</span>) <span class="co">#numerator</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  skew <span class="ot">&lt;-</span> m3 <span class="sc">/</span> ((<span class="fu">sd</span>(x)<span class="sc">^</span><span class="dv">3</span>)<span class="sc">*</span><span class="fu">length</span>(x)) <span class="co">#denominator</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  skew</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If now we have to find our function <code>skewness()</code>, we can use it as any other regular function in R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.406826</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.231232</code></pre>
+</div>
+</div>
+<p>With this basic concept, you can structure and reuse parts of your code all over in your analyses. Also, the actual result of our function seems to be fitting. What we expect to be a positive skewed distribution results in a positive number and vice versa.</p>
+</section>
+<section id="kurtosis" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="kurtosis"><span class="header-section-number">4.4.2</span> Kurtosis</h3>
+<p>The second parameter that we may talk about in this context is to kurtosis. It describes the curvature of the distribution in relationship to the standard normal distribution.</p>
+<p><img src="../images/04_session/dist_curtosis.png" class="img-fluid"></p>
+<p>Positive values of kurtosis means, that the distribution is steeper than a normal distribution, while negative values mean, that it is flatter than a standard normal distribution. Of course, you can read the curvature from a plot, but also there is a way to calculate this. If you look to the formula, it will be quite familiar to you, because it resembles very much the formula for skewness. The only difference is, that instead of to the power of three no we calculate to the power of four.</p>
+<p><span class="math display">\[
+K = \frac {\sum_{i=1}^n (x_i - \bar{x})^4} {n*s^4}
+\]</span></p>
+<p>So, of course, we also can write a function for this. It will be very similar to the function as we’ve just programmed: You only have to replace two numbers. Oh, and by the way probably also the name of one of the variables.</p>
+<p>We write a function for that, too:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>kurtosis <span class="ot">&lt;-</span> <span class="cf">function</span> (x) {</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  m3 <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> m3 <span class="sc">/</span> ((<span class="fu">sd</span>(x)<span class="sc">^</span><span class="dv">4</span>)<span class="sc">*</span><span class="fu">length</span>(x))<span class="sc">-</span><span class="dv">3</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  k</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s test this out with one very steep and one very flat distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.46875</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.011364</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="take-home" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="take-home"><span class="header-section-number">4.5</span> Take Home</h2>
+<p>There are many other possibilities to describe data, values, and distribution. The most relevant and most widely applicable concepts are those of central tendency and here especially median and mean, and those of dispersion, here especially variance and standard deviation. If you have understood this computations and they are meeting, you are very well prepared for the weather, more elaborated analyses.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-chapter.html" class="pagination-link" aria-label="Explorative statistics &amp; graphical display">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Explorative statistics &amp; graphical display</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
