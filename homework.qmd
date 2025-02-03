@@ -19,7 +19,7 @@ Send your homework before the homework date to [martin.hinz\@unibe.ch](mailto:ma
 | Data to collect for the groups                                                                                                         |               |                |
 |                                                                                                                                        |               |                |
 | A)  Email, number of the computer in front of you                                                                                      |               |                |
-| B)  Sex, Age                                                                                                                           |               |                |
+| B)  Gender, Age                                                                                                                        |               |                |
 | C)  laptop yes/no, foot size                                                                                                           |               |                |
 | D)  actual cash in your purse, height                                                                                                  |               |                |
 | E)  homecountry, operation system used at home                                                                                         |               |                |
