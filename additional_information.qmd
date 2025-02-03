@@ -71,7 +71,7 @@ Students will be evaluated on their knowledge of course content and their abilit
 
 ### Homework (30%)
 
-The "homework" is due by 17:59 on the following Tuesday. It will consist of some small tasks and practical approaches based on topics covered. There will be 12 assignments worth 5% each.  Your learning in the class will be greatly enhanced by doing the "homework" which consist of applying the material you learn in each lecture to a data set.
+The "homework" is due by 17:59 on the following Monday. It will consist of some small tasks and practical approaches based on topics covered. There will be 12 assignments worth 5% each.  Your learning in the class will be greatly enhanced by doing the "homework" which consist of applying the material you learn in each lecture to a data set.
 
 ### Participation (10%)
 
