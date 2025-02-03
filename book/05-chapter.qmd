@@ -112,7 +112,7 @@ Here, the number of grave goods in female burials can differ into directions: Th
 
 Here, we have more chance for a random process to result in the pattern that we are observing. That's why in statistical tests the result is often two significances (onetailed, two-tailed).
 .center[
-![:width 25%](../images/05_session/cm_fig2d.png) ![:width 25%](../images/05_session/cm_fig2c.png)
+![:width 25%](images/05_session/cm_fig2d.png) ![:width 25%](images/05_session/cm_fig2c.png)
 ]
 
 ### Stat. Significance
@@ -764,7 +764,7 @@ The classic saying in statistics is that association does not mean causation. Ev
 One example according to the Stephen Shennan book is the association between grave size and sex of the buried individuals Although there might be a statistically significant association between grave size and sex, this could be caused by a third factor. Maybe mail individuals have just bigger body height, making it necessary to dig bigger burial pits so that they can fit in. A conclusion which says that grave size are causally determined by sex would be at least not correct.
 
 
-![](../images/06_session/hidden_third.png)
+![](images/06_session/hidden_third.png)
 
 
 Always, doing statistical analyses does not save you from making your own thoughs and trying to contact good science!

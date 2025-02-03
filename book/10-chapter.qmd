@@ -1,5 +1,5 @@
+
 ```{r include=FALSE}
-#knitr::opts_knit$set(root.dir = '../lectures/10_session/')
 xfun::pkg_load2(c("htmltools", "mime", "rgl", "magrittr", "knitr", "kableExtra"))
 remove(list = ls())
 ```
@@ -24,10 +24,10 @@ The basic sequence can be stated as follows. 1:
 4. the data points of the objects as well as of the properties are projected with their coordinates onto those planes which are formed by the vectors.
 5. the resulting new coordinates can now be represented in a diagram in relation to the individual vectors (dimensions).
 
-![](../images/12_session/multi_space.png)
+![](images/12_session/multi_space.png)
 .caption[.tiny[source: http://www.aapspharmscitech.org] \label{multivariablespace}]
 
-![](../images/12_session/multi_projection.png)
+![](images/12_session/multi_projection.png)
 .caption[.tiny[source: http://www.cs.mcgill.ca]]
 
 
@@ -202,7 +202,7 @@ But this is exactly where the problem lies. Normally, we are not able to see all
 
 Two vectors in space describe a plane. So once we have determined the first and second vectors, we can use these two to define a plane that represents our future coordinate space. The vectors themselves become the axes of the new coordinate system. Projected perpendicularly onto this plane (as if you were looking at it from above, or as if you were shining a torch on the scenery from above so that the data points cast shadows), the individual data points can now be represented on this plane. And with this, we have obtained a new view of our data, in which the greatest dissimilarities are mapped via the vectors. So we get a representation that captures as much of the information of the original data set as possible, but does it with only two dimensions. And this can be done for any combination of vectors (dimensions).
 
-![](../images/12_session/multi_projection.png)
+![](images/12_session/multi_projection.png)
 .caption[.tiny[source: http://www.cs.mcgill.ca]]
 ]
 
@@ -211,7 +211,7 @@ Two vectors in space describe a plane. So once we have determined the first and 
 
 Mathematically, this determination of the largest extension of the point cloud and the projection of the points onto the resulting vectors is the solution of a complex linear equation system. And a proven means for such a task is the so-called [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) (SVD). This method is used in many fields, ranging from image compression methods such as JPEG, to the reconstruction of three-dimensional objects, to such esoteric applications as particle physics. In our humble use case, it is used to perform data reduction. But because of the importance of this process in many areas, one of its developers (Gene Golub) has appropriated the abbreviation for his car registration plate:
 
-![Gene Golub’s license plate, photographed by Professor P. M. Kroonenberg of Leiden University.](../images/12_session/prof_svd.gif)
+![Gene Golub’s license plate, photographed by Professor P. M. Kroonenberg of Leiden University.](images/12_session/prof_svd.gif)
 .caption[.tiny[Gene Golub’s license plate, photographed by Professor P. M. Kroonenberg of Leiden University.]]
 
 Specifically, the data matrix of our similarities is decomposed into three matrices.
@@ -236,7 +236,6 @@ burial.svd<-svd(burial.z)
 burial.svd
 ```
 
----
 SVD and Inertia
 The singular values (eigenvalues) represent the inertia.
 The eigenvalues
@@ -260,7 +259,6 @@ If the inertia of the individual dimensions is divided by the total inertia, the
 burial.svd$d^2/sum(burial.svd$d^2)
 ```
 
----
 ## Correspondence analysis: Procedure (using a presence/absence matrix)
 
 ### Normalization of coordinates
@@ -286,8 +284,6 @@ $u$, $v$ → Matrices of rows/columns from the SVD
 $s_k$ → Diagonal matrix
 
 $p_i$ , $p_j$ → Masses of rows/columns from the relative frequency
-
----
 
 ## Correspondence analysis: Procedure (using a presence/absence matrix)
 
@@ -325,8 +321,6 @@ plot(burial.cca, scaling=3)
 ```
 ]
 
----
-
 ## Correspondence analysis: Real World case
 
 ### Münsingen Burial Site
@@ -350,8 +344,6 @@ plot(muensingen.cca, scaling=3)
 ```
 ]
 
----
-
 ## Correspondence analysis: Real World case
 
 ### Münsingen Burial Site
@@ -371,7 +363,7 @@ scores(muensingen.cca, display = "species")
 ```
 ]
 ]
----
+
 ## Correspondence analysis: Real World case
 
 ### Münsingen Burial Site
@@ -391,7 +383,7 @@ plot(muensingen.cca, display = "species")
 ```
 ]
 ]
----
+
 ## Correspondence analysis: Real World case
 
 ### Münsingen Burial Site
@@ -412,7 +404,7 @@ plot(muensingen.cca, choices = c(1,3))
 ]
 ]
 
----
+
 ## Correspondence analysis: Real World case
 
 ### Münsingen Burial Site
@@ -445,21 +437,19 @@ ggplot(muensingen.species,aes(x=CA1,y=CA2,label=rownames(muensingen.species))) +
 ```
 ]
 
----
 ## Correspondence analysis: Real World case
 
 ### Münsingen Burial Site
 
 .pull-left[
-![](../images/12_session/tosca.png)
+![](images/12_session/tosca.png)
 ]
 
 .pull-right[
-![](../images/12_session/tosca_seriation.png)
+![](images/12_session/tosca_seriation.png)
 ]
 
 [http://tosca.archaeological.science](http://tosca.archaeological.science)
----
 
 ## Correspondence Analysis: Interpretation
 

@@ -13,14 +13,14 @@ In this chapter we will deal with explorative statistics and descriptive statist
 
 ## Dataset used for this chapter
 
-The dataset, that we are using for this chapter, comes from the burial-ground of Münsingen/Rain. Maybe in the later version of this book I will give more details to the state of said. For the time being every Swiss archaeologist should have a slight idea what is burial-ground consist of. You can download the data using the following link: `r xfun::embed_file('data/03_session/muensingen_fib.csv', text = "muensingen_fib.csv")`.
+The dataset, that we are using for this chapter, comes from the burial-ground of Münsingen/Rain. Maybe in the later version of this book I will give more details to the state of said. For the time being every Swiss archaeologist should have a slight idea what is burial-ground consist of. You can download the data using the following link: `r xfun::embed_file('muensingen_fib.csv', text = "muensingen_fib.csv")`.
 
 The data is such represents different fibulae found on the side. Please download the file and save it into a directory of your choice. For this chapter, like with all of the chapters, you might like to specify a specific folder for this chapter. Save the data there, and, as we have learnt in the last chapter, select this folder as your current working directory.
 
 If you have downloaded the data to this folder and correctly selected it as you're working directory, you should be able to reach the Münsingen data and inspect its structure. Since it is a dataset in the "Continental" CSV file, you can load the data into are using to `read.csv2()` format. Also you will realise, that the dataset already contains row numbers. You might like to specify 'row.names = 1'.
 
 ```{r}
-muensingen <- read.csv2("data/03_session/muensingen_fib.csv", row.names = 1)
+muensingen <- read.csv2("muensingen_fib.csv", row.names = 1)
 head(muensingen) # For getting a glimpse to the data
 ```
 
@@ -57,7 +57,7 @@ In data sets of low dimensionality, this represents a rather straightforward and
 
 Besides the tables, which also contains some graphical elements, like lines, the visualisation, which comes to the minds of most people in respect of statistics, are charts. Most charts or diagrams contain a certain set of elements, that can repeatedly be seen even with different types of graphical display. Most of the time we have some axis, which represents the structure of the variable underlying to representation. Quite often, this access has some marks, most of the time regularly spaced, and often also with some annotation. These marks are called tick marks. For the representation of one variable, one axis might be enough. But most of the time, we have a two-dimensional visualisation. This is already necessary, if we want to represent the category of some items and the count of items in that specific category. Very often, we have charts that represents the relationship of two variables. In both cases, we have two axis. In the area, that is defined by the axis, we have to representation of the actual data. This takes place, using different symbols, lines, or other graphical elements. Here, different types of charts different. Very often, we have also label for the axis, labels for the whole plot, and sometimes some subheadings describing more in detail, what the plot is about.
 
-![](../images/03_session/plot_elements.png)
+![](images/03_session/plot_elements.png)
 
 There are certain rules or guidelines, how shots should be designed, to be most efficient. Edward Tufte, a professor emeritus of statistics and computer science at University, is well known for his publications in respect to data visualisation. In one of his publications, he defined the principles for a good graphical representation of information. 
 
@@ -167,11 +167,11 @@ Of course, if we have created a decent plot, we probably don't want it to remain
 
 Using RStudio, probably the easiest way is to be used to graphical user interface, especially when it comes to exporting only individual plots. For this, in the plots window, there is a button called export.
 
-![](../images/02_session/export_gui_1.png)
+![](images/02_session/export_gui_1.png)
 
 Here, you can select if you want to export your plot as an image (roster image), or as a PDF (vector file). The export windows should be more or less self-explanatory, you can specify the size of the resulting image and also the location, where it should be saved.
 
-![](../images/02_session/export_gui_1.png)
+![](images/02_session/export_gui_1.png)
 
 Before RStudio, saving plots took place most of the time using commands from the command line. This still is very useful, if you use scripts and want to create multiple or even very many plots at once, changing the inputs data. Two very common formats when it comes to vector format or 'PDF' or probably more common 'eps' specifically for images. You can copy your current plot window to a vector file using the command `dev.copy2...()` and then the file format in which the result should be saved. So let's save our current plots to both formats using to come on spill.
 
@@ -205,7 +205,7 @@ Pie charts have different disadvantages, some they share with other graphical re
 
 Like in many other cases, 3-D representation does not work so well on printed paper. Since the human eye and brain must compromise between both the perception that we are looking at a 3-D image but in reality it's a 2-D object, differences are distorted. Let's look at the following example that I took from the literature:
 
-![](../images/03_session/3dpie.png)
+![](images/03_session/3dpie.png)
 
 .caption[source: http://www.lrz-muenchen.de/~wlm]
 
@@ -527,7 +527,7 @@ Choice of display has a strong influence on the statement. Let's use the example
 
 ```{r echo=F, fig.height=6}
 par(mfrow=c(2,2))
-smi <- read.csv("data/03_session/SSMI.csv", stringsAsFactors = F)
+smi <- read.csv("SSMI.csv", stringsAsFactors = F)
 smi.ts <- ts(smi$Close, frequency = 52, start = c(1991,1))
 plot(window(smi.ts, start=2020, end=2021),type = "l", ylab="smi")
 plot(window(smi.ts, start=2020, end=2021),type = "l", ylab="smi", ylim=c(0,12000))

@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./05-chapter.html" rel="next">
 <link href="./03-chapter.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -192,6 +193,42 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Nonparametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Probability Theory</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Parametric tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regression Analysis and Correlation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cluster Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Correspondence analysis</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -263,7 +300,7 @@ window.Quarto = {
 <p>After their final exam, the students of a mathematical class go to the football field, and line them self up according to their scores in the exam. Starting from the 0 yard line, they move so many yards as they have scored points in the test. Now, if we count the number of students in certain areas of the football field, we get their frequency distribution among the values. So, with a distribution, we are not talking about the individual value, but about their general distribution. From this it is clear, that it only makes sense to talk about distributions if we have more than one value (although technically also individual value is a distribution).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/04_session/distr_football_field.png" class="img-fluid figure-img"></p>
+<p><img src="images/04_session/distr_football_field.png" class="img-fluid figure-img"></p>
 <figcaption>source: Phillips 1997</figcaption>
 </figure>
 </div>
@@ -444,7 +481,7 @@ window.Quarto = {
 </div>
 </div>
 <p>We haven’t talked about symmetry so much, but also when it comes to distributions, this concept is quite intuitive. When we have a small amount of items with small values, a major amount of items with intermediate values, and again a small amount of items with small values, then we have something that can be considered as a symmetrical distribution. When we have more small values then intermediate or higher values, or more high values then intermediate in small values, then we have a skewed distribution, which is not symmetrical. You can see examples of this in the image below. Here, you can also see, what happens to the different parameters of central tendency in respect to each other, when we have a positive or negative skewed distribution.</p>
-<p><img src="../images/04_session/dist_comp_1.png" class="img-fluid"></p>
+<p><img src="images/04_session/dist_comp_1.png" class="img-fluid"></p>
 <p>In case of a positive skew, the median will be smaller than the mean, since the meeting is strongly influenced by outliers. So a small number of high values will ‘drag’ mean towards the higher values. Conversely, if we have more high values than low values, then the main will be smaller than the median, for the same, but inverted reasons. This means, just by comparing these two parameters of central tendency, we can already make a statement about the shape of the distribution, without even having to plot it.</p>
 <div class="exercise">
 <p>Analyse the measurements of the width of cups (in cm) from the burial ground Walternienburg (Müller 2001, 534; selection):</p>
@@ -489,7 +526,7 @@ Solution
 <p>In the previous chapter, we have learnt different ways how to express to central tendency of the dataset. But with specifying the location, we have not sufficiently described our dataset yet. One of the more relevant characteristics of the dataset is, if the data are rather close together, or if they are distributed over a larger range of the values. Consider for example the distributions below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/04_session/dist_comp_2.png" class="img-fluid figure-img"></p>
+<p><img src="images/04_session/dist_comp_2.png" class="img-fluid figure-img"></p>
 <figcaption>source: Phillips 1997</figcaption>
 </figure>
 </div>
@@ -606,7 +643,7 @@ s = \sqrt{\frac {\sum_{i=1}^{n} (x_i - \bar{x})} {n-1}}
 <p>If we now plot our data on an X axis with the actual values, we can mark the positions of the quantile stare. Such a plot could look like this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/04_session/dist_skewed_left.png" class="img-fluid figure-img"></p>
+<p><img src="images/04_session/dist_skewed_left.png" class="img-fluid figure-img"></p>
 <figcaption>Phillips 1997</figcaption>
 </figure>
 </div>
@@ -698,7 +735,7 @@ Mitte   Ost  West
 <p>Below, there is an image from Bortz 2006 dead visualise some of these possible parameters.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/04_session/dist_shapes.png" class="img-fluid figure-img"></p>
+<p><img src="images/04_session/dist_shapes.png" class="img-fluid figure-img"></p>
 <figcaption>Shape of distributions (after Bortz 2006)</figcaption>
 </figure>
 </div>
@@ -706,7 +743,7 @@ Mitte   Ost  West
 <p>In both cases, it might make sense to plot data and then calculate the values to get a feeling what they do mean. On the other hand, these values are rarely used in practise, so we will use this opportunity to introduce a new concept in our: how to make your own functions.</p>
 <section id="skewness" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="skewness"><span class="header-section-number">4.4.1</span> Skewness</h3>
-<p><img src="../images/04_session/dist_comp_1.png" class="img-fluid"></p>
+<p><img src="images/04_session/dist_comp_1.png" class="img-fluid"></p>
 <p>It’s already introduced, skewness is a measure of how skewed your dataset is. On the one hand, it can be distinguished between positive and negative skew. This can be estimated by comparing the mean and median of the dataset. Also, you can try to describe how intense the skewing of the dataset is. For this, probably the easiest option is to look at the plot and describe it. But there is also a way to calculate that, given by the formula below:</p>
 <p><span class="math display">\[
 \hat{S} = \frac {\sum_{i=1}^n (x_i - \bar{x})^3} {n * s^3}
@@ -739,7 +776,7 @@ Mitte   Ost  West
 <section id="kurtosis" class="level3" data-number="4.4.2">
 <h3 data-number="4.4.2" class="anchored" data-anchor-id="kurtosis"><span class="header-section-number">4.4.2</span> Kurtosis</h3>
 <p>The second parameter that we may talk about in this context is to kurtosis. It describes the curvature of the distribution in relationship to the standard normal distribution.</p>
-<p><img src="../images/04_session/dist_curtosis.png" class="img-fluid"></p>
+<p><img src="images/04_session/dist_curtosis.png" class="img-fluid"></p>
 <p>Positive values of kurtosis means, that the distribution is steeper than a normal distribution, while negative values mean, that it is flatter than a standard normal distribution. Of course, you can read the curvature from a plot, but also there is a way to calculate this. If you look to the formula, it will be quite familiar to you, because it resembles very much the formula for skewness. The only difference is, that instead of to the power of three no we calculate to the power of four.</p>
 <p><span class="math display">\[
 K = \frac {\sum_{i=1}^n (x_i - \bar{x})^4} {n*s^4}
@@ -1203,6 +1240,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./05-chapter.html" class="pagination-link" aria-label="Nonparametric Tests">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Nonparametric Tests</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

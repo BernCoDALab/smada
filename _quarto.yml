@@ -4,6 +4,7 @@ project:
   render:
     - "*.qmd"
     - "!lectures/"
+    - "!book/"
 
 website:
   title: "Statistical Methods for Archaeological Data Analysis"

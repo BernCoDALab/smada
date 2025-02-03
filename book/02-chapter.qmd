@@ -250,10 +250,10 @@ How specific folder has to be addressed, depends on the operating system. While 
 
 In the reminder of the chapter we will need some files that can be downloaded using the following links:
 
-* `r xfun::embed_file('data/02_session/height.RData', text = "height.RData")`
-* `r xfun::embed_file('data/02_session/kursmatrix.txt', text = "kursmatrix.txt")`
-* `r xfun::embed_file('data/02_session/kursdata.txt', text = "kursdata.txt")`
-* `r xfun::embed_file('data/02_session/kursdata.csv', text = "kursdata.csv")`
+* `r xfun::embed_file('height.RData', text = "height.RData")`
+* `r xfun::embed_file('kursmatrix.txt', text = "kursmatrix.txt")`
+* `r xfun::embed_file('kursdata.txt', text = "kursdata.txt")`
+* `r xfun::embed_file('kursdata.csv', text = "kursdata.csv")`
 
 Please save these files to the directory that you have defined as your working directory. In the following the used example will assume that the files are accessible directly, as they should be if they are placed in the working directory.
 
@@ -270,13 +270,13 @@ setwd("my/location/of/my/working/directory")
 Data can be imported into R from different formats and sources. The most straightforward version is to directly scan a text file and read it into an R variable. For directly reading in a file we can use the function `scan()`. The file `kursmatrix.txt` is a simple text file in which ages and bodies sizes of individuals are listed consecutively. Scan reads in each item and translate it to a position in a vector.
 
 ```{r}
-scan("data/02_session/kursmatrix.txt")
+scan("kursmatrix.txt")
 ```
 
 If we, for example, want to turn this factor into a two-dimensional structure, like a matrix, we can use the command matrix to define such a structure and then use as an input the scanned content of the file. For the command `matrix()`, One of its parameters is the content that should be turned into a matrix, the second parameter is the number of columns that this matrix should have in end. 
 
 ```{r}
-kursmatrix <- matrix(scan("data/02_session/kursmatrix.txt"),ncol=2)
+kursmatrix <- matrix(scan("kursmatrix.txt"),ncol=2)
 ```
 
 The result is a two-dimensional structure, with two columns, in which body height and age are listed in different columns.
@@ -288,19 +288,19 @@ kursmatrix
 The file `kursdata.txt` contains a more complicated data structure. Here we have information is of different kinds, for example strings, but also numeric values. This kind of data can be imported into an data frame. The most general function to import table data is the function `read.table()`. 
 
 ```{r}
-kursdata <- read.table("data/02_session/kursdata.txt")
+kursdata <- read.table("kursdata.txt")
 ```
 
 One of the most widely used text file for exchange of numerical and other data are those in the CSV format. This format comes into flavours, Differentiated by the character that separates the columns. The original CSV format has a column separator "," and a decimal separator using ".". In European and other countries the "," it's often used as decimal separator. Therefore also a CSV2 format exists. Here the column separator is a "; ", while the decimal separator is, ". In Switzerland most of the time we will probably use the CSV2 format. In this format we have the same data available like we have in the `kursdata.txt`, the file is now called `kursdata.csv`.
 
 ```{r}
-kursdata <- read.csv2("data/02_session/kursdata.csv")
+kursdata <- read.csv2("kursdata.csv")
 kursdata
 ```
  If we read in the data like this, you will realise, that there is a numeric naming, that is automatically given by R. If the dataset already consists of a unique identifier, that is a value, that is not repeated within the whole dataset, and that uniquely identify every individual item of the dataset, this can be used instead of the numeric identifier. This unifier of individual items is called row names in R. So if we specify in the read.CSV2 command, that we want to use for example the first column as row names, we can do it like this.
 
 ```{r}
-kursdaten <- read.csv2("data/02_session/kursdata.csv",row.names = 1)
+kursdaten <- read.csv2("kursdata.csv",row.names = 1)
 kursdaten
 ```
 
@@ -351,7 +351,7 @@ Also variables with more complex content can, of course, be used in calculations
 For this we explore a way of loading data into R. This time we use the need to data storage option of R. This format is called 'RData', and different from other loading or saving, we do not have to specify a variable name. In this case the variable is stored with its content, and if we load this dataset again, the variable is restored with the same name.
 
 ```{r}
-load("data/02_session/height.RData")
+load("height.RData")
 height
 ```
 
@@ -730,7 +730,7 @@ write.csv(kursdata,"kursdata.csv")
 
 You very likely will have problems with Microsoft Excel. Over spreadsheet software might be smarter. Nevertheless, if you are on the continent, you would like to save your data in the way like below.
 
-```{r, eval=F}
+```{r}
 write.csv2(kursdata,"kursdata.csv")
 ```
 

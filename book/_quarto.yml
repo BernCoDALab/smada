@@ -2,6 +2,9 @@ project:
   type: book
   output-dir: ../docs/book
   execute-dir: file  # Forces a new working directory for each chapter
+  render:
+    - book/index.qmd
+    - lectures/02_session/02-chapter.qmd
 
 book:
   title: "Statistical Methods for Archaeological Data Analysis"
@@ -12,6 +15,12 @@ book:
     - 02-chapter.qmd
     - 03-chapter.qmd
     - 04-chapter.qmd
+    - 05-chapter.qmd
+    - 06-chapter.qmd
+    - 07-chapter.qmd
+    - 08-chapter.qmd
+    - 09-chapter.qmd
+    - 10-chapter.qmd
 
 format:
   html:

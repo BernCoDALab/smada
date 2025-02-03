@@ -21,13 +21,13 @@ This is basically also the fundamental idea of classification as we have already
 
 If we want to imagine the whole process geometrically, it is easiest to stick to a two-dimensional example. Or at least to start from here.
 
-![:width 70%](../images/11_session/cluster_chart.png)
+![:width 70%](images/11_session/cluster_chart.png)
 
 In the figure above we can see different points in a diagram. Their perception is already influenced by the very suggestive outlines, colouring, and different symbols of the points. However, if you focus on the dots themselves, you will certainly, or most likely, agree with the grouping. In the upper left we have a group of regularly arranged triangles, below and further to the right a more irregular group of dots, and below that still further to the right a group of dots, again regularly arranged. All around are a few stars, which intuitively we would not necessarily assign to one of the groups.
 
 In a moment we will get to know procedures with which we can reproduce this order (more or less well) by means of mathematical procedures. And it is no problem for mathematical methods to think in more than two dimensions. Basically, this increase in dimensionality is mostly trivial for mathematical algorithms.
 
-![:width 70%](../images/11_session/cluster_chart3d.png)
+![:width 70%](images/11_session/cluster_chart3d.png)
 Here is the rendering of a data structure in three-dimensional space as it may result from three measurements. The representation makes it a little difficult for us to perceive the groups in space, as I suspect that, like me, you only have a two-dimensional monitor. However, if this representation were floating in front of us as a hologram, we would have no problems identifying groups here. The next step, however, becomes difficult: we simply lack the sensory organs as well as the mental abilities to be able to perceive more than three dimensions. This means that both in the representation and in the analysis of data structures that have more than three variables, we are necessarily dependent on simplifications. Or exactly procedures that can sort out groups for us without being subject to our limitations.
 
 Since this is a fundamental challenge that affects not only archaeology, but many different sciences (after all, the method of grouping is one that is needed by all scientific disciplines in one form or another), there are a large number of different methods to do this, adapted to different conditions or data qualities. We will start with a short introduction to classification methods. Further on, we will deal with a flavour of this cluster analysis that is probably most similar to the way a human mind would approach it, and which will therefore be the easiest for us to understand. In the practical part, I will only refer to one other variant, the rest is left to everyone's own study. However, in the near future a specific self-study course on cluster analysis will be published by a group of which I am a member. At times, I will therefore refer to exactly this further presentation at this point.
@@ -89,7 +89,7 @@ If the recalculated midpoints of our individual groups have still changed, i.e. 
 A practical method that is used in partitioning, and which is also widely used in science, is the so-called Kmeans clustering. We will get to know this procedure in more detail at the end of the session. In the following illustration, you can try to understand the algorithm with a graphical example.
 
 .center[
-![:width 35%](../images/11_session/cluster_procedure_kmeans.png)
+![:width 35%](images/11_session/cluster_procedure_kmeans.png)
 ]
 
 ### Hierarchical and partitioning: advantages and disadvantages
@@ -127,7 +127,7 @@ $d_{ij} = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}$
 
 And in addition, the graphical representation of this relationship with respect to actually measured variables, in this case height and rim diameter.
 
-![:width 75%](../images/11_session/euc_dist.png)
+![:width 75%](images/11_session/euc_dist.png)
 
 This is what we commonly understand by distance: the Euclidean distance. To be able to apply this, we have to be in the range of real measured values. And these measured values must actually be completely independent of each other. Moreover, the measure (the metric) must also be one that corresponds to our common notion of Euclidean space. That is, twice the value also corresponds to twice the distance. We therefore have ratio-scaled measurement values in relation to differences.
 
@@ -135,7 +135,7 @@ This is what we commonly understand by distance: the Euclidean distance. To be a
 
 But why bother with complicated squaring when you can simply take the two measured values directly:
 
-![:width 75%](../images/11_session/manhatt_distance.png)
+![:width 75%](images/11_session/manhatt_distance.png)
 
 What we see in this figure is also a measure of the distance between two points. However, we are not using Euclidean distance here. Rather, this is the distance that a taxi driver in New York would have to cover in order to drive a passenger around the various blocks from one address to the other. Therefore, this distance or distance measure is also called Manhattan Metric or City Block Distance. 
 
@@ -426,13 +426,13 @@ This method is a little different from the ones just described. It is also based
 
 To visualise the differences, let's use the groupings we have seen before:
 
-![:width 70%](../images/11_session/cluster_chart.png)
+![:width 70%](images/11_session/cluster_chart.png)
 
 Now we go through these groups step by step for different cluster algorithms and look at what kind of groups they would produce for this arrangement of data.
 
 **Single Linkage**
 
-![](../images/11_session/single_result.png)
+![](images/11_session/single_result.png)
 
 In the case of single linkage, first the 6 outliers are separated from all other values. Next we see a separation of C to A and B. However, the procedure does not succeed in separating A & B in a meaningful way because they are very close to each other. It is also said that single linkage tends to chain formation. This means that the nearest neighbour is always chosen, i.e., from the left uppermost B the procedure jumps over to the right lowermost member of A without any problems. What still worked very well with our margarines has to be taken with greater caution in more difficult applications with more data.
 
@@ -440,13 +440,13 @@ In the case of single linkage, first the 6 outliers are separated from all other
 
 The average linkage method is more successful. Here, A, B and C are finally separated. However, with this method B is also divided into two groups, even before B & A separate. Here we do not have such a clear chain formation (no such clear stairs in the dendrogram), but the result is also unsatisfactory, and in this case the outliers also separate quite late from the actual groups.
 
-![](../images/11_session/average_result.png)
+![](images/11_session/average_result.png)
 
 **Ward**
 
 The best way (or the way we would do it, too) to cluster is with the Ward method. Here, groups A, B and C are the first to separate. And also with a clear distance to all other separations. However, this method is forced to assign the outliers to a group, which is then also carried out (perhaps reluctantly, it is so difficult to look into an algorithm).
 
-![](../images/11_session/ward_result.png)
+![](images/11_session/ward_result.png)
 
 Which method we may use to fuse the individual clusters also depends on what kind of distance matrix we have. If we are working with similarity measures, the Ward method (as well as the centroid and median methods) cannot be used meaningfully. In this case, the average linkage method can be used.
 

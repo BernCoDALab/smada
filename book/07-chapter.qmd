@@ -324,19 +324,19 @@ The t-test is a test for difference in mean between two samples. But it is more 
 
 A normal distribution is defined by its mean and it's standard deviation, one can estimate with these values how likely value may result from such a distribution. And this comes handy, when one likes to compare two of these normal distributions in respect to their mean. The bigger the difference between the main values of two normal distributed population, the more unlikely it is that they can result from the same process. Or to put it simple: that they are the same.
 
-![](../images/09_session/t_visualisation_1.png)
+![](images/09_session/t_visualisation_1.png)
 .caption[source: I do not know any more...]
 
 But there is a second aspect to be considered: how much the distributions vary. With the same distance between the means, a differently large variability of the distributions can lead to differently accurate and reliable differentiation. If we have a small variability, then a small distance between the mean values is sufficient to reliably separate the two distributions. Conversely, if we have a very high variability, then the two distributions overlap considerably more. In this case, the distance between the mean values must be much greater in order to achieve a clear separation. Therefore, a test for the difference in mean values must take three parameters into account: the number of cases, the variability, and only then the actual distance between the mean values of the two samples.
 
-![](../images/09_session/t_visualisation_2.png)
+![](images/09_session/t_visualisation_2.png)
 .caption[source: I can not remember, either...]
 
 The number of cases and variability are covered by the standard error. If you have already read the advanced chapter on distributions, you know that the standard error is calculated by the standard deviation divided by the square root of the number of cases. This means that for the same variability, if the number of cases is large, the standard error becomes smaller. This is related to the law of large numbers. Mean values of populations, which is what we are concerned with, can be estimated with greater certainty by large samples. The standard error is expressed in the units of measurement. This is because the standard deviation is in the units of measurement, and is only divided by the unitless number of cases.
 
 From these considerations emerges the formula for the t-test: we relate the difference between the means (our signal for a difference) to the standard error (our measure for the noise in the data). If the difference between the means is large, the resulting value will also be large. Conversely, if the variability of the data is large, the will also be small. 
 
-![](../images/09_session/t_visualisation_3.png)
+![](images/09_session/t_visualisation_3.png)
 .caption[source: Guess what...]
 
 We can compare the resulting distribution with a theoretical distribution, the 'Student's t-distribution' (the name is only indirectly related to students, as the ' inventor' of this distribution has published it under the pseudonym ' Student'). Without a statistics programme, pre-calculated tables are used here, as we already know.

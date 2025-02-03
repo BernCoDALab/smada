@@ -37,7 +37,7 @@ Basically, by looking at this diagram, we have already carried out a regression 
 
 In the following, some variations of regression, i.e. possible relationships between two variables, are to be illustrated. I will briefly discuss the individual illustrations below.
 
-![:width 90%](../images/10_session/regression_types.png)
+![:width 90%](images/10_session/regression_types.png)
 
 The most common form is the so-called linear regression. This is when the data can best be described by a line. The two diagrams at the top each represent a linear regression. The lines, however, go in different directions: in the figure at the top left we see a positive regression, as we also have in the example of the fibulae. Shown here is the relationship between the height of vessels and their rim diameter. The larger the vessel, the larger the diameter of the rim. The figure on the top right represents a negative regression. Here we see the frequency of a certain type of pottery as a function of the distance from the production site of this ware. The further we move away from the production site, the lower the frequency of this type of pottery in excavations in the surrounding area. Generally speaking, one variable becomes smaller as the other becomes larger. Nevertheless, a line can also be found here that describes the relationship between the variables well.
 
@@ -93,7 +93,7 @@ As already emphasised several times, this simple way is only viable if all point
 
 If we do not know the exact relationship of the two variables, we have to estimate it from our data points. Surely you have already read the term least squares method in various contexts. In the following we will illustrate how this method works.
 
-![:width 25%](../images/10_session/611px-Linear_least_squares_example2.svg.png)
+![:width 25%](images/10_session/611px-Linear_least_squares_example2.svg.png)
 .caption[.tiny[https://commons.wikimedia.org/wiki/File:Linear_least_squares_example2.svg]]
 
 The above example shows a possible situation where we have four data points that do not lie on a line. Our goal is to find a line that fits all these data points as best as possible. In other words, this line should pass as close as possible to all data points. This means that the distances between the data points and the line should be as small as possible. For a given X value, the predicted Y value from our linear model should be as close as possible to the Y value of the data point, and this should be the case for all points at the same time. We are not interested in whether the deviation is positive or negative, i.e. whether the line runs above or below the point. What we want to minimise is the absolute distance. We could express this with a formula as follows:
@@ -709,5 +709,5 @@ One example that you find frequently used is the correlation between the number 
 There is a website that has made it its business to compile and present such and similar illusory correlations: http://www.tylervigen.com/spurious-correlations. Have fun studying it!
 
 
-![:width 50%](../images/10_session/Storch_bringt_Baby.JPG)
+![:width 50%](images/10_session/Storch_bringt_Baby.JPG)
 .caption[.tiny[https://commons.wikimedia.org/wiki/File:Storch_bringt_Baby.JPG]]

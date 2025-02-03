@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Correspondence analysis – Statistical Methods for Archaeological Data Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./09-chapter.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/rglWebGL-binding-1.3.17/rglWebGL.js"></script>
+<link href="site_libs/rglwidgetClass-1.3.17/rgl.css" rel="stylesheet">
+<script src="site_libs/rglwidgetClass-1.3.17/rglClass.min.js"></script>
+<script src="site_libs/CanvasMatrix4-1.3.17/CanvasMatrix.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-chapter.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Correspondence analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Methods for Archaeological Data Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Methods for Archaeological Data Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction into R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Explorative statistics &amp; graphical display</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Nonparametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Probability Theory</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Parametric tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regression Analysis and Correlation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cluster Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Correspondence analysis</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">10.1</span> Background</a>
+  <ul class="collapse">
+  <li><a href="#idea-and-basics" id="toc-idea-and-basics" class="nav-link" data-scroll-target="#idea-and-basics"><span class="header-section-number">10.1.1</span> Idea and Basics</a></li>
+  <li><a href="#history" id="toc-history" class="nav-link" data-scroll-target="#history"><span class="header-section-number">10.1.2</span> History</a></li>
+  </ul></li>
+  <li><a href="#conducting-a-correspondence-analysis" id="toc-conducting-a-correspondence-analysis" class="nav-link" data-scroll-target="#conducting-a-correspondence-analysis"><span class="header-section-number">10.2</span> Conducting a correspondence analysis</a>
+  <ul class="collapse">
+  <li><a href="#data-formats" id="toc-data-formats" class="nav-link" data-scroll-target="#data-formats"><span class="header-section-number">10.2.1</span> Data formats</a></li>
+  <li><a href="#standardising-to-relative-frequency" id="toc-standardising-to-relative-frequency" class="nav-link" data-scroll-target="#standardising-to-relative-frequency"><span class="header-section-number">10.2.2</span> Standardising to relative frequency</a></li>
+  <li><a href="#calculation-of-expected-values" id="toc-calculation-of-expected-values" class="nav-link" data-scroll-target="#calculation-of-expected-values"><span class="header-section-number">10.2.3</span> Calculation of expected values</a></li>
+  <li><a href="#extraction-of-dimensions" id="toc-extraction-of-dimensions" class="nav-link" data-scroll-target="#extraction-of-dimensions"><span class="header-section-number">10.2.4</span> Extraction of dimensions</a></li>
+  </ul></li>
+  <li><a href="#correspondence-analysis-procedure-using-a-presenceabsence-matrix" id="toc-correspondence-analysis-procedure-using-a-presenceabsence-matrix" class="nav-link" data-scroll-target="#correspondence-analysis-procedure-using-a-presenceabsence-matrix"><span class="header-section-number">10.3</span> Correspondence analysis: Procedure (using a presence/absence matrix)</a>
+  <ul class="collapse">
+  <li><a href="#normalization-of-coordinates" id="toc-normalization-of-coordinates" class="nav-link" data-scroll-target="#normalization-of-coordinates"><span class="header-section-number">10.3.1</span> Normalization of coordinates</a></li>
+  </ul></li>
+  <li><a href="#correspondence-analysis-procedure-using-a-presenceabsence-matrix-1" id="toc-correspondence-analysis-procedure-using-a-presenceabsence-matrix-1" class="nav-link" data-scroll-target="#correspondence-analysis-procedure-using-a-presenceabsence-matrix-1"><span class="header-section-number">10.4</span> Correspondence analysis: Procedure (using a presence/absence matrix)</a></li>
+  <li><a href="#correspondence-analysis-real-world-case" id="toc-correspondence-analysis-real-world-case" class="nav-link" data-scroll-target="#correspondence-analysis-real-world-case"><span class="header-section-number">10.5</span> Correspondence analysis: Real World case</a>
+  <ul class="collapse">
+  <li><a href="#münsingen-burial-site" id="toc-münsingen-burial-site" class="nav-link" data-scroll-target="#münsingen-burial-site"><span class="header-section-number">10.5.1</span> Münsingen Burial Site</a></li>
+  </ul></li>
+  <li><a href="#correspondence-analysis-real-world-case-1" id="toc-correspondence-analysis-real-world-case-1" class="nav-link" data-scroll-target="#correspondence-analysis-real-world-case-1"><span class="header-section-number">10.6</span> Correspondence analysis: Real World case</a>
+  <ul class="collapse">
+  <li><a href="#münsingen-burial-site-1" id="toc-münsingen-burial-site-1" class="nav-link" data-scroll-target="#münsingen-burial-site-1"><span class="header-section-number">10.6.1</span> Münsingen Burial Site</a></li>
+  </ul></li>
+  <li><a href="#correspondence-analysis-real-world-case-2" id="toc-correspondence-analysis-real-world-case-2" class="nav-link" data-scroll-target="#correspondence-analysis-real-world-case-2"><span class="header-section-number">10.7</span> Correspondence analysis: Real World case</a>
+  <ul class="collapse">
+  <li><a href="#münsingen-burial-site-2" id="toc-münsingen-burial-site-2" class="nav-link" data-scroll-target="#münsingen-burial-site-2"><span class="header-section-number">10.7.1</span> Münsingen Burial Site</a></li>
+  </ul></li>
+  <li><a href="#correspondence-analysis-real-world-case-3" id="toc-correspondence-analysis-real-world-case-3" class="nav-link" data-scroll-target="#correspondence-analysis-real-world-case-3"><span class="header-section-number">10.8</span> Correspondence analysis: Real World case</a>
+  <ul class="collapse">
+  <li><a href="#münsingen-burial-site-3" id="toc-münsingen-burial-site-3" class="nav-link" data-scroll-target="#münsingen-burial-site-3"><span class="header-section-number">10.8.1</span> Münsingen Burial Site</a></li>
+  </ul></li>
+  <li><a href="#correspondence-analysis-real-world-case-4" id="toc-correspondence-analysis-real-world-case-4" class="nav-link" data-scroll-target="#correspondence-analysis-real-world-case-4"><span class="header-section-number">10.9</span> Correspondence analysis: Real World case</a>
+  <ul class="collapse">
+  <li><a href="#münsingen-burial-site-4" id="toc-münsingen-burial-site-4" class="nav-link" data-scroll-target="#münsingen-burial-site-4"><span class="header-section-number">10.9.1</span> Münsingen Burial Site</a></li>
+  </ul></li>
+  <li><a href="#correspondence-analysis-real-world-case-5" id="toc-correspondence-analysis-real-world-case-5" class="nav-link" data-scroll-target="#correspondence-analysis-real-world-case-5"><span class="header-section-number">10.10</span> Correspondence analysis: Real World case</a>
+  <ul class="collapse">
+  <li><a href="#münsingen-burial-site-5" id="toc-münsingen-burial-site-5" class="nav-link" data-scroll-target="#münsingen-burial-site-5"><span class="header-section-number">10.10.1</span> Münsingen Burial Site</a></li>
+  </ul></li>
+  <li><a href="#correspondence-analysis-interpretation" id="toc-correspondence-analysis-interpretation" class="nav-link" data-scroll-target="#correspondence-analysis-interpretation"><span class="header-section-number">10.11</span> Correspondence Analysis: Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#guttman-effect-horseshoe-parabola" id="toc-guttman-effect-horseshoe-parabola" class="nav-link" data-scroll-target="#guttman-effect-horseshoe-parabola"><span class="header-section-number">10.11.1</span> Guttman effect (horseshoe, parabola)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Correspondence analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="background" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="background"><span class="header-section-number">10.1</span> Background</h2>
+<section id="idea-and-basics" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="idea-and-basics"><span class="header-section-number">10.1.1</span> Idea and Basics</h3>
+<p>The basic assumption underlying correspondence analysis is the same as the one we used in cluster analysis: similar things have similar characteristics, and can therefore be grouped together based on their features. Just like cluster analysis, correspondence analysis is a Pattern Detection technique. Both could also be called exploratory methods. Their aim is to discover patterns in the data. Using correspondence analysis as a statistical procedure does not in any way prove that the patterns found are actually significant. For the purpose of significance testing, one must resort to standard procedures of statistical hypothesis testing.</p>
+<p>In contrast to cluster analysis, correspondence analysis is inherently a visual procedure. It is primarily used to visualise contingency tables or presents absence matrices. Correspondence analysis belongs to the broader field of ordination methods, which involves ordering objects according to their characteristics and then visually representing this order.</p>
+<p>The basic idea of visualisation by means of a correspondence analysis is the following: the representation of the objects (called ‘sites’ in vegan jargon) and the properties (mostly types in archaeology, called ‘species’ in vegan jargon) are represented in a common coordinate system. The intuition here is that objects that are closer together should also be more similar than those objects that are positioned far away from each other. For this, of course, similarities must first be determined. This similarity determination is carried out in the context of the correspondence analysis by means of the chi-square method, as we have already become familiar with in the context of the chi-square test.</p>
+<p>Just like the chi-square test, the correspondence analysis has very low requirements for the data quality of the variables due to the underlying mathematical method (the chi-square method). A data matrix with at least nominally scaled variables is sufficient for the procedure. Higher scaled variables are also possible, but then the information contained in this higher scale level is lost. These low demands on the scaling level make the correspondence particularly attractive for archaeological questions, as we often only have nominally scaled variables, such as different types at a site, or different nominally determined features on pottery vessels.</p>
+<p>The basic sequence can be stated as follows. 1:</p>
+<ol type="1">
+<li>the data are standardised across data sets to a comparable measure</li>
+<li>the data standardised in this way are projected into the multidimensional variable space.</li>
+<li>those vectors are determined that gradually absorb the most information from the data and are oriented at right angles to each other at the same time.</li>
+<li>the data points of the objects as well as of the properties are projected with their coordinates onto those planes which are formed by the vectors.</li>
+<li>the resulting new coordinates can now be represented in a diagram in relation to the individual vectors (dimensions).</li>
+</ol>
+<p><img src="images/12_session/multi_space.png" class="img-fluid"> .caption[.tiny[source: http://www.aapspharmscitech.org] ]</p>
+<p><img src="images/12_session/multi_projection.png" class="img-fluid"> .caption[.tiny[source: http://www.cs.mcgill.ca]]</p>
+</section>
+<section id="history" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="history"><span class="header-section-number">10.1.2</span> History</h3>
+<p>Correspondence analysis itself was developed in the context of biological and psychological studies. Its algebraic foundations were laid in the 1940s by Hartley and Guttmann. The first explicit use of correspondence analysis was by Benzéncri in the 1960s in the field of linguistic studies. Subsequently, correspondence analysis was further explored and developed by various research groups. This led to the emergence of different versions, but also to the establishment of different names for the same procedure. In 1984, Greenacre wrote the basic monograph on the method, which is still considered the standard work on the subject.</p>
+<p>In archaeology, correspondence analysis appeared first and mainly in the context of seriation. Seriations were already carried out and published in 1899 by William Flinders Petri. However, these were still done by hand and eye, and were not yet supported by mathematical methods. In the 1960s, the application of various mathematical methods for seriation studies experienced a great upswing (Kendall, Münsingen). In Germany, the first experiments with seriation using computer-assisted methods were published by Goldmann in 1979 as part of his dissertation, in which the method of reciprocal averaging was used for seriation. Only subsequently did correspondence analysis emerge as a method for this purpose. This procedure was used particularly extensively in the chronological order of the Rhenish Linearband Pottery. The procedures used in this context were further developed especially by the University of Cologne. Another focus of the application of correspondence analysis in German-speaking countries is the University of Kiel.</p>
+</section>
+</section>
+<section id="conducting-a-correspondence-analysis" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="conducting-a-correspondence-analysis"><span class="header-section-number">10.2</span> Conducting a correspondence analysis</h2>
+<section id="data-formats" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="data-formats"><span class="header-section-number">10.2.1</span> Data formats</h3>
+<p>For correspondence analysis, data is usually available in two-dimensional form: the individual rows of the data table represent the individual items. These can be individual sites, but also individual pottery vessels, depending on the scale of the respective investigation. The individual columns, in turn, represent the features that were observed on the individual items. Depending on the scale of the investigation, this can also reach very different levels of granularity.</p>
+<section id="presence-absence-data" class="level4" data-number="10.2.1.1">
+<h4 data-number="10.2.1.1" class="anchored" data-anchor-id="presence-absence-data"><span class="header-section-number">10.2.1.1</span> Presence-absence data</h4>
+<p>The table can contain presence-absence data. Here, a one in the corresponding cell indicates that the feature is present on the object, whereas the zero represents the absence of this feature.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>burials <span class="sc">%&gt;%</span> <span class="fu">addmargins</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pot</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cup</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fibula</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Burial1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Burial3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="contingency-table" class="level4" data-number="10.2.1.2">
+<h4 data-number="10.2.1.2" class="anchored" data-anchor-id="contingency-table"><span class="header-section-number">10.2.1.2</span> Contingency table</h4>
+<p>Another possibility, which is particularly useful for more comprehensive analyses, is the representation as a contingency table: Here, an absolute number is used to indicate how many of the characteristics are observable on the respective item.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Pot</th>
+<th>Cup</th>
+<th>Fibula</th>
+<th>Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Settlements</td>
+<td>20</td>
+<td>23</td>
+<td>40</td>
+<td>83</td>
+</tr>
+<tr class="even">
+<td>Hoards</td>
+<td>23</td>
+<td>10</td>
+<td>6</td>
+<td>39</td>
+</tr>
+<tr class="odd">
+<td>Burials</td>
+<td>10</td>
+<td>56</td>
+<td>4</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<td>Sum</td>
+<td>53</td>
+<td>89</td>
+<td>50</td>
+<td>192</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="burt-matrices" class="level4" data-number="10.2.1.3">
+<h4 data-number="10.2.1.3" class="anchored" data-anchor-id="burt-matrices"><span class="header-section-number">10.2.1.3</span> Burt matrices</h4>
+<p>Another possibility how data can be used in a correspondence analysis is the so-called Burt matrix. In this case, features and items are no longer listed with respect to each other in a table, but only the correspondence between features matching items, or the correspondence between items matching features.</p>
+<p>To illustrate this, let us transform the table of grave goods and individual burials from above into one respectively two Burt matrices. Let us start with the matrix for the items. For all burials, we look in pairs at how many present attribute values they match. This number marks the cell content for a table in which all items (in our case, burials) are plotted against each other in the rows and columns.</p>
+<p>In the case of burial one, pot and cup are present. This means that burial one is assigned the value two in relation to burial one itself, since we have two positive feature values present. In relation to burial two, the value one is assigned, as both are in agreement positively only in relation to the cup. In relation to burial three, the value is again two, as both top and cup match, but burial one does not include a fibula. In relation to burial four, again, only the pot matches, cup and fibula are missing in one of the two graves respectively. This now continues for all pairwise items. At the end of this procedure we should arrive at the following table:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Burial1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Burial2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Burial3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Burial4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Burial1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Burial3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Instead of counting out the individual values directly, we can also use an operation from matrix algebra: we multiply the matrix of presence-absence data by itself, with the second instance transposed, i.e.&nbsp;rotated by 90°. The result is the same as that of the process we performed by hand above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>burials <span class="sc">%*%</span> <span class="fu">t</span>(burials)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Burial1 Burial2 Burial3 Burial4
+Burial1       2       1       2       1
+Burial2       1       2       2       1
+Burial3       2       2       3       2
+Burial4       1       1       2       2</code></pre>
+</div>
+</div>
+<p>In this way we have created a Burt matrix for the sites. In the same way, we can also create a matrix for the features, i.e.&nbsp;the species. Only we have to exchange which of the matrices we rotate by 90°.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(burials) <span class="sc">%*%</span> burials</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Pot Cup Fibula
+Pot      3   2      2
+Cup      2   3      2
+Fibula   2   2      3</code></pre>
+</div>
+</div>
+<p>The resulting matrices each record the relevant matches, but focus only on either the characteristics or the items. The diagonal contains the number of matches observed for the individual features or items with themselves. These are not actually relevant to the original problem of the seriation. Therefore, one can also set this diagonal to zero in order to focus even more strongly on the correlations between the individual variables or items. Such a modified Burt matrix can often give a clearer seriation and correspondence analysis result.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>burt.s <span class="ot">&lt;-</span> burials <span class="sc">%*%</span> <span class="fu">t</span>(burials)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(burt.s) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>burt.s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Burial1 Burial2 Burial3 Burial4
+Burial1       0       1       2       1
+Burial2       1       0       2       1
+Burial3       2       2       0       2
+Burial4       1       1       2       0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="standardising-to-relative-frequency" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="standardising-to-relative-frequency"><span class="header-section-number">10.2.2</span> Standardising to relative frequency</h3>
+<p>In the next step, we bring the values within the data table (be it the presence absence or contingency table) to a uniform measure. Here we use the relative numbers per cell, i.e.&nbsp;we divide the total table by the total sum of all entries in this table.</p>
+<p>Let us continue to illustrate this with the presence-absence table for the burials:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pot</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cup</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fibula</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Burial1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Burial3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Here I have included the marginal sums. The total sum of the table is nine. If we now divide each individual cell of the table by nine, the total sum is only one, and the respective entries are one ninth.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pot</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cup</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fibula</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Burial1</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial2</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Burial3</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial4</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>In addition to the individual values within the table, which now represent the relative frequency, the newly created marginal sums are also relevant. We will need these to calculate the expected values for the Chi Square value. Furthermore, we will need this information later for scaling the coordinates for the visual representation. These marginal sums are also called row or column profiles, the individual values within these are also called row masses or column masses.</p>
+<p>.tiny[ Row profile:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Burial1 Burial2 Burial3 Burial4 
+   0.22    0.22    0.33    0.22 </code></pre>
+</div>
+</div>
+<p>Column profile:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Pot    Cup Fibula 
+  0.33   0.33   0.33 </code></pre>
+</div>
+</div>
+</section>
+<section id="calculation-of-expected-values" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="calculation-of-expected-values"><span class="header-section-number">10.2.3</span> Calculation of expected values</h3>
+<p>The correspondence analysis, as already indicated several times, is based on the chi-square value in its measure for the individual similarities. We have covered the following formula for the calculation of the chi-square value within the chi-square test:</p>
+<p><span class="math inline">\(\chi^2=\sum_{i=1}^n \frac{(O_i - E_i)^2}{E_i}\)</span></p>
+<p>So we relate the observed values to the expected values, assuming that no specific pattern exists, and thus measure the degree of our surprise with regard to the pattern in the data. For this calculation, we need the expected values as well as the observed values. In fact, the measure used in the correspondence analysis is a slight modification of the above formula: instead of the chi-squared value, we use a Z value that is not squared, which means that we can have positive and negative values.</p>
+<p><span class="math inline">\(z_{ij}=\frac{(O_i - E_i)}{\sqrt{E_i}}\)</span></p>
+<p>Nevertheless, we also need the expected values for the calculation of this value, which, as you will remember from the lesson on the chiquadrat test, results from the marginal sums. In the case that no pattern exists, the expected value for the individual cell is the column sum times the row sum, divided by the total sum. The latter is omitted in our case here, since the total sum is already normalised to one. Thus, we can calculate the total expected value for the table quite quickly:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pot</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cup</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fibula</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Burial1</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial2</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Burial3</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial4</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Now, with the expected values at hand, we can put them together with the observed values into the formula above. I will spare you the actual calculation, as we have already done this in a similar way for the chi-square test. Instead, below is just the table with the results for the normalised values:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pot</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cup</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fibula</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Burial1</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">-0.27</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial2</td>
+<td style="text-align: right;">-0.27</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Burial3</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burial4</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">-0.27</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>The first thing we can derive directly from this table is the measure of the overall dispersion of the data. This means how much variability (or potential for surprise, to stick with the language I have now used more often) there is in our data set. The measure of surprise is, in fact, the chi-square value. To make this comparable between different data sets, we have to divide it by the number of cases. In purely mathematical terms (I will spare us all the derivation), however, we can also sum up the normalised values over the entire table and obtain the same number as a result. This can also be expressed as a formula, which looks quite impressive due to its two sums signs, but is basically quite trivial. The second part of the formula means nothing other than that all values are simply summed up over all rows and columns of the table.</p>
+<p><span class="math inline">\(I = \frac{\chi^2}{n} = \sum_i \sum_j z_{ij}^2\)</span></p>
+<p>The result of this calculation is a measure of the dispersion of the data in relation to the number of cases. This measure is also called inertia. This term appears frequently when correspondence analysis is involved. It means nothing other than how volatile or dissimilar the individual data in the overall data set are to each other.</p>
+<p>The total inertia in our example is: 0.3333333</p>
+<p>The second thing we can derive are the coordinates of our data in the multidimensional data space. This is nothing other than the values of the individual data sets in relation to the individual variables. In our case, these variables are normalised with the normalisation we just did. The individual axes, however, still correspond to the original variables that we have provided. This corresponds to the representation we have already used above (Figure <span class="math inline">\(\ref{multivariablespace}\)</span>).</p>
+<p>There are three variables in our data set. In a three-dimensional representation, we can now plot all three variables in a coordinate system and represent our points (our individual data) in it. In the HTML version of this book, the following picture is movable with the mouse: Just click on it, keep the mouse button pressed and move the mouse. I am not yet sure how to do this in the printed version.</p>
+<div class="cell">
+<div class="cell-output-display no-overflow-x">
+<div id="rgl43377" style="width:100%;height:464px;" class="rglWebGL html-widget" role="img" aria-labelledby="rgl43377-aria"></div>
+<script type="application/json" data-for="rgl43377">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmode":"modulate","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0],"margin":"","floating":false,"tag":"","blend":["src_alpha","one_minus_src_alpha"]},"rootSubscene":6,"objects":{"13":{"id":13,"type":"spheres","material":{},"vertices":"0","colors":"1","radii":[[0.006804137956351042]],"centers":"2","ignoreExtent":false,"fastTransparency":true,"flags":32771},"15":{"id":15,"type":"text","material":{"lit":false,"margin":0,"floating":true,"edge":[0,1,1]},"vertices":"3","colors":"4","texts":[["z[, 1]"]],"cex":[[1]],"adj":[[0.5,0.5,0.5]],"centers":"5","family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"16":{"id":16,"type":"text","material":{"lit":false,"margin":1,"floating":true,"edge":[1,1,1]},"vertices":"6","colors":"7","texts":[["z[, 2]"]],"cex":[[1]],"adj":[[0.5,0.5,0.5]],"centers":"8","family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"17":{"id":17,"type":"text","material":{"lit":false,"margin":2,"floating":true,"edge":[1,1,1]},"vertices":"9","colors":"10","texts":[["z[, 3]"]],"cex":[[1]],"adj":[[0.5,0.5,0.5]],"centers":"11","family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"18":{"id":18,"type":"text","material":{"lit":false},"vertices":"12","colors":"13","texts":[["Burial1"],["Burial2"],["Burial3"],["Burial4"]],"cex":[[1]],"adj":[[0.5,0.5,0.5]],"centers":"14","family":[["sans"]],"font":[[1]],"ignoreExtent":false,"flags":33808},"10":{"id":10,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"12":{"id":12,"type":"background","material":{"lit":false,"back":"lines"},"colors":"15","centers":"16","sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"14":{"id":14,"type":"bboxdeco","material":{"front":"lines","back":"lines"},"vertices":"17","colors":"18","axes":{"mode":["pretty","pretty","pretty"],"step":[0.1000000014901161,0.1000000014901161,0.1000000014901161],"nticks":[5,5,5],"marklen":[15,15,15],"expand":[1.029999971389771,1.029999971389771,1.029999971389771]},"draw_front":true,"flags":32769},"6":{"id":6,"type":"subscene","par3d":{"antialias":4,"FOV":30,"ignoreExtent":false,"listeners":6,"mouseMode":{"none":"none","left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,1.787975788116455],"modelMatrix":[[1,0,0,0.06804139167070389],[0,0.3420201539993286,0.9396926164627075,0.08720952272415161],[0,-0.9396926164627075,0.3420201539993286,-1.828642249107361],[0,0,0,1]],"projMatrix":[[3.732050895690918,0,0,0],[0,3.732050895690918,0,0],[0,0,-3.86370325088501,-6.445446014404297],[0,0,-1,0]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.3420201433256682,0.9396926207859085,0],[0,-0.9396926207859085,0.3420201433256682,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1,1,1],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[-0.2789696753025055,0.1428869068622589,-0.2789696753025055,0.1428869068622589,-0.2789696753025055,0.1428869068622589],"windowRect":[0,44,256,300],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/rgl/fonts/FreeSans.ttf","maxClipPlanes":6,"glVersion":2.1,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[12,14,13,15,16,17,18,10],"subscenes":[],"flags":34067}},"crosstalk":{"key":[],"group":[],"id":[],"options":[]},"width":672,"height":480,"buffer":{"accessors":[{"bufferView":0,"componentType":5126,"count":4,"type":"VEC3"},{"bufferView":1,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":2,"componentType":5126,"count":4,"type":"VEC3"},{"bufferView":3,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":4,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":5,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":6,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":7,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":8,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":9,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":10,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":11,"componentType":5126,"count":1,"type":"VEC3"},{"bufferView":12,"componentType":5126,"count":4,"type":"VEC3"},{"bufferView":13,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":14,"componentType":5126,"count":4,"type":"VEC3"},{"bufferView":15,"componentType":5121,"count":1,"type":"VEC4"},{"bufferView":16,"componentType":5121,"count":1,"type":"VEC3"},{"bufferView":17,"componentType":5126,"count":12,"type":"VEC3"},{"bufferView":18,"componentType":5121,"count":1,"type":"VEC4"}],"bufferViews":[{"buffer":0,"byteLength":48,"byteOffset":0},{"buffer":0,"byteLength":4,"byteOffset":48},{"buffer":0,"byteLength":48,"byteOffset":52},{"buffer":0,"byteLength":12,"byteOffset":100},{"buffer":0,"byteLength":4,"byteOffset":112},{"buffer":0,"byteLength":12,"byteOffset":116},{"buffer":0,"byteLength":12,"byteOffset":128},{"buffer":0,"byteLength":4,"byteOffset":140},{"buffer":0,"byteLength":12,"byteOffset":144},{"buffer":0,"byteLength":12,"byteOffset":156},{"buffer":0,"byteLength":4,"byteOffset":168},{"buffer":0,"byteLength":12,"byteOffset":172},{"buffer":0,"byteLength":48,"byteOffset":184},{"buffer":0,"byteLength":4,"byteOffset":232},{"buffer":0,"byteLength":48,"byteOffset":236},{"buffer":0,"byteLength":4,"byteOffset":284},{"buffer":0,"byteLength":3,"byteOffset":288},{"buffer":0,"byteLength":144,"byteOffset":292},{"buffer":0,"byteLength":4,"byteOffset":436}],"buffers":[{"byteLength":440,"bytes":"SFkLPkhZCz5IWYu+SFmLvkhZCz5IWQs+AABAJQAAQCUAAEAlSFkLPkhZi75IWQs+AAAAAUhZ\nCz5IWQs+SFmLvkhZi75IWQs+SFkLPgAAQCUAAEAlAABAJUhZCz5IWYu+SFkLPgAAwH8AAIBA\nAACAPwAAAAEAAMB/AACAQAAAgD8AAMB/AACAQAAAgD8AAAABAADAfwAAgEAAAIA/AADAfwAA\ngEAAAIA/AAAAAQAAwH8AAIBAAACAP0hZCz5IWQs+SFmLvkhZi75IWQs+SFkLPgAAQCUAAEAl\nAABAJUhZCz5IWYu+SFkLPgAAAAFIWQs+SFkLPkhZi75IWYu+SFkLPkhZCz4AAEAlAABAJQAA\nQCVIWQs+SFmLvkhZCz4BAQEBAAAAAM3MTL4AAMB/AADAf83MzL0AAMB/AADAfwAAAAAAAMB/\nAADAf83MzD0AAMB/AADAfwAAwH/NzEy+AADAfwAAwH/NzMy9AADAfwAAwH8AAAAAAADAfwAA\nwH/NzMw9AADAfwAAwH8AAMB/zcxMvgAAwH8AAMB/zczMvQAAwH8AAMB/AAAAAAAAwH8AAMB/\nzczMPQAAAAE="}]},"context":{"shiny":false,"rmarkdown":null},"vertexShader":"#line 2 1\n// File 1 is the vertex shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\n\nattribute vec3 aPos;\nattribute vec4 aCol;\nuniform mat4 mvMatrix;\nuniform mat4 prMatrix;\nvarying vec4 vCol;\nvarying vec4 vPosition;\n\n#ifdef NEEDS_VNORMAL\nattribute vec3 aNorm;\nuniform mat4 normMatrix;\nvarying vec4 vNormal;\n#endif\n\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nattribute vec2 aTexcoord;\nvarying vec2 vTexcoord;\n#endif\n\n#ifdef FIXED_SIZE\nuniform vec3 textScale;\n#endif\n\n#ifdef FIXED_QUADS\nattribute vec3 aOfs;\n#endif\n\n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\nvarying float normz;\nuniform mat4 invPrMatrix;\n#else\nattribute vec3 aPos1;\nattribute vec3 aPos2;\nvarying float normz;\n#endif\n#endif // IS_TWOSIDED\n\n#ifdef FAT_LINES\nattribute vec3 aNext;\nattribute vec2 aPoint;\nvarying vec2 vPoint;\nvarying float vLength;\nuniform float uAspect;\nuniform float uLwd;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  \n#ifndef IS_BRUSH\n#if defined(NCLIPPLANES) || !defined(FIXED_QUADS) || defined(HAS_FOG) || defined(USE_ENVMAP)\n  vPosition = mvMatrix * vec4(aPos, 1.);\n#endif\n  \n#ifndef FIXED_QUADS\n  gl_Position = prMatrix * vPosition;\n#endif\n#endif // !IS_BRUSH\n  \n#ifdef IS_POINTS\n  gl_PointSize = POINTSIZE;\n#endif\n  \n  vCol = aCol;\n  \n// USE_ENVMAP implies NEEDS_VNORMAL\n\n#ifdef NEEDS_VNORMAL\n  vNormal = normMatrix * vec4(-aNorm, dot(aNorm, aPos));\n#endif\n\n#ifdef USE_ENVMAP\n  vReflection = normalize(reflect(vPosition.xyz/vPosition.w, \n                        normalize(vNormal.xyz/vNormal.w)));\n#endif\n  \n#ifdef IS_TWOSIDED\n#ifdef HAS_NORMALS\n  /* normz should be calculated *after* projection */\n  normz = (invPrMatrix*vNormal).z;\n#else\n  vec4 pos1 = prMatrix*(mvMatrix*vec4(aPos1, 1.));\n  pos1 = pos1/pos1.w - gl_Position/gl_Position.w;\n  vec4 pos2 = prMatrix*(mvMatrix*vec4(aPos2, 1.));\n  pos2 = pos2/pos2.w - gl_Position/gl_Position.w;\n  normz = pos1.x*pos2.y - pos1.y*pos2.x;\n#endif\n#endif // IS_TWOSIDED\n  \n#ifdef NEEDS_VNORMAL\n  vNormal = vec4(normalize(vNormal.xyz), 1);\n#endif\n  \n#if defined(HAS_TEXTURE) || defined(IS_TEXT)\n  vTexcoord = aTexcoord;\n#endif\n  \n#if defined(FIXED_SIZE) && !defined(ROTATING)\n  vec4 pos = prMatrix * mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w;\n  gl_Position = pos + vec4(aOfs*textScale, 0.);\n#endif\n  \n#if defined(IS_SPRITES) && !defined(FIXED_SIZE)\n  vec4 pos = mvMatrix * vec4(aPos, 1.);\n  pos = pos/pos.w + vec4(aOfs,  0.);\n  gl_Position = prMatrix*pos;\n#endif\n  \n#ifdef FAT_LINES\n  /* This code was inspired by Matt Deslauriers' code in \n   https://mattdesl.svbtle.com/drawing-lines-is-hard */\n  vec2 aspectVec = vec2(uAspect, 1.0);\n  mat4 projViewModel = prMatrix * mvMatrix;\n  vec4 currentProjected = projViewModel * vec4(aPos, 1.0);\n  currentProjected = currentProjected/currentProjected.w;\n  vec4 nextProjected = projViewModel * vec4(aNext, 1.0);\n  vec2 currentScreen = currentProjected.xy * aspectVec;\n  vec2 nextScreen = (nextProjected.xy / nextProjected.w) * aspectVec;\n  float len = uLwd;\n  vec2 dir = vec2(1.0, 0.0);\n  vPoint = aPoint;\n  vLength = length(nextScreen - currentScreen)/2.0;\n  vLength = vLength/(vLength + len);\n  if (vLength > 0.0) {\n    dir = normalize(nextScreen - currentScreen);\n  }\n  vec2 normal = vec2(-dir.y, dir.x);\n  dir.x /= uAspect;\n  normal.x /= uAspect;\n  vec4 offset = vec4(len*(normal*aPoint.x*aPoint.y - dir), 0.0, 0.0);\n  gl_Position = currentProjected + offset;\n#endif\n  \n#ifdef IS_BRUSH\n  gl_Position = vec4(aPos, 1.);\n#endif\n}","fragmentShader":"#line 2 2\n// File 2 is the fragment shader\n#ifdef GL_ES\n#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#endif\nvarying vec4 vCol; // carries alpha\nvarying vec4 vPosition;\n#if defined(HAS_TEXTURE) || defined (IS_TEXT)\nvarying vec2 vTexcoord;\nuniform sampler2D uSampler;\n#endif\n\n#ifdef HAS_FOG\nuniform int uFogMode;\nuniform vec3 uFogColor;\nuniform vec4 uFogParms;\n#endif\n\n#if defined(IS_LIT) && !defined(FIXED_QUADS)\nvarying vec4 vNormal;\n#endif\n\n#if NCLIPPLANES > 0\nuniform vec4 vClipplane[NCLIPPLANES];\n#endif\n\n#if NLIGHTS > 0\nuniform mat4 mvMatrix;\n#endif\n\n#ifdef IS_LIT\nuniform vec3 emission;\nuniform float shininess;\n#if NLIGHTS > 0\nuniform vec3 ambient[NLIGHTS];\nuniform vec3 specular[NLIGHTS]; // light*material\nuniform vec3 diffuse[NLIGHTS];\nuniform vec3 lightDir[NLIGHTS];\nuniform bool viewpoint[NLIGHTS];\nuniform bool finite[NLIGHTS];\n#endif\n#endif // IS_LIT\n\n#ifdef IS_TWOSIDED\nuniform bool front;\nvarying float normz;\n#endif\n\n#ifdef FAT_LINES\nvarying vec2 vPoint;\nvarying float vLength;\n#endif\n\n#ifdef USE_ENVMAP\nvarying vec3 vReflection;\n#endif\n\nvoid main(void) {\n  vec4 fragColor;\n#ifdef FAT_LINES\n  vec2 point = vPoint;\n  bool neg = point.y < 0.0;\n  point.y = neg ? (point.y + vLength)/(1.0 - vLength) :\n                 -(point.y - vLength)/(1.0 - vLength);\n#if defined(IS_TRANSPARENT) && defined(IS_LINESTRIP)\n  if (neg && length(point) <= 1.0) discard;\n#endif\n  point.y = min(point.y, 0.0);\n  if (length(point) > 1.0) discard;\n#endif // FAT_LINES\n  \n#ifdef ROUND_POINTS\n  vec2 coord = gl_PointCoord - vec2(0.5);\n  if (length(coord) > 0.5) discard;\n#endif\n  \n#if NCLIPPLANES > 0\n  for (int i = 0; i < NCLIPPLANES; i++)\n    if (dot(vPosition, vClipplane[i]) < 0.0) discard;\n#endif\n    \n#ifdef FIXED_QUADS\n    vec3 n = vec3(0., 0., 1.);\n#elif defined(IS_LIT)\n    vec3 n = normalize(vNormal.xyz);\n#endif\n    \n#ifdef IS_TWOSIDED\n    if ((normz <= 0.) != front) discard;\n#endif\n\n#ifdef IS_LIT\n    vec3 eye = normalize(-vPosition.xyz/vPosition.w);\n    vec3 lightdir;\n    vec4 colDiff;\n    vec3 halfVec;\n    vec4 lighteffect = vec4(emission, 0.);\n    vec3 col;\n    float nDotL;\n#ifdef FIXED_QUADS\n    n = -faceforward(n, n, eye);\n#endif\n    \n#if NLIGHTS > 0\n    // Simulate two-sided lighting\n    if (n.z < 0.0)\n      n = -n;\n    for (int i=0;i<NLIGHTS;i++) {\n      colDiff = vec4(vCol.rgb * diffuse[i], vCol.a);\n      lightdir = lightDir[i];\n      if (!viewpoint[i]) {\n        if (finite[i]) {\n          lightdir = (mvMatrix * vec4(lightdir, 1.)).xyz;\n        } else {\n          lightdir = (mvMatrix * vec4(lightdir, 0.)).xyz;\n        }\n      }\n      if (!finite[i]) {\n        halfVec = normalize(lightdir + eye);\n      } else {\n        lightdir = normalize(lightdir - vPosition.xyz/vPosition.w);\n        halfVec = normalize(lightdir + eye);\n      }\n      col = ambient[i];\n      nDotL = dot(n, lightdir);\n      col = col + max(nDotL, 0.) * colDiff.rgb;\n      col = col + pow(max(dot(halfVec, n), 0.), shininess) * specular[i];\n      lighteffect = lighteffect + vec4(col, colDiff.a);\n    }\n#endif\n    \n#else // not IS_LIT\n    vec4 colDiff = vCol;\n    vec4 lighteffect = colDiff;\n#endif\n    \n#ifdef IS_TEXT\n    vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);\n#endif\n    \n#ifdef HAS_TEXTURE\n\n// These calculations use the definitions from \n// https://docs.gl/gl3/glTexEnv\n\n#ifdef USE_ENVMAP\n    float m = 2.0 * sqrt(dot(vReflection, vReflection) + 2.0*vReflection.z + 1.0);\n    vec4 textureColor = texture2D(uSampler, vReflection.xy / m + vec2(0.5, 0.5));\n#else\n    vec4 textureColor = texture2D(uSampler, vTexcoord);\n#endif\n\n#ifdef TEXTURE_rgb\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(textureColor.rgb, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*vec4(textureColor.rgb, 1.);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb, lighteffect.a);\n#endif\n\n#endif //TEXTURE_rgb\n        \n#ifdef TEXTURE_rgba\n\n#ifdef TEXMODE_replace\n// already done\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = lighteffect*textureColor;\n#endif\n\n#ifdef TEXMODE_decal\n    textureColor = vec4((1. - textureColor.a)*lighteffect.rgb) +\n                     textureColor.a*textureColor.rgb, \n                     lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - textureColor.rgb) * lighteffect.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(lighteffect.rgb + textureColor.rgb,\n                    lighteffect.a*textureColor.a);\n#endif\n    \n#endif //TEXTURE_rgba\n    \n#ifdef TEXTURE_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(lighteffect.rgb, luminance);\n#endif \n\n#if defined(TEXMODE_modulate) || defined(TEXMODE_blend) || defined(TEXMODE_add)\n    textureColor = vec4(lighteffect.rgb, lighteffect.a*luminance);\n#endif\n \n#endif // TEXTURE_alpha\n    \n// The TEXTURE_luminance values are not from that reference    \n#ifdef TEXTURE_luminance\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, lighteffect.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, lighteffect.a);\n#endif\n\n#endif // TEXTURE_luminance\n \n    \n#ifdef TEXTURE_luminance_alpha\n    float luminance = dot(vec3(1.,1.,1.),textureColor.rgb)/3.;\n\n#if defined(TEXMODE_replace) || defined(TEXMODE_decal)\n    textureColor = vec4(luminance, luminance, luminance, textureColor.a);\n#endif \n\n#ifdef TEXMODE_modulate\n    textureColor = vec4(luminance*lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_blend\n    textureColor = vec4((1. - luminance)*lighteffect.rgb,\n                        textureColor.a*lighteffect.a);\n#endif\n\n#ifdef TEXMODE_add\n    textureColor = vec4(luminance + lighteffect.rgb, \n                        textureColor.a*lighteffect.a);\n\n#endif\n\n#endif // TEXTURE_luminance_alpha\n    \n    fragColor = textureColor;\n\n#elif defined(IS_TEXT)\n    if (textureColor.a < 0.1)\n      discard;\n    else\n      fragColor = textureColor;\n#else\n    fragColor = lighteffect;\n#endif // HAS_TEXTURE\n    \n#ifdef HAS_FOG\n    // uFogParms elements: x = near, y = far, z = fogscale, w = (1-sin(FOV/2))/(1+sin(FOV/2))\n    // In Exp and Exp2: use density = density/far\n    // fogF will be the proportion of fog\n    // Initialize it to the linear value\n    float fogF;\n    if (uFogMode > 0) {\n      fogF = (uFogParms.y - vPosition.z/vPosition.w)/(uFogParms.y - uFogParms.x);\n      if (uFogMode > 1)\n        fogF = mix(uFogParms.w, 1.0, fogF);\n      fogF = fogF*uFogParms.z;\n      if (uFogMode == 2)\n        fogF = 1.0 - exp(-fogF);\n      // Docs are wrong: use (density*c)^2, not density*c^2\n      // https://gitlab.freedesktop.org/mesa/mesa/-/blob/master/src/mesa/swrast/s_fog.c#L58\n      else if (uFogMode == 3)\n        fogF = 1.0 - exp(-fogF*fogF);\n      fogF = clamp(fogF, 0.0, 1.0);\n      gl_FragColor = vec4(mix(fragColor.rgb, uFogColor, fogF), fragColor.a);\n    } else gl_FragColor = fragColor;\n#else\n    gl_FragColor = fragColor;\n#endif // HAS_FOG\n    \n}","players":[],"webGLoptions":{"preserveDrawingBuffer":true},"fastTransparency":true},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>But this is exactly where the problem lies. Normally, we are not able to see all variables at the same time, even with a three-dimensional representation. Therefore, one of the most important concerns in correspondence analysis is to reduce the dimensions while at the same time reflecting as much information as possible. Correspondence analysis thus belongs to the so-called dimension reduction methods. As already explained above, we now look for the vectors that run through the largest scatter in our data cloud. The first vector to be determined is the one that covers the largest extent and thus also absorbs the most variability in the data set. The next vector is determined in such a way that it lies at right angles to the first, and at the same time runs through the next largest possible extent of the data cloud. And so on.</p>
+<p>Two vectors in space describe a plane. So once we have determined the first and second vectors, we can use these two to define a plane that represents our future coordinate space. The vectors themselves become the axes of the new coordinate system. Projected perpendicularly onto this plane (as if you were looking at it from above, or as if you were shining a torch on the scenery from above so that the data points cast shadows), the individual data points can now be represented on this plane. And with this, we have obtained a new view of our data, in which the greatest dissimilarities are mapped via the vectors. So we get a representation that captures as much of the information of the original data set as possible, but does it with only two dimensions. And this can be done for any combination of vectors (dimensions).</p>
+<p><img src="images/12_session/multi_projection.png" class="img-fluid"> .caption[.tiny[source: http://www.cs.mcgill.ca]] ]</p>
+</section>
+<section id="extraction-of-dimensions" class="level3" data-number="10.2.4">
+<h3 data-number="10.2.4" class="anchored" data-anchor-id="extraction-of-dimensions"><span class="header-section-number">10.2.4</span> Extraction of dimensions</h3>
+<p>Mathematically, this determination of the largest extension of the point cloud and the projection of the points onto the resulting vectors is the solution of a complex linear equation system. And a proven means for such a task is the so-called <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a> (SVD). This method is used in many fields, ranging from image compression methods such as JPEG, to the reconstruction of three-dimensional objects, to such esoteric applications as particle physics. In our humble use case, it is used to perform data reduction. But because of the importance of this process in many areas, one of its developers (Gene Golub) has appropriated the abbreviation for his car registration plate:</p>
+<p><img src="images/12_session/prof_svd.gif" class="img-fluid" alt="Gene Golub’s license plate, photographed by Professor P. M. Kroonenberg of Leiden University."> .caption[.tiny[Gene Golub’s license plate, photographed by Professor P. M. Kroonenberg of Leiden University.]]</p>
+<p>Specifically, the data matrix of our similarities is decomposed into three matrices.</p>
+<p><span class="math inline">\(Z=U∗S∗V'\)</span></p>
+<p>Z : Matrix with the standardized data (our input)</p>
+<p>U : Matrix for the row elements</p>
+<p>V : Matrix for the column elements</p>
+<p>S : Diagonal matrix with the singular values</p>
+<p>Z are the normalised values we calculated above. Three matrices are created from these. U is the matrix that gives the new coordinates on the vectors for the rows of our original data (i.e.&nbsp;the cases, in our case the burials). V is in the same sense the matrix for the columns, in our case the different types. These can also be oriented in the coordinate system, so to speak as an ideal case for the occurrence of this form. We can determine similarities of the objects in relation to their properties, but in the same framework we can also determine similarities of the properties in relation to the objects in which they are represented. The last matrix S is a diagonal matrix, i.e.&nbsp;it consists almost exclusively of zeros, only its diagonal has values. In our case, these values represent the information about how much of the variability of the total data set is included in the individual dimensions of the new coordinate system. If all three matrices are multiplied together by means of matrix multiplication, the initial matrix Z is obtained again.</p>
+<p>How this matrix decomposition works is hard to do and even harder to understand if you haven’t done a semester of matrix algebra. Fortunately, R takes care of that for us. And of course, as we will see later, there is also a command that does all the correspondence analysis for us in one piece. Nevertheless, we will proceed step by step here, and first perform the singular value decomposition for our normalised data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>burial.z<span class="ot">&lt;-</span><span class="fu">read.csv2</span>(<span class="st">"burial_z.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>burial.svd<span class="ot">&lt;-</span><span class="fu">svd</span>(burial.z)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>burial.svd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$d
+[1] 4.082483e-01 4.082483e-01 1.005681e-15
+
+$u
+              [,1]          [,2]       [,3]
+[1,] -7.071068e-01 -4.082483e-01 -0.5530935
+[2,] -1.367413e-16  8.164966e-01 -0.5530935
+[3,]  2.077635e-17  6.299174e-32  0.2868150
+[4,]  7.071068e-01 -4.082483e-01 -0.5530935
+
+$v
+           [,1]       [,2]      [,3]
+[1,]  0.0000000 -0.8164966 0.5773503
+[2,] -0.7071068  0.4082483 0.5773503
+[3,]  0.7071068  0.4082483 0.5773503</code></pre>
+</div>
+</div>
+<p>SVD and Inertia The singular values (eigenvalues) represent the inertia. The eigenvalues</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>burial.svd<span class="sc">$</span>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.082483e-01 4.082483e-01 1.005681e-15</code></pre>
+</div>
+</div>
+<p>The squared eigenvalues are the inertia of the individual dimensions</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>burial.svd<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.666667e-01 1.666667e-01 1.011395e-30</code></pre>
+</div>
+</div>
+<p>The sum of the squared eigenvalues is equal to the total of the intertia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(burial.svd<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3333333</code></pre>
+</div>
+</div>
+<p>If the inertia of the individual dimensions is divided by the total inertia, the (eigenvalue) proportion of the dimensions is obtained.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>burial.svd<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(burial.svd<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.000000e-01 5.000000e-01 3.034184e-30</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="correspondence-analysis-procedure-using-a-presenceabsence-matrix" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="correspondence-analysis-procedure-using-a-presenceabsence-matrix"><span class="header-section-number">10.3</span> Correspondence analysis: Procedure (using a presence/absence matrix)</h2>
+<section id="normalization-of-coordinates" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="normalization-of-coordinates"><span class="header-section-number">10.3.1</span> Normalization of coordinates</h3>
+<p>Scaling of the coordinates in such a way that</p>
+<p>The dimensions are weighted according to their proportion of the total inertia.</p>
+<p>The rows/columns are weighted according to their proportion of the mass.</p>
+<p>.pull-left[</p>
+<p>Row (<em>sites</em>) Points: <span class="math inline">\(r_{ik} = \frac{u_{ik}*\sqrt{s_k}}{\sqrt{p_i}}\)</span></p>
+<p>] .pull-right[</p>
+<p>Column (<em>species</em>) Points: <span class="math inline">\(c_{jk} = \frac{v_{jk}*\sqrt{s_k}}{\sqrt{p_j}}\)</span></p>
+<p>]</p>
+<p><span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span> → Matrices of rows/columns from the SVD</p>
+<p><span class="math inline">\(s_k\)</span> → Diagonal matrix</p>
+<p><span class="math inline">\(p_i\)</span> , <span class="math inline">\(p_j\)</span> → Masses of rows/columns from the relative frequency</p>
+</section>
+</section>
+<section id="correspondence-analysis-procedure-using-a-presenceabsence-matrix-1" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="correspondence-analysis-procedure-using-a-presenceabsence-matrix-1"><span class="header-section-number">10.4</span> Correspondence analysis: Procedure (using a presence/absence matrix)</h2>
+<p>Everything in R:</p>
+<p>.pull-left[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>burial <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"burials.csv"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>burial.cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(burial)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(burial.cca, <span class="at">scaling=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>scaling=3: by default R normalizes only the species (types)</p>
+<ul>
+<li><p>scaling = 1 : Normalization of sites</p></li>
+<li><p>scaling = 2 : Normalization of the Species</p></li>
+<li><p>scaling = 3 : Symmetrical normalization of sites and species</p></li>
+<li><p>scaling = 0 : No normalization ]</p></li>
+</ul>
+<p>.pull-right[</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-chapter_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+</section>
+<section id="correspondence-analysis-real-world-case" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="correspondence-analysis-real-world-case"><span class="header-section-number">10.5</span> Correspondence analysis: Real World case</h2>
+<section id="münsingen-burial-site" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="münsingen-burial-site"><span class="header-section-number">10.5.1</span> Münsingen Burial Site</h3>
+<p>.pull-left[ .small[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>muensingen <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"muensingen_ideal.csv"</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>muensingen.cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(muensingen)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen.cca, <span class="at">scaling=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>] ]</p>
+<p>.pull-right[</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-chapter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+</section>
+</section>
+<section id="correspondence-analysis-real-world-case-1" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="correspondence-analysis-real-world-case-1"><span class="header-section-number">10.6</span> Correspondence analysis: Real World case</h2>
+<section id="münsingen-burial-site-1" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="münsingen-burial-site-1"><span class="header-section-number">10.6.1</span> Münsingen Burial Site</h3>
+<p>.pull-left[ .tiny[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scores</span>(muensingen.cca, <span class="at">display =</span> <span class="st">"sites"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              CA1          CA2
+32   1.606313e+00 -1.452925953
+31   1.417566e+00 -1.191711661
+8b   1.335804e+00 -1.088200431
+12   1.415720e+00 -1.195513769
+8a   1.381076e+00 -1.183971647
+6    1.318179e+00 -1.097469151
+9    1.305596e+00 -1.130528153
+23   1.172513e+00 -0.912136067
+44   7.886929e-01 -0.469460799
+51   1.207199e+00 -0.998288130
+40   1.032187e+00 -0.663168035
+28   4.135180e-01  0.009305833
+62   6.073775e-01 -0.192755350
+91   2.594931e-01  0.273907559
+72   3.852720e-01  0.009685198
+80   4.578284e-01 -0.135341372
+46   4.999726e-01  0.062684002
+48   4.999726e-01  0.062684002
+49   4.664078e-01  0.040744687
+68   2.368297e-01  0.259427802
+79   2.812150e-01  0.075938349
+61   1.788927e-01  0.267615201
+102  1.720921e-02  0.473091324
+81  -5.781215e-02  0.535954589
+84  -4.796386e-05  0.457809401
+86   1.289481e-01  0.324469138
+130 -2.266955e-01  0.659478553
+136 -1.993537e-01  0.662413700
+140 -2.351985e-01  0.669474019
+135 -2.284840e-01  0.688394387
+121 -3.173622e-03  0.500283343
+145 -2.413927e-01  0.629709178
+75  -2.814656e-01  0.701537467
+98  -4.340398e-02  0.475096777
+134 -2.593867e-03  0.404872794
+157 -3.108071e-01  0.614129078
+161 -8.740028e-01  0.494958429
+171 -4.762109e-01  0.691500466
+180 -1.801351e+00 -1.487499183
+181 -1.765745e+00  0.359016975
+164 -1.721644e+00  0.225999084
+168 -9.925575e-01  0.232793904
+149 -4.501877e-01  0.660128687
+184 -1.631521e+00  0.375301510
+211 -4.377063e+00 -6.322384039
+212 -3.835635e+00 -4.831052095
+193 -5.668999e+00 -8.843550371
+214 -5.668999e+00 -8.843550371</code></pre>
+</div>
+</div>
+<p>] ]</p>
+<p>.pull-right[ .tiny[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scores</span>(muensingen.cca, <span class="at">display =</span> <span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                   CA1         CA2
+LT.A.Fibel                                  1.26553218 -1.02575507
+Halsring.einfach.geritzt..Vollguss          1.42268370 -1.23712903
+Arm.Fussring.einf...vollg.loch.Steckv.      1.39589208 -1.19799158
+Arm..Fussring.einfach.geritzt..hohl         1.17884979 -0.91744662
+Glasperlen                                  1.05767259 -0.76556860
+Bernsteinkette                              0.90576411 -0.59674656
+Arm..Fussring.gerippt.vollguss              1.36065846 -1.16302096
+Hirschgeweih                                1.36694980 -1.14649146
+Halsring.m..Muffen                          1.34962749 -1.14072040
+Armring.mit.Muffen                          1.38107585 -1.18397165
+Draht.Fingerring.runder.QS                  0.54905934 -0.42294391
+Arm..Fussring.vollguss.massiv               0.30773335  0.02653237
+Halsring.plastisch..vollguss                0.99794588 -0.73387446
+Halsring.hohlblech..geritzt                 1.03218740 -0.66316804
+Arm..Fussringe.gerippt.dicht                0.54345897 -0.03844059
+Certosafibel                                0.63923617 -0.20818750
+Schwert                                     0.26898152  0.14758021
+Kette                                      -0.08973973  0.23569196
+Lanze                                       0.20230485  0.23181940
+LT.B1.Fibel                                 0.21181418  0.25693309
+Armreif.mit.Korallenauflage                 0.04601620  0.42893018
+Fingerring.flachblech                      -0.09756829  0.46147527
+Schaukelfingerringe                        -0.32647874  0.58102969
+Arm..Fussring.plastisch.gerippt            -0.15984628  0.57814339
+LT.B2.Fibel                                -0.31048691  0.58499166
+Arm..Fussring.genoppt..plastisch..Vollguss -0.23211926  0.55870602
+Ring..Fuss..Armring.Blech.um.Eisen.Ton     -0.36582667  0.68083308
+Hohlbuckelarmringe                         -0.34680816  0.65312662
+Fingerring.mehrfach.gewickelt.plastisch    -1.51503177  0.21905089
+LT.C1.Fibel                                -1.47959077  0.33836796
+Glasarmring.gerippt                        -2.65992172 -3.09912747
+Glasarmring.genoppt                        -1.76574493  0.35901698
+Glasarmring.Fadenauflage                   -1.23558643  0.23052896
+Gürtelkette                                -1.72630918 -0.66736578
+LT.C2.Fibel                                -4.88767414 -7.21013422</code></pre>
+</div>
+</div>
+<p>] ]</p>
+</section>
+</section>
+<section id="correspondence-analysis-real-world-case-2" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="correspondence-analysis-real-world-case-2"><span class="header-section-number">10.7</span> Correspondence analysis: Real World case</h2>
+<section id="münsingen-burial-site-2" class="level3" data-number="10.7.1">
+<h3 data-number="10.7.1" class="anchored" data-anchor-id="münsingen-burial-site-2"><span class="header-section-number">10.7.1</span> Münsingen Burial Site</h3>
+<p>.pull-left[ .tiny[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen.cca, <span class="at">display =</span> <span class="st">"sites"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-chapter_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>] ]</p>
+<p>.pull-right[ .tiny[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen.cca, <span class="at">display =</span> <span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-chapter_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>] ]</p>
+</section>
+</section>
+<section id="correspondence-analysis-real-world-case-3" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="correspondence-analysis-real-world-case-3"><span class="header-section-number">10.8</span> Correspondence analysis: Real World case</h2>
+<section id="münsingen-burial-site-3" class="level3" data-number="10.8.1">
+<h3 data-number="10.8.1" class="anchored" data-anchor-id="münsingen-burial-site-3"><span class="header-section-number">10.8.1</span> Münsingen Burial Site</h3>
+<p>.pull-left[ .tiny[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen.cca, <span class="at">choices =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-chapter_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>] ]</p>
+<p>.pull-right[ .tiny[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen.cca, <span class="at">choices =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-chapter_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>] ]</p>
+</section>
+</section>
+<section id="correspondence-analysis-real-world-case-4" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="correspondence-analysis-real-world-case-4"><span class="header-section-number">10.9</span> Correspondence analysis: Real World case</h2>
+<section id="münsingen-burial-site-4" class="level3" data-number="10.9.1">
+<h3 data-number="10.9.1" class="anchored" data-anchor-id="münsingen-burial-site-4"><span class="header-section-number">10.9.1</span> Münsingen Burial Site</h3>
+<p>.pull-left[ .tiny[</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>muensingen.species <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scores</span>(muensingen.cca)<span class="sc">$</span>species</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(muensingen.species,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>CA1,</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span>CA2,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label=</span><span class="fu">rownames</span>(muensingen.species))) <span class="sc">+</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>(<span class="at">size=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>] ]</p>
+<p>.pull-right[</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 17 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-chapter_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+</section>
+</section>
+<section id="correspondence-analysis-real-world-case-5" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="correspondence-analysis-real-world-case-5"><span class="header-section-number">10.10</span> Correspondence analysis: Real World case</h2>
+<section id="münsingen-burial-site-5" class="level3" data-number="10.10.1">
+<h3 data-number="10.10.1" class="anchored" data-anchor-id="münsingen-burial-site-5"><span class="header-section-number">10.10.1</span> Münsingen Burial Site</h3>
+<p>.pull-left[ <img src="images/12_session/tosca.png" class="img-fluid">]</p>
+<p>.pull-right[ <img src="images/12_session/tosca_seriation.png" class="img-fluid">]</p>
+<p><a href="http://tosca.archaeological.science">http://tosca.archaeological.science</a></p>
+</section>
+</section>
+<section id="correspondence-analysis-interpretation" class="level2" data-number="10.11">
+<h2 data-number="10.11" class="anchored" data-anchor-id="correspondence-analysis-interpretation"><span class="header-section-number">10.11</span> Correspondence Analysis: Interpretation</h2>
+<section id="guttman-effect-horseshoe-parabola" class="level3" data-number="10.11.1">
+<h3 data-number="10.11.1" class="anchored" data-anchor-id="guttman-effect-horseshoe-parabola"><span class="header-section-number">10.11.1</span> Guttman effect (horseshoe, parabola)</h3>
+<p>.pull-left[ In archaeology, this is often regarded as evidence of a temporal orientation.</p>
+<p>The Guttman effect occurs when a process affects the data on multiple levels.</p>
+<p>The largest influencing factor, given a longer runtime, is mostly the time, but:</p>
+<p>This does not always have to be the case.</p>
+<p>Check against other information necessary. ]</p>
+<p>.pull-right[</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-chapter_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./09-chapter.html" class="pagination-link" aria-label="Cluster Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cluster Analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

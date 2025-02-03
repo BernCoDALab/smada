@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Parametric tests – Statistical Methods for Archaeological Data Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./08-chapter.html" rel="next">
+<link href="./06-chapter.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="site_libs/grViz-binding-1.0.11/grViz.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-chapter.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Parametric tests</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Methods for Archaeological Data Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Methods for Archaeological Data Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction into R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Explorative statistics &amp; graphical display</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Nonparametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Probability Theory</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Parametric tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regression Analysis and Correlation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cluster Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Correspondence analysis</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
+  <li><a href="#the-parametric-in-parametric-tests" id="toc-the-parametric-in-parametric-tests" class="nav-link" data-scroll-target="#the-parametric-in-parametric-tests"><span class="header-section-number">7.2</span> The parametric in parametric tests</a></li>
+  <li><a href="#test-for-normal-distribution" id="toc-test-for-normal-distribution" class="nav-link" data-scroll-target="#test-for-normal-distribution"><span class="header-section-number">7.3</span> Test for normal distribution</a>
+  <ul class="collapse">
+  <li><a href="#the-good-old-ks-test" id="toc-the-good-old-ks-test" class="nav-link" data-scroll-target="#the-good-old-ks-test"><span class="header-section-number">7.3.1</span> The good old KS-Test</a></li>
+  <li><a href="#the-shapiro-wilk-test" id="toc-the-shapiro-wilk-test" class="nav-link" data-scroll-target="#the-shapiro-wilk-test"><span class="header-section-number">7.3.2</span> The Shapiro Wilk test</a></li>
+  <li><a href="#visual-qq-plot" id="toc-visual-qq-plot" class="nav-link" data-scroll-target="#visual-qq-plot"><span class="header-section-number">7.3.3</span> visual: QQ-plot</a></li>
+  </ul></li>
+  <li><a href="#f-test" id="toc-f-test" class="nav-link" data-scroll-target="#f-test"><span class="header-section-number">7.4</span> F-Test</a>
+  <ul class="collapse">
+  <li><a href="#factsheet-f-test" id="toc-factsheet-f-test" class="nav-link" data-scroll-target="#factsheet-f-test"><span class="header-section-number">7.4.1</span> Factsheet F Test</a></li>
+  <li><a href="#calculation-by-hand" id="toc-calculation-by-hand" class="nav-link" data-scroll-target="#calculation-by-hand"><span class="header-section-number">7.4.2</span> Calculation by hand</a></li>
+  <li><a href="#f-test-in-r" id="toc-f-test-in-r" class="nav-link" data-scroll-target="#f-test-in-r"><span class="header-section-number">7.4.3</span> F-Test in R</a></li>
+  </ul></li>
+  <li><a href="#t-test" id="toc-t-test" class="nav-link" data-scroll-target="#t-test"><span class="header-section-number">7.5</span> t-Test</a>
+  <ul class="collapse">
+  <li><a href="#facts-sheet-t-test-homogenuous-variances" id="toc-facts-sheet-t-test-homogenuous-variances" class="nav-link" data-scroll-target="#facts-sheet-t-test-homogenuous-variances"><span class="header-section-number">7.5.1</span> Facts sheet t-Test (homogenuous variances)</a></li>
+  <li><a href="#calculation-by-hand-1" id="toc-calculation-by-hand-1" class="nav-link" data-scroll-target="#calculation-by-hand-1"><span class="header-section-number">7.5.2</span> Calculation ‘by hand’</a></li>
+  <li><a href="#t-test-in-r" id="toc-t-test-in-r" class="nav-link" data-scroll-target="#t-test-in-r"><span class="header-section-number">7.5.3</span> t-test in R</a></li>
+  <li><a href="#welch-test-t-test-for-inhomogenous-variances-with-welch-correction" id="toc-welch-test-t-test-for-inhomogenous-variances-with-welch-correction" class="nav-link" data-scroll-target="#welch-test-t-test-for-inhomogenous-variances-with-welch-correction"><span class="header-section-number">7.5.4</span> Welch-Test (t-Test for inhomogenous variances with welch correction)</a></li>
+  </ul></li>
+  <li><a href="#multiple-tests" id="toc-multiple-tests" class="nav-link" data-scroll-target="#multiple-tests"><span class="header-section-number">7.6</span> Multiple Tests</a>
+  <ul class="collapse">
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem"><span class="header-section-number">7.6.1</span> The Problem</a></li>
+  <li><a href="#p-value-correction" id="toc-p-value-correction" class="nav-link" data-scroll-target="#p-value-correction"><span class="header-section-number">7.6.2</span> p value correction</a></li>
+  </ul></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">7.7</span> ANOVA</a>
+  <ul class="collapse">
+  <li><a href="#facts-sheet-anova" id="toc-facts-sheet-anova" class="nav-link" data-scroll-target="#facts-sheet-anova"><span class="header-section-number">7.7.1</span> Facts sheet ANOVA</a></li>
+  <li><a href="#doing-anova-by-hand" id="toc-doing-anova-by-hand" class="nav-link" data-scroll-target="#doing-anova-by-hand"><span class="header-section-number">7.7.2</span> Doing Anova by hand</a></li>
+  <li><a href="#anova-in-r-more-advanced-topics" id="toc-anova-in-r-more-advanced-topics" class="nav-link" data-scroll-target="#anova-in-r-more-advanced-topics"><span class="header-section-number">7.7.3</span> ANOVA in R, more advanced topics</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.8</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Parametric tests</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
+<p>As with nonparametric tests, also for parametric tests the aim is to check whether or not a specific sample can come from a population with specific parameters. But in the case of the parametric tests, most of the time this parameters are more obvious than in the case of the non-parametric ones. For example, if we compare the estimate of the mean of the population from two samples, which is the heart of the t-test, it is quite clear, that we treat this statistical test is a bridge from our sample to the population.</p>
+<p>The building material of the speech is in the case of the parametric test more sophisticated. To write this metaphor even further, you could say that this building material is stronger due to technical sophistication, and therefore the resulting bridges are more stable. But only if the building material is solid itself. So there are higher pre-requisites for the selecting for example for the Golden Gate Bridge then for any trail bridge somewhere in the woods.</p>
+<p>Also, because we make more assumptions about the population, it is more relevant if the sample is selected in the representative way to make the result of a parametric test valid. So in the interpretation of the results of a paramedic test, even more than in the case of the non-parametric versions, we have to keep in mind that we are using our sample, that is available to us, to estimate characteristics of the population, that is not available for us, especially in the case of archaeology. And also in archaeology especially, since most of the time we are working with a convenience sample, it is difficult to provide building material solid enough for parametric tests.</p>
+<p>Nevertheless, because these tests are much more powerful in most cases then their non-parametric counterparts, there is a reason to use these tests. And that is also the reason, why in most natural scientific investigations paramedic tests play the most important role. While in the case of the nonparametric tests, no assumption about the distribution of the sample or the population is made, with parametric tests we make such assumptions and use this added information to come to more precise conclusions. Another possible disadvantage of parametric tests is in the case of archaeology is, that usually they require a higher sample size, then nonparametric tests. But especially, if it comes to metric variables and measured quantities, which we have in the field for example of morphometric’s, parametric tests are a powerful tool if used in the right way.</p>
+</section>
+<section id="the-parametric-in-parametric-tests" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="the-parametric-in-parametric-tests"><span class="header-section-number">7.2</span> The parametric in parametric tests</h2>
+<p>So in the case of the nonparametric tests, we have already explained that these tests do not require parameters of the sample and the underlying population to follow certain distributions or have certain values. With this, you also have already the definition of parametric tests. Here, we assume certain values are distributions to be given in the sample that we are investigating, or actually in the population that is underlying to sample. This assumption is narrow down the possibilities of events, giving us a smaller event space. With this, we can decide more easily if something has a 95% probability or not. In the case of the One Sample tests, most of the time it is assumed that the population <strong>follow certain distributions</strong>. Most of the time, At least understand that realm of statistics that can be applied to archaeology, this might be the so-called normal distribution, that we have learnt already in the chapter about distributions. But for other applications, other distributions might be required. When example here can be the t-test, that we will learn about later on, that requires the data to be normally distributed (among other things).</p>
+<p>Especially in the case of the two sample test, often <strong>certain similarities between the two samples</strong> are required, so that the test can be applied. In the case of the ANOVA, variance homogenity is assumed, and it is necessary to contact this analyses in the correct way.</p>
+<p>At last, nearly all parametric tests required variables that are metric scaled, so interval or ratio scaled. The reason for this is that most parametric tests use actual calculated parametres from the data, and if these parameters cannot be calculated, because this is not possible with this data quality, of course they do not make any sense. When example here might be DF test, which is a test for variances. As the variance is defined as the deviation from the mean, it can only reasonably be expressed in situations where we can calculate the mean. As we have learnt earlier, the main can only be calculated with metric variables.</p>
+<p>This means, that before we can apply an actual parametric test, often we have to determine whether our data quality is suitable for this test in the first place. And if this tests again have pre-requisites, this also might be necessarily checked with another test. From this, quite often cascades of tests emerge. Below, you can see a cascade for the application of the t-test.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-1721a9790b43e4be7061" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-1721a9790b43e4be7061">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>There are multiple versions of this kind of decision tree, and you find legions of them in the Internet or in the literature. We will start following the path from this decision tree, to end up with our t-test. At first, we will check for normality, then we will test our data, if the variances are homogeneous, and lastly we will apply the t-test to our data.</p>
+<hr>
+</section>
+<section id="test-for-normal-distribution" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="test-for-normal-distribution"><span class="header-section-number">7.3</span> Test for normal distribution</h2>
+<p>There are different ways to test for normality of data. One rather conventional option is the Kolmogorov-Smirnov test, that we have seen before as a 2-sample test for comparing different distributions. And we have learnt, that it is a non-parametric test. Of course, it also can be used to compare the sample distribution to a theoretical one, making it one simple goodness of fit test. But since it is very conservative, we will also use the Shapiro-Wilk test as well as optical representation of normality, namely the QQ plot.</p>
+<section id="the-good-old-ks-test" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="the-good-old-ks-test"><span class="header-section-number">7.3.1</span> The good old KS-Test</h3>
+<p>We will start with the good old Kolmogorov Smirnov test. As an example, we will use a simulated dataset of the length of different silex blades. We are interested in differences of the length between two sites. If between these two sites a significant difference would exist, this could give us information about different production or use strategies that the occupants of the individual sites had in mind when preparing these blades.</p>
+<p>We will start with a reduced selection from the actual dataset. Below, you can find the code that you can run to get this selection into the R environment without loading a dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>blade_length<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">14.9</span>, <span class="fl">24.0</span>, <span class="fl">8.7</span>, <span class="fl">29.3</span>, <span class="fl">25.5</span>, <span class="fl">23.9</span>, <span class="fl">22.4</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                <span class="fl">12.7</span>, <span class="fl">8.7</span>, <span class="fl">25.1</span>, <span class="fl">25.6</span>, <span class="fl">14.7</span>, <span class="fl">23.0</span>, <span class="fl">23.2</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                <span class="fl">26.5</span>, <span class="fl">11.1</span>, <span class="fl">15.2</span>, <span class="fl">20.6</span>, <span class="fl">20.1</span>, <span class="fl">25.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No, we directly can run the Kolmogorov Smirnov test. In the two sample version we have seen that we have at first input the first sample, and as the second input the second sample. In the case of the one sample test, there is no second sample. Instead, here we can give the name of the distribution that you would like to test against. More precisely, here you name the density function of this distribution as you would do if you would like to compute it using R. So in case of the normal distribution, the string that is given a second parameter would be <code>"pnorm"</code>. Depending on the distribution, that is used in the goodness of fit test, further parameters might be necessary. These parameters are the same as you would use to calculate the density function in our. If you are unsure, you can look this up in the respective help files (in our example the help file for pnorm). Normal distribution is defined by the mean and the standard deviation. Of course, we would like to compare our specific sample to a dataset that has the same mean and standard deviation of our dataset (but follows a normal distribution). For this reason, we give us the mean for the normal distribution the mean of our sample, and likewise as the standard deviation for normal distribution the standard deviation of our sample. The resultant command would be this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(blade_length,<span class="st">"pnorm"</span>,<span class="fu">mean</span>(blade_length),<span class="fu">sd</span>(blade_length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ks.test.default(blade_length, "pnorm", mean(blade_length),
+sd(blade_length)): ties should not be present for the one-sample
+Kolmogorov-Smirnov test</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Asymptotic one-sample Kolmogorov-Smirnov test
+
+data:  blade_length
+D = 0.19659, p-value = 0.4221
+alternative hypothesis: two-sided</code></pre>
+</div>
+</div>
+<p>In the resulting output, you can see different things: at first, it is written that is a “<code>One-sample Kolmogorov-Smirnov test</code>”. Then our dataset is named, then the D value and the p-value are shown as in the two sample case. Here, the P value is 0.42, so the result is not significant. Our distribution does not differ significantly from a normal distribution. Additionally you will see a warning, stating that there should be no ties or “Bindungen” in the data for the KS-Test. This means, that different data should not have equal values. Of course this is true, but we can’t do very much about this because these are the data that we have. Nevertheless the result should be okay for the Kolmogorov Smirnov test. This would mean, that we can proceed further and use this dataset for the following tests.</p>
+<p>But, as you remember, there are two reasons, why a test might not be significant: Either, the reason is that the differences are really small compared to the null hypothesis, or, the sample size is too small. And in this case, it is quite likely that the sample size is actually rather small. Also, the KS test is known to be a rather conservative test. That means, that the no hypothesis is not easily rejected using this test.</p>
+</section>
+<section id="the-shapiro-wilk-test" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="the-shapiro-wilk-test"><span class="header-section-number">7.3.2</span> The Shapiro Wilk test</h3>
+<p>The KS test represents a general test that can be used in both the one sample and two sample case, and in the one sample case it is also a general goodness of fit test, meaning, that you can test against different other distributions. This makes this test very versatile for different applications. But for normal distribution, there are more specialised tests that can’t do much more than testing against normality, but therefore they can do this very well. One of the examples here is the Shapiro Wilk test. Discussed generally has a higher power when it comes to normality check. But this is it’s only application, it is not a general goodness of fit test. Normality is what we are interested here in, so let’s see how we can apply this test.</p>
+<section id="facts-sheet-shapiro-wilk-test" class="level4" data-number="7.3.2.1">
+<h4 data-number="7.3.2.1" class="anchored" data-anchor-id="facts-sheet-shapiro-wilk-test"><span class="header-section-number">7.3.2.1</span> Facts sheet Shapiro Wilk test</h4>
+<p><strong>requirements</strong>: <span class="math inline">\(x_1 ... x_n\)</span> is a independend sample of a metric scaled variable</p>
+<p><span class="math inline">\(H_0\)</span> The population is normal distributed</p>
+<p><span class="math inline">\(H_1\)</span> the population is not normal distributed</p>
+<p>Its specific benefits is, that it has good test power also in cases of small sample sizes below 50. Since it is doing only one thing and this thing well, there is not very much that can be customised with the <code>shapiro.test()</code>, as it is named in R. Actually, the command does not accept any other parameter beside the dataset that should be tested against its normality, and this dataset should be a numeric vector. So, let’s run this test with our blade length selection.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(blade_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  blade_length
+W = 0.90199, p-value = 0.04494</code></pre>
+</div>
+</div>
+<p>You can see, that this test now results in a significant p-value. Well, to be honest, it is just significant. No, we have to decide, if we accept our dataset for further tests that require normality, or if we reject this dataset for parametric tests and apply to non-parametric variant. Here are some rules of thumb: There are problems with a very small and very large sample sizes. In case of very small sample sizes, the Shapiro test performs better. In case of very large sample sizes, Both tests will give you a significant result even if the difference from a normal distribution is very small. There is the other side of the law of the large numbers. If you have very many samples, then statistical test will see already very small differences as significant. This does not mean, that necessarily cannot use the t-test any longer: The t-test is known to be rather robust test against the violation of the normality assumption. Especially, if the sample size is larger than 50, we can ignore more or less significant result.</p>
+<p>Our dataset here has a sample size of 20. The full dataset has a sample size of 45, so it will be very close to this 50 border. Also, the test statistic itself does not tell us very much about how the distribution of our sample is different from the normal distribution. For this reason, often it is very helpful to visualise the distribution of our data. We already learnt different methods for doing so. In this case, for example a histogram or a density plot might be helpful, or a box plot. But there is a very specific visualisation especially designed for checking against normality, which we will get known in the next section.</p>
+</section>
+</section>
+<section id="visual-qq-plot" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="visual-qq-plot"><span class="header-section-number">7.3.3</span> visual: QQ-plot</h3>
+<p>The specific plot variant is called QQ plot, named so because it compares the quantiles of the actual to the normal distribution. But at first, let’s visualise the distribution of our values in a conventional way, so that we can better understand what the QQ plot is doing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">sort</span>(blade_length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If we plot our values sorted, we can see that there is a gap in the range of the values between 15 and 20. With a normal distribution, you would expect most values near the mean. This is not given here.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(blade_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(blade_length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This also can be visualised using the histogram or the density plot. In the histogram, the gap between 15 and 20 becomes obvious. Also, it becomes obvious, that there are more values in the higher range of the total value range then in the lower one. The density plot confirms this interpretation, it shows us a bimodal distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(blade_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The box plot looks fairly normal except for the fact, that the median is shifted towards the higher range of the spectrum, confirming what we already know.</p>
+<p>No, let’s make a QQ plot and compare it to the plot options that we already had. The command for the QQ plot is <code>qqnorm()</code>. There is also a command <code>qqplot()</code>, but this is designed to produce a plot for two samples. Also, most of the time you would like to enhance the QQ plot with a line that makes the theoretical position of a normal distribution more visual. For this you use the command <code>qqline()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(blade_length)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(blade_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The blooded self has the quantiles of the sample on the Y axis, and the quantiles of a normal distribution with the same parameters like our dataset on the X axis. The line represents, where a true normal distribution would end in this chart. If you see strong deviations from your actual data points in respect to the line, then you have strong deviations from the pattern of normal distribution. In our case, we can see an under representation in the centre of our distribution (the gap) and then an overall presentation of higher values, like we have seen already in the other plots. The lower end of a sample looks rather normal, except for this one outlier. So with this deviation and the test results from the individual tests, this dataset would probably be not suitable for a test that requires a normal distribution. In the following, we will use the full dataset, that follows the same pattern, but has a higher sample size. In this case, the deviations from the normal distribution could probably be ignored.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>blade_length <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"blade_length.csv"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(blade_length<span class="sc">$</span>length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  blade_length$length
+W = 0.94408, p-value = 0.03045</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(blade_length<span class="sc">$</span>length)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(blade_length<span class="sc">$</span>length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p>Length of the handles of amphora of type Dressel 10 (Ihm 1978).</p>
+<p>The length of the handles of different amphora are given. Test with the appropriate methods if the variable is normal distributed</p>
+<p><strong>file</strong>: <a href="data:text/csv;base64,OyJoZW5rZWxsYWVuZ2UiCjE7MTEsOQoyOzEwLDIKMzsxMQo0OzkKNTsxMQo2OzEwLDkKNzsxMgo4OzEwLDkKOTsxMSwxCjEwOzEwLDUKMTE7MTEKMTI7MTEsNQoxMzsxMCw4CjE0OzEwLDQKMTU7MTAsOAoxNjsxMSwzCjE3OzExLDUKMTg7MTAsNgoxOTsxMSw4CjIwOzE0Cg==" download="henkel_amphoren.csv">henkel_amphoren.csv</a></p>
+<p>Test for normality</p>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<p>At first, we load the data (You will hopefully realise by inspecting the file, that it is a continental CSV file, so that’s why we have to load it using the command <code>read.csv2()</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dressel <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"henkel_amphoren.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we performed a <code>shapiro.test()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dressel<span class="sc">$</span>henkellaenge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  dressel$henkellaenge
+W = 0.88495, p-value = 0.02174</code></pre>
+</div>
+</div>
+<p>Shapiro shows a significant deviation from normal distribution. Nevertheless, we should inspect the pattern visually:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(dressel<span class="sc">$</span>henkellaenge)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(dressel<span class="sc">$</span>henkellaenge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are two outliers in the data. Either, we could switch to nonparametric tests, or, If we can change our scientific question to be answered without these outliers, we could remove them from our dataset. Every time, that we exclude a value in an analyses, we should document this in the paper or manuscript, that this analyses forms a part of.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">which.max</span>(dressel<span class="sc">$</span>henkellaenge),</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">which.min</span>(dressel<span class="sc">$</span>henkellaenge)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dressel<span class="sc">$</span>henkellaenge[<span class="sc">-</span>outliers])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  dressel$henkellaenge[-outliers]
+W = 0.96026, p-value = 0.6067</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(dressel<span class="sc">$</span>henkellaenge[<span class="sc">-</span>outliers])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(dressel<span class="sc">$</span>henkellaenge[<span class="sc">-</span>outliers])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</details>
+</section>
+</section>
+<section id="f-test" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="f-test"><span class="header-section-number">7.4</span> F-Test</h2>
+<p>No, that we have decided that our sample is reasonably normal distributed, we can proceed ensuring that other prerequisites are fulfilled. To decide, which kind of t-test we can’t apply here, we have to test whether or not we have homogeneity of variance between the two samples. This can be done using the F test. To test for homogenity of variances, there are other alternatives, for example the Levene’s test or the Brown–Forsythe test. These tests perform better, if the normality assumption of the F test is violated. The benefits of the F test is that it’s rather simple and easy to understand. So for our introduction here this test might be very suitable.</p>
+<section id="factsheet-f-test" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="factsheet-f-test"><span class="header-section-number">7.4.1</span> Factsheet F Test</h3>
+<p>F Test for variance homogenity of two samples</p>
+<p><strong>requirements</strong>: two independent normal distributed sample of a metric scaled variable</p>
+<p><span class="math inline">\(H_0\)</span> Both samples have the same variance (dispersion)</p>
+<p><span class="math inline">\(H_1\)</span> Both samples have a different variance (dispersion)</p>
+<p><strong>Basic idea</strong>: if both variances are equal, their quotient should be 1</p>
+<p><span class="math display">\[
+s_1^2 = s_2^2;\ then\ \frac{s_1^2}{s_2^2} = 1
+\]</span></p>
+<section id="what-do-these-facts-mean" class="level4" data-number="7.4.1.1">
+<h4 data-number="7.4.1.1" class="anchored" data-anchor-id="what-do-these-facts-mean"><span class="header-section-number">7.4.1.1</span> What do these facts mean</h4>
+<p>The F test tests for homogeneity of variance of two samples. This means, that the checks whether or not the variances of both samples are more or less the same and could come from the same underlying population. Since we are talking about variances, of course we need a data quality of interval or ratio scaled variables. As the variance is defined as the squared mean deviations from the mean, we have to calculate the mean (actually twice). Since this can only be done with metrics scaled variables, it is clear, that this test can only be applied to this kind of data.</p>
+<p>Since we are testing against difference in variance, our null hypothesis is that the variances are the same. And here, the test gets very simple, kind of. If the variances would be the same, their division would result in a 1. The value that is calculated by the division of the actual variances from the samples is compared to a threshold, that could be calculated from F distribution (like it’s done an R) or could be looked up in precalculated tables (like in the olde days). This threshold depends on the degrees of freedom ( <span class="math inline">\(df_1 = n_1 -1; df_2 = n_2 - 1\)</span> ) and the desired significance level. If the calculated quotient &gt; treshhold, than the <span class="math inline">\(H_0\)</span> will be rejected, otherwise not. This means, that if the test turns out to be <strong>significant</strong>, then we have significantly demonstrated <strong>unequal variances</strong>. If it’s not significant, then we have not enough data to decide, if we have homogeneous variances. If the F test is used as a pre-test for the t-test, a result not significant means that we can proceed applying the standard t-test without Welch correction.</p>
+</section>
+</section>
+<section id="calculation-by-hand" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="calculation-by-hand"><span class="header-section-number">7.4.2</span> Calculation by hand</h3>
+<p>We go on with using our example of the blade length of flint blades from two sites. Now, we are using our full dataset. This dataset consists of 45 measurements, while 20 measurements are taken from the blades of the first site, 25 represents the blades of the second site. Since we have to calculate the variance, which is the squared mean difference from the mean, it makes sense to calculate the mean in the first place. If we have done this, we can calculate the variance in the known way (if you do not remember, you might like to look up in the respective chapter descriptive statistics).</p>
+<p><span class="math inline">\(n_1 = 20; \bar{x}_1 = 20.015\)</span></p>
+<p><span class="math inline">\(variance\ s_1^2 = \frac{\sum^n_{i=1}{x_i - \bar{x}^2}}{n-1}=\frac{\sum^{20}_{i=1}{x_i - 20.015}}{20-1}=40.20871\)</span></p>
+<p><span class="math inline">\(n_2 = 25; \bar{x}_2 = 20.492\)</span></p>
+<p><span class="math inline">\(variance\ s_2^2 = \frac{\sum^{25}_{i=1}{x_i - 20.492}}{25-1}=33.0641\)</span></p>
+<p>Now, this very simple formula that we have seen before can be applied to our variances. We just divide the variance from the first sample by the variance of the second sample. We take the result And compare it to a tabulated precalculated range of threshold values. Since the threshold depends on the degrees of freedom and our desired level of significance, we needed to decide on that. The degrees of freedom can be calculated by taking the number of cases for each sample substracted with one each. The level of significance is, as always (does it get boring?), 0.05.</p>
+<p><span class="math inline">\(F = \frac{s_1^2}{s_2^2}=\frac{40.20871}{33.0641}=1.216\)</span></p>
+<p><span class="math inline">\(df_1\)</span> = 20−1 = 19, <span class="math inline">\(df_2\)</span> = 25 − 1 = 24; Sign.level=0.05</p>
+<p>So if our first sample has a degree of freedom of 19, and our second sample a degree of freedom of 24, and our significance level is the usual 0.05, then we can find the appropriate value in the table, for example in the ‘Quantifying Archaeology’ book.</p>
+<p>threshold at <span class="math inline">\(df_1\)</span> = 19, <span class="math inline">\(df_2\)</span> = 24, <span class="math inline">\(\alpha\)</span>=0.05: 2.114</p>
+<p>This threshold is bigger than the value that we have calculated. This means, that the F test is not significant here. For us, this means that we can proceed with the standard t-test for our dataset. It also means that the variances in our samples do not significantly different from each other. Remember, that this does not mean that the sample variances are significantly the same.</p>
+</section>
+<section id="f-test-in-r" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="f-test-in-r"><span class="header-section-number">7.4.3</span> F-Test in R</h3>
+<p>You can now download the full blade length dataset using the following link:</p>
+<p><a href="data:text/csv;base64,bGVuZ3RoLHNpdGUKMTQuOSxzaXRlMQoyNCxzaXRlMQo4Ljcsc2l0ZTEKMjkuMyxzaXRlMQoyNS41LHNpdGUxCjIzLjksc2l0ZTEKMjIuNCxzaXRlMQoxMi43LHNpdGUxCjguNyxzaXRlMQoyNS4xLHNpdGUxCjI1LjYsc2l0ZTEKMTQuNyxzaXRlMQoyMyxzaXRlMQoyMy4yLHNpdGUxCjI2LjUsc2l0ZTEKMTEuMSxzaXRlMQoxNS4yLHNpdGUxCjIwLjYsc2l0ZTEKMjAuMSxzaXRlMQoyNS4xLHNpdGUxCjI1LjEsc2l0ZTIKMTQuMSxzaXRlMgo4LHNpdGUyCjIzLjYsc2l0ZTIKMTcuNixzaXRlMgoyNy41LHNpdGUyCjI5LjEsc2l0ZTIKMjUuMyxzaXRlMgoyMy4xLHNpdGUyCjEyLjcsc2l0ZTIKMTEsc2l0ZTIKMTUsc2l0ZTIKMjAuNSxzaXRlMgoxNC42LHNpdGUyCjI4LjEsc2l0ZTIKMjAuMSxzaXRlMgoyMy44LHNpdGUyCjE5LjEsc2l0ZTIKMjMuNSxzaXRlMgoxOS45LHNpdGUyCjI5LjMsc2l0ZTIKMjIuOCxzaXRlMgoyMy4zLHNpdGUyCjE4LjIsc2l0ZTIKMTcsc2l0ZTIK" download="blade_length.csv">blade_length.csv</a></p>
+<p>The rest is rather simple and straightforward in R. All you have to do is to use the command for the F test, which is <code>var.test()</code>. Here, you have the option to specify the two samples as to input vectors. But you also can use the formula notation which is in many cases much more intuitive and handy, once you have got accustomed to it. So in this case, we want to test the variances of the <code>length</code> from our dataset <code>blade_length</code> in relationship to the variable <code>site</code>. Here you go.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(length<span class="sc">~</span>site,<span class="at">data=</span>blade_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  length by site
+F = 1.2161, num df = 19, denom df = 24, p-value = 0.643
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.5185518 2.9822271
+sample estimates:
+ratio of variances 
+          1.216084 </code></pre>
+</div>
+</div>
+<p>The output of the test has many elements that we already know from our calculation by hand. At first, it states that we are using the ‘F test to compare two variances’. Then we see the F value that is the same as we have calculated it. Also the degree of freedom for the first and the second sample are computed. Here they are named as numerator and denominator, according to the position of the first and the second sample in the formula for calculating the F value. Then we can see calculation of a confidence interval for the ratio of the population variances. In the case of our blade length dataset, also the F test using R is not significant. No surprise here. This means, that the variances are not significantly different, and we can use the standard t-test.</p>
+<div class="exercise">
+<p>(logarithmic) sizes of ritual enclosures at the Society Islands (Example by Shennan)</p>
+<p>Given are the (logarithmic) sizes of ritual enclosures in two valleys at the Society Islands.</p>
+<p>Please check whether the variances in both valleys are different!</p>
+<p><strong>file</strong>: <a href="data:text/csv;base64,c2l6ZSx2YWxsZXkKMi44NzEsdmFsbGV5MQoyLjUxNyx2YWxsZXkxCjIuMzQ2LHZhbGxleTEKMS40ODMsdmFsbGV5MQoxLjkyNCx2YWxsZXkxCjEuOTg4LHZhbGxleTEKMS44NDUsdmFsbGV5MQoyLjAwOSx2YWxsZXkxCjIuMTU4LHZhbGxleTEKMi41NTYsdmFsbGV5MQoxLjk1NCx2YWxsZXkxCjIuMDAzLHZhbGxleTEKMi4zNTMsdmFsbGV5MQoxLjg3LHZhbGxleTEKMS45NDIsdmFsbGV5MgoyLjE2OCx2YWxsZXkyCjIuMDQ2LHZhbGxleTIKMi4yMjEsdmFsbGV5MgoyLjMxMSx2YWxsZXkyCjIuMTQxLHZhbGxleTIKMS45NSx2YWxsZXkyCjIuNDAxLHZhbGxleTIKMi44MDcsdmFsbGV5MgoyLjc0LHZhbGxleTIK" download="marae.csv">marae.csv</a></p>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<p>At first, we load the data (You will hopefully realise by inspecting the file, that this time it is a conventional CSV file, so that’s why we have to load it using the command <code>read.csv()</code>. I will keep bothering you with moving the target here, so that you get used to check when you load your data):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>marae <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marae.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we inspect the dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(marae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   size  valley
+1 2.871 valley1
+2 2.517 valley1
+3 2.346 valley1
+4 1.483 valley1
+5 1.924 valley1
+6 1.988 valley1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(marae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   24 obs. of  2 variables:
+ $ size  : num  2.87 2.52 2.35 1.48 1.92 ...
+ $ valley: chr  "valley1" "valley1" "valley1" "valley1" ...</code></pre>
+</div>
+</div>
+<p>So it seems, that in the dataset there are two variables: <code>size</code> with the sizes of the enclosures, <code>valley</code> encoding to different valleys. Now, we performed the F test using <code>var.test()</code>. We will use the formula notation, because I like it. If you don’t, you have to take the two samples apart on your own.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(size <span class="sc">~</span> valley, <span class="at">data =</span> marae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  size by valley
+F = 1.4132, num df = 13, denom df = 9, p-value = 0.6124
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.3689233 4.6805505
+sample estimates:
+ratio of variances 
+          1.413196 </code></pre>
+</div>
+</div>
+<p>It turns out, that the result is not significant. Since we have only 22 cases here, I assume, that sample size place an important role here. Also in this case, it is helpful to visualise the distribution of the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size <span class="sc">~</span> valley, <span class="at">data =</span> marae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From this, it becomes clear that the core of the data are distributed similarly among our two samples. But valley one have more extreme data. Since the mean is always sensitive for outliers, the variance is too. So if we would have more samples, it can be assumed that the F test would produce a significant result.</p>
+</details>
+</section>
+</section>
+<section id="t-test" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="t-test"><span class="header-section-number">7.5</span> t-Test</h2>
+<p>After going through this cascade of tests, finally we arrived at the test that we originally wanted to contact: the test for differences in mean of two samples. In the following, I will demonstrate how the t-test itself works. Be aware: formulas ahead! But don’t fear! We will tame them together.</p>
+<section id="facts-sheet-t-test-homogenuous-variances" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="facts-sheet-t-test-homogenuous-variances"><span class="header-section-number">7.5.1</span> Facts sheet t-Test (homogenuous variances)</h3>
+<p>Test for the comparison of the means of two samples.</p>
+<p>If the means do differ significantly, it is assumed that both samples come from different population (in the statistical sense).</p>
+<p><strong>requirements</strong>: two independend normal distributed sample of a metric scaled variable with homogenous variances</p>
+<p><span class="math inline">\(H_0\)</span> The populations of both samples have the same mean</p>
+<p><span class="math inline">\(H_1\)</span> The populations of both samples have a different mean</p>
+<p><strong>Basic idea</strong>: If the means of both samples are within the standard error of the estimations of the mean of the according populations, than both populations could be potentially the same. Else not.</p>
+<section id="what-do-these-facts-mean-1" class="level4" data-number="7.5.1.1">
+<h4 data-number="7.5.1.1" class="anchored" data-anchor-id="what-do-these-facts-mean-1"><span class="header-section-number">7.5.1.1</span> What do these facts mean</h4>
+<p>The t-test is a test for difference in mean between two samples. But it is more than that. We assume in the first place, that the distribution of the values from our population is normally distributed. A ideal normal distribution has the mean and the mode at the same value, or at least very near. That means, that the main is also the most likely value. Lower and higher values are less likely. The more extreme the values get, the more unlikely they become. Such a distribution occur, when many small individual influences are present and shape the distribution of the values from a process. The resulting distribution function from such a situation result in the well-known bell shaped curve of a Gaussian or normal distribution.</p>
+<p>A normal distribution is defined by its mean and it’s standard deviation, one can estimate with these values how likely value may result from such a distribution. And this comes handy, when one likes to compare two of these normal distributions in respect to their mean. The bigger the difference between the main values of two normal distributed population, the more unlikely it is that they can result from the same process. Or to put it simple: that they are the same.</p>
+<p><img src="images/09_session/t_visualisation_1.png" class="img-fluid"> .caption[source: I do not know any more…]</p>
+<p>But there is a second aspect to be considered: how much the distributions vary. With the same distance between the means, a differently large variability of the distributions can lead to differently accurate and reliable differentiation. If we have a small variability, then a small distance between the mean values is sufficient to reliably separate the two distributions. Conversely, if we have a very high variability, then the two distributions overlap considerably more. In this case, the distance between the mean values must be much greater in order to achieve a clear separation. Therefore, a test for the difference in mean values must take three parameters into account: the number of cases, the variability, and only then the actual distance between the mean values of the two samples.</p>
+<p><img src="images/09_session/t_visualisation_2.png" class="img-fluid"> .caption[source: I can not remember, either…]</p>
+<p>The number of cases and variability are covered by the standard error. If you have already read the advanced chapter on distributions, you know that the standard error is calculated by the standard deviation divided by the square root of the number of cases. This means that for the same variability, if the number of cases is large, the standard error becomes smaller. This is related to the law of large numbers. Mean values of populations, which is what we are concerned with, can be estimated with greater certainty by large samples. The standard error is expressed in the units of measurement. This is because the standard deviation is in the units of measurement, and is only divided by the unitless number of cases.</p>
+<p>From these considerations emerges the formula for the t-test: we relate the difference between the means (our signal for a difference) to the standard error (our measure for the noise in the data). If the difference between the means is large, the resulting value will also be large. Conversely, if the variability of the data is large, the will also be small.</p>
+<p><img src="images/09_session/t_visualisation_3.png" class="img-fluid"> .caption[source: Guess what…]</p>
+<p>We can compare the resulting distribution with a theoretical distribution, the ‘Student’s t-distribution’ (the name is only indirectly related to students, as the ’ inventor’ of this distribution has published it under the pseudonym ’ Student’). Without a statistics programme, pre-calculated tables are used here, as we already know.</p>
+</section>
+</section>
+<section id="calculation-by-hand-1" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="calculation-by-hand-1"><span class="header-section-number">7.5.2</span> Calculation ‘by hand’</h3>
+<p>Let’s try this out by calculating it by hand. Here we again use the data set of the flint blades, for which we found in the F test that the variances do not differ significantly from each other. We have already calculated the mean values for the F test. They are 20.015 with a number of cases of 20 for the first site, and 20.492 at a case number of 25 for the second. Also, we have already calculated the variance for both cases: 40.20871 for site 1 and 33.0641 for site 2.</p>
+<p><span class="math inline">\(n_1 = 20; \bar{x_1} = 20.015 ; s^2_1 = 40.20871\)</span></p>
+<p><span class="math inline">\(n_2 = 25; \bar{x_2} = 20.492 ; s^2_2 = 33.0641\)</span></p>
+<p>We start from our considerations and the resulting formula:</p>
+<p><span class="math inline">\(t = \frac{difference\ between\ group\ means}{variability\ of\ groups}\)</span></p>
+<p><span class="math inline">\(t = \frac{\bar{x_1} - \bar{x_2}}{SE_{(\bar{x_1}-\bar{x_2})}}\)</span></p>
+<p>We have already calculated the mean values whose difference we want to assess. We now have to divide their difference by the standard error. To make it easier for us mathematically, we change the formula for the standard error so that we can calculate it from the variance. Since the variance is nothing other than the square of the standard deviation, we can replace the standard deviation with the variance when we pull it under the square root.</p>
+<p><span class="math inline">\(SE = \frac{s}{\sqrt{n}} = \sqrt{\frac{s^2}{n}}\)</span></p>
+<p>Since we can assume that the variances are equal, we can use an averaged pooled variance. We have to estimate two means, so there result two standard errors for us (Once for the first sample, once for the second sample). We calculate only one variance. That is, we divide this variance by the number of cases in each sample, and add up both resulting standard errors.</p>
+<p><span class="math inline">\(SE_{(\bar{x_1}-\bar{x_2})} = \sqrt{\frac{S^2}{n_1} + \frac{S^2}{n_2}}\)</span></p>
+<p>We now calculate the pooled variance by adding up the individual variances. Here we carry out a weighting: according to the number of cases of the individual samples, their variances are to be weighted more or less strongly. To do this, we multiply the respective variances by the number of cases, add them up, and then divide by the total number of cases. In all cases -1, since we are dealing with empirical data, and we normalise to the degrees of freedom.</p>
+<p><span class="math inline">\(S^2 = \frac{(n_1-1)*s_1^2 +  (n_2-1) * s_2^2}{n_1 + n_2 - 2}\)</span></p>
+<p>With this, we have our entire toolbox together: we started from a general consideration (the difference in means must be normalised with respect to the variability of the groups). From this we derived a formula, which we then further specified piece by piece. In the end, we have three formulas, where we can insert our values into the last one (the formula for the weighted pooled variance). We then put the result into the formula for the standard error, and with its result we then calculate our t-value.</p>
+<p>Actually quite simple in each case, this procedure applies a rule that is very well known in computer science, and not completely foreign to archaeologists either: divide and conquer! When you have a complex problem, you try to divide it into simple problems, which you then solve individually. In the end, you put your puzzle pieces back together and get the complex overall result.</p>
+<p><span class="math inline">\(S^2 = \frac{(20-1)*40.20871 + (25-1)*33.0641}{20+25-2} = 36.22102\)</span></p>
+<p><span class="math inline">\(SE_{(\bar{x_1}-\bar{x_2})} = \sqrt{\frac{36.22102}{20} + \frac{36.22102}{25}} = 1.805517\)</span></p>
+<p><span class="math inline">\(t = \frac{20.015−20.492}{1.805517} = −0,26419\)</span></p>
+<p>So, here we have our t-value. As already indicated above, this is to be compared with the ‘Student’s t-distribution’ in order to determine significance. This is calculated via the number of degrees of freedom, and the distribution can then be used to read off the threshold value corresponding to a specific significance level. The number of our degrees of freedom is calculated by adding the number of cases, each -1.</p>
+<p><span class="math inline">\(df = (n_1 − 1) + (n_2 − 1) = n_1 + n_2 − 2 = 20 + 25 − 2= 43\)</span></p>
+<p>If we use R, then this value is calculated in R from the distribution. If we do it by hand, we again use the tables in which these values are pre-calculated, for example from the Stephen Shennan book. With the corresponding parameters (df = 43; sig. level = 0.05) we find the threshold value of 2.021. This means that our result is not significant.</p>
+<p>Note: for the comparison we use the absolute value of the difference, or the t-value. For the magnitude of the difference, it does not matter whether we subtract the larger from the smaller mean value or vice versa. Mathematically, swapping the samples makes no difference, except that the value becomes positive or negative. I have named the sample with the larger mean value as the second sample in order to make the result of our manual calculation equal to the value that is calculated in R.</p>
+<p>There is no significant difference in the means of both samples, which could originate from the same population (statistically speaking). However, this does not mean (even if it is boring by now, but repetition is a drag) that we have proven that they come from exactly the same population. Since the test result also depends on the number of cases, this only means that the difference is not large enough that this could not have happened by chance (with less than five percent probability).</p>
+</section>
+<section id="t-test-in-r" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="t-test-in-r"><span class="header-section-number">7.5.3</span> t-test in R</h3>
+<p>As is often the case, after this rather long presentation of the background and the calculation by hand, the part showing how we perform this test in R will be quite short and unspectacular. Let’s take another look at the core properties of the t-test:</p>
+<p><strong>requirements</strong>: two independent normal distributed sample of a metric scaled variable with homogenous variances</p>
+<p><span class="math inline">\(H_0\)</span> The populations of both samples have the same mean</p>
+<p><span class="math inline">\(H_1\)</span> The populations of both samples have a different mean</p>
+<p>This is important in order to be able to interpret the bare number result of a statistical test correctly in R. Always make sure you are testing against the correct null hypothesis!</p>
+<p>The actual command for the test is now <code>t.test()</code>. This test understands the formula notation, and so we use it. We test the mean values of the lengths of the flint blades (column <code>length</code>) depending on where they were found (column <code>site</code>). Since the t-test in R (similar to what we already know from the Chi-square test) assumes worst case by default, we must explicitly state that we consider the variances to be equal. This is done specifying the parameter <code>var.equal=T</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(length <span class="sc">~</span> site, <span class="at">data=</span>blade_length, <span class="at">var.equal=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  length by site
+t = -0.26419, df = 43, p-value = 0.7929
+alternative hypothesis: true difference in means between group site1 and group site2 is not equal to 0
+95 percent confidence interval:
+ -4.118172  3.164172
+sample estimates:
+mean in group site1 mean in group site2 
+             20.015              20.492 </code></pre>
+</div>
+</div>
+<p>In the result, we see that the p-value of 0.7929 is definitely not significant. In addition, we see many numbers again that we already know from our calculation by hand. On top of that, there is the 95 % confidence interval. This means that with a difference between -4.1 and +3.1 we could not determine a significant difference between the mean values (corresponding to our number of cases and the variance of the data).</p>
+<div class="exercise">
+<p>Again the (logarithmic) sizes of ritual enclosures at the Society Islands (Example by Shennan)</p>
+<p>Given are the (logarithmic) sizes of ritual enclosures in two valleys at the Society Islands.</p>
+<p>Please check whether both valleys are different in respect to the mean sizes of the enclosures!</p>
+<p><strong>file</strong>: <a href="data:text/csv;base64,c2l6ZSx2YWxsZXkKMi44NzEsdmFsbGV5MQoyLjUxNyx2YWxsZXkxCjIuMzQ2LHZhbGxleTEKMS40ODMsdmFsbGV5MQoxLjkyNCx2YWxsZXkxCjEuOTg4LHZhbGxleTEKMS44NDUsdmFsbGV5MQoyLjAwOSx2YWxsZXkxCjIuMTU4LHZhbGxleTEKMi41NTYsdmFsbGV5MQoxLjk1NCx2YWxsZXkxCjIuMDAzLHZhbGxleTEKMi4zNTMsdmFsbGV5MQoxLjg3LHZhbGxleTEKMS45NDIsdmFsbGV5MgoyLjE2OCx2YWxsZXkyCjIuMDQ2LHZhbGxleTIKMi4yMjEsdmFsbGV5MgoyLjMxMSx2YWxsZXkyCjIuMTQxLHZhbGxleTIKMS45NSx2YWxsZXkyCjIuNDAxLHZhbGxleTIKMi44MDcsdmFsbGV5MgoyLjc0LHZhbGxleTIK" download="marae.csv">marae.csv</a></p>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<p>If we no longer have the data present in R, we have to reload the data set:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>marae <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marae.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now it is trivial: we execute the command for the t-test with the new data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(size <span class="sc">~</span> valley, <span class="at">data =</span> marae, <span class="at">var.equal =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  size by valley
+t = -0.99589, df = 22, p-value = 0.3301
+alternative hypothesis: true difference in means between group valley1 and group valley2 is not equal to 0
+95 percent confidence interval:
+ -0.4273128  0.1500556
+sample estimates:
+mean in group valley1 mean in group valley2 
+             2.134071              2.272700 </code></pre>
+</div>
+</div>
+<p>As we have already seen from the box plot, these distributions are very similar. Consequently, the t-test cannot detect any significance differences with regard to the mean values.</p>
+<p>I take this opportunity to introduce a useful little feature of the box plot: the notches. These can be used to visually test for differences in this time the <strong>medians</strong> of both distributions (after McGill et al 1978, p.&nbsp;16).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size <span class="sc">~</span> valley, <span class="at">data =</span> marae, <span class="at">notch=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in (function (z, notch = FALSE, width = NULL, varwidth = FALSE, : some
+notches went outside hinges ('box'): maybe set notch=FALSE</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So we found that the mean (and median) values are not significantly different from each other.</p>
+</details>
+</section>
+<section id="welch-test-t-test-for-inhomogenous-variances-with-welch-correction" class="level3" data-number="7.5.4">
+<h3 data-number="7.5.4" class="anchored" data-anchor-id="welch-test-t-test-for-inhomogenous-variances-with-welch-correction"><span class="header-section-number">7.5.4</span> Welch-Test (t-Test for inhomogenous variances with welch correction)</h3>
+<p>If the variances of the two distributions differ significantly from each other, then the normal t-test should not be used. Instead, one can use a variant known as the Welch test. In this case I will not go into the background, the mechanics are very similar to those of the normal test. In R, the differences are also marginal: we only have to omit the parameter for equality of variances.</p>
+<p>For demonstration purposes, we use a modified data set of the flint blades data where the variances are significantly different:</p>
+<p><a href="data:text/csv;base64,bGVuZ3RoLHNpdGUKMTQuOSxzaXRlMQoyNCxzaXRlMQo4Ljcsc2l0ZTEKMjkuMyxzaXRlMQoyNS41LHNpdGUxCjIzLjksc2l0ZTEKMjIuNCxzaXRlMQoxMi43LHNpdGUxCjguNyxzaXRlMQoyNS4xLHNpdGUxCjI1LjYsc2l0ZTEKMTQuNyxzaXRlMQoyMyxzaXRlMQoyMy4yLHNpdGUxCjI2LjUsc2l0ZTEKMTEuMSxzaXRlMQoxNS4yLHNpdGUxCjIwLjYsc2l0ZTEKMjAuMSxzaXRlMQoyNS4xLHNpdGUxCjI2LjUsc2l0ZTMKMTguNixzaXRlMwoyMi44LHNpdGUzCjI4LjMsc2l0ZTMKMjQuNSxzaXRlMwoyMC43LHNpdGUzCjE5Ljgsc2l0ZTMKMjEuNCxzaXRlMwoyMy41LHNpdGUzCjIyLjUsc2l0ZTMKMjAuMixzaXRlMwoyNS45LHNpdGUzCjI3LjEsc2l0ZTMKMjIuNyxzaXRlMwozMi4xLHNpdGUzCjIwLjIsc2l0ZTMKMTcuOCxzaXRlMwoyMCxzaXRlMwoxOS4zLHNpdGUzCjI3LHNpdGUzCg==" download="blade_length3.csv">blade_length3.csv</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>blade_length3 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"blade_length3.csv"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(length <span class="sc">~</span> site, <span class="at">data =</span> blade_length3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  length by site
+F = 2.8288, num df = 19, denom df = 19, p-value = 0.02854
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 1.119663 7.146758
+sample estimates:
+ratio of variances 
+          2.828774 </code></pre>
+</div>
+</div>
+<p>As a result, we do not obtain a significant result here either: also in the modified data set with unequal variances, no significant difference can be found between the mean values.</p>
+<p>The Welch test is therefore more robust than the normal test, it makes fewer pre-assumptions. But this comes at a price (albeit a rather small one): the test strength is somewhat lower than with a t-test, which can assume equal variances. We can demonstrate this with a small simulation: We create two samples of the same size, both are randomly normally distributed. For the second sample we add 0.5 to the normally distributed random value. So we know that both samples should differ in terms of their mean values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>) <span class="sc">+</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Jetzt führen wir beide Testvarianten durch:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A,B, <span class="at">var.equal=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  A and B
+t = -2.4481, df = 38, p-value = 0.01909
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.3060790 -0.1237354
+sample estimates:
+ mean of x  mean of y 
+-0.2674888  0.4474184 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A,B, <span class="at">data=</span>sim_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  A and B
+t = -2.4481, df = 36.934, p-value = 0.01923
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.3066401 -0.1231743
+sample estimates:
+ mean of x  mean of y 
+-0.2674888  0.4474184 </code></pre>
+</div>
+</div>
+<p>In most of the cases (with small sample size), the Welch test will be slightly more unsure (the p-value will be slightly higher) to reject the null hypothesis.</p>
+</section>
+</section>
+<section id="multiple-tests" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="multiple-tests"><span class="header-section-number">7.6</span> Multiple Tests</h2>
+<section id="the-problem" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="the-problem"><span class="header-section-number">7.6.1</span> The Problem</h3>
+<p>What I will discuss below is relevant to any kind of statistical test, in fact to any kind of statistical investigation that estimates a probability and comes up with a P value. It can be explained well in the context of parametric tests, but is not limited to them.</p>
+<p>Let us imagine that we do not want to compare two groups within a data set, but more. For example, three. Given are the <a href="data:text/csv;base64,c2l6ZSxyZWdpb25zLHdldG5lc3MKNDEuMTYxLFN0ZWluYnVyZyxodW1pZAoyNi40OTcsS2llbCxodW1pZAozOS44OTQsRGl0aG1hcnNjaGVuLGh1bWlkCjE3Ljc4MyxOZXVtw7xuc3RlcixodW1pZAozNi4xNTgsUmVuZHNidXJnLUVja2VybmbDtnJkZSxodW1pZAoyNy4xODEsU3Rvcm1hcm4saHVtaWQKMjIuMjA4LFBsw7ZuLGh1bWlkCjIwLjE5NixTY2hsZXN3aWctRmxlbnNidXJnLGh1bWlkCjM2Ljc1LE9zdGhvbHN0ZWluLGh1bWlkCjMzLjQ0MixQbMO2bixodW1pZAozMi42NTQsTmV1bcO8bnN0ZXIsaHVtaWQKMzcuNTUsU3RlaW5idXJnLGh1bWlkCjI2Ljc0MixPc3Rob2xzdGVpbixodW1pZAoyNC4xMjEsSGVyem9ndHVtIExhdWVuYnVyZyxodW1pZAoyNC4yODEsT3N0aG9sc3RlaW4saHVtaWQKMzAuNjg4LERpdGhtYXJzY2hlbixtZWRpdW0KMTcuMjEyLEhlcnpvZ3R1bSBMYXVlbmJ1cmcsbWVkaXVtCjI4LjI2NCxOZXVtw7xuc3RlcixtZWRpdW0KMjEuMTY2LFNlZ2ViZXJnLG1lZGl1bQo5LjE3MSxQbMO2bixtZWRpdW0KMjkuOTc2LERpdGhtYXJzY2hlbixtZWRpdW0KMjkuMzgzLFN0b3JtYXJuLG1lZGl1bQozMC44OTUsSGVyem9ndHVtIExhdWVuYnVyZyxtZWRpdW0KMjkuMDE2LE5vcmRmcmllc2xhbmQsbWVkaXVtCjE3LjI5NSxGbGVuc2J1cmcsbWVkaXVtCjkuOTU2LFNjaGxlc3dpZy1GbGVuc2J1cmcsbWVkaXVtCjI3LjUwNCxOb3JkZnJpZXNsYW5kLG1lZGl1bQo0Ny41MTIsT3N0aG9sc3RlaW4sbWVkaXVtCjI4LjkzMSxPc3Rob2xzdGVpbixtZWRpdW0KMzcuMDU0LE9zdGhvbHN0ZWluLG1lZGl1bQoxMi4yOTQsU3Rvcm1hcm4sYXJpZAoxNi4wNjMsU2NobGVzd2lnLUZsZW5zYnVyZyxhcmlkCjAuNjUzLEZsZW5zYnVyZyxhcmlkCjExLjgxNixLaWVsLGFyaWQKMTQuNTc1LFBpbm5lYmVyZyxhcmlkCjAuNTk4LFN0b3JtYXJuLGFyaWQKMC40ODgsU2VnZWJlcmcsYXJpZAo5Ljc2OSxQaW5uZWJlcmcsYXJpZAo5LjI5NCxTZWdlYmVyZyxhcmlkCjI2LjE0OSxTZWdlYmVyZyxhcmlkCjIuMTM2LFBpbm5lYmVyZyxhcmlkCjI2LjQ3NyxOb3JkZnJpZXNsYW5kLGFyaWQKNC44ODEsRmxlbnNidXJnLGFyaWQKMy44OTMsRmxlbnNidXJnLGFyaWQKMS43MzUsTmV1bcO8bnN0ZXIsYXJpZAo=" download="settlements.csv">hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness</a>. One could hypothesise that the size of the settlement depends on environmental factors, for example the moisture of the subsoil. We know, for example, that in wet-soil conditions, at least in northern Germany, unlike in Switzerland, fewer normal settlements and rather, for example, hunting stations have been built. This hypothesis now needs to be tested with our data set (which, however, contains simulated data).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>settlements <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"settlements.csv"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>{{settlements<span class="sc">$</span>wetness <span class="ot">&lt;-</span> <span class="fu">factor</span>(settlements<span class="sc">$</span>wetness)}}</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(settlements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    size               regions wetness
+1 41.161             Steinburg   humid
+2 26.497                  Kiel   humid
+3 39.894          Dithmarschen   humid
+4 17.783            Neumünster   humid
+5 36.158 Rendsburg-Eckernförde   humid
+6 27.181              Stormarn   humid</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(settlements<span class="sc">$</span>wetness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  arid  humid medium 
+    15     15     15 </code></pre>
+</div>
+</div>
+<p>Please note the highlighted line. With a recent update of R, a basic setting has changed when loading data. Data representing letters were previously automatically converted to factor variables. Since the update, this is no longer the case. Therefore, this line differs from the code snippet that appears in the practice video. Immediately here, this has no impact, but further down, when we deal with ANOVA and the re-factoring of data, this line is now crucial. In it, we explicitly convert the variable wetness into a factor variable.</p>
+<p>If we load and examine the data set, we will find that the category wetness has not two, but three classes (arid, humid, medium). How should we proceed if we want to determine whether the category has a significant influence on settlement size?</p>
+<p>The answer that may first come to mind is the following (I’m just assuming): we test for significant differences between the individual classes with a t-test. That is, we test arid against humid, humid against medium, and medium against arid. (Side note: we can easily calculate the number of tests needed by applying the combinatorics rules: we have three possible outcomes, n, and two draws, k, first and second category. The order does not matter. I.e., we would have to calculate the binomial coefficient. The result will be three. Never let an opportunity for a repetition go to waste).</p>
+<p>The problem, however, is that each of these tests (with a significance level of 0.05) has an error probability of 5%. That is, we have a 95% chance of correctly rejecting the null hypothesis. Since the individual tests are to be considered independent events, we MUST multiply the individual probabilities to arrive at the overall probability that we do not incorrectly reject the null hypothesis for any of the tests. I.e.: <span class="math inline">\(0.95 * 0.95 * 0.95 = 0.86\)</span>! (By the way, I explained this somewhat incorrectly in the presentation). If we turn that around, we only have a probability of <span class="math inline">\(1-0.95 * 0.95 * 0.95 = 0.14\)</span> oder <span class="math inline">\(1-0.95 * 0.95 * 0.95 = 14\)</span>% that any of the tests indicate statistical significance, although the null hypothesis should not actually be rejected.</p>
+<p>So what can we do to arrive at a correct result overall?</p>
+</section>
+<section id="p-value-correction" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="p-value-correction"><span class="header-section-number">7.6.2</span> p value correction</h3>
+<p>The simplest possibility is to correct the P values accordingly. There are various procedures for this, which are complex in different escalation levels. We limit ourselves here to the simplest variant, which is also the most conservative (i.e.&nbsp;we play it safe). In this variant, we set the overall probability of error for all tests on the same data set to 0.05, as we would also expect for the individual test. Now we relate this value to the number of tests we perform on this data set. This method is also called Bonferroni correction.</p>
+<p>There are only two ways to approach it: either you want to stick to a figure for the significance level of 0.05 for the individual tests. Then one multiplies the P values of the individual tests by the total number of tests performed.</p>
+<p><span class="math inline">\(p_i^* = p_i *n_{tests}\)</span></p>
+<p>So if previously the test showed a p-value of 0.02, and we did three tests, we get a new p-value of 0.06. If previously the test had a significant result, it no longer has one when the problem of multiple testing is taken into account.</p>
+<p>However, instead of changing our P values, we could also adjust our significance level (<span class="math inline">\(\alpha = 0.05\)</span>) according to the test configuration. Then we would not have to carry out three calculations for the individual P values, but only one, in which we calculate a new significance level, which now has to be undercut.</p>
+<p><span class="math inline">\(p_i^* &lt; \frac{\alpha}{n_{tests}}\)</span></p>
+<p>In both cases, the result is logically the same.</p>
+<p>In R ist, neben anderen Methoden, die Bahn für Ronny Korrektur in der ersten Variante implementiert. D.h., wir können einen Befehl benutzen, in denen wir unsere bisherigen Signifikanzwerte einfügen, und diese werden dann entsprechend der Zahl der Tests korrigiert.</p>
+<p>Solution 1, valid for all tests: we correct the p-values, eg. with the In R, among other methods, the Bonferroni correction is implemented in the first variant. That is, we can use a command in which we insert our previous significance values and these are then corrected according to the number of tests.</p>
+<p><strong>Example:</strong> We test 3 groups, therefore we need 3 tests:</p>
+<ul>
+<li><p>medium ↔︎ humid: p-value = <span class="math inline">\(0.2869584\)</span></p></li>
+<li><p>humid ↔︎ arid: p-value = <span class="math inline">\(1.9394078\times 10^{-7}\)</span></p></li>
+<li><p>arid ↔︎ medium: p-value = <span class="math inline">\(3.4368554\times 10^{-5}\)</span></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p.adjust</span>(<span class="fu">c</span>(<span class="fl">0.2869584</span>, <span class="fl">1.939408e-07</span>, <span class="fl">3.436855e-05</span>), <span class="at">method =</span> <span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.608752e-01 5.818224e-07 1.031056e-04</code></pre>
+</div>
+</div>
+<p>After we corrected the p-values that actually result from the individual t-tests, the first result is not significant (admittedly, it was not before either). This means that we can find statistical significance in the difference between humid and arid conditions and between arid and medium dry conditions. However, no statistically significant difference can be found between medium and humid.</p>
+<p>The whole thing can also be done within one run or one command, for which there is the so-called <code>pairwise.t.test()</code>. This command does nothing other than compare the individual groups with each other depending on the value of the factor variable, in our case wetness. In addition, you can directly specify a desired P value correction.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>   settlements<span class="sc">$</span>size,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>   settlements<span class="sc">$</span>wetness,</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">p.adjust=</span><span class="st">"bonferroni"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  settlements$size and settlements$wetness 
+
+       arid    humid
+humid  3.6e-07 -    
+medium 1.3e-05 0.84 
+
+P value adjustment method: bonferroni </code></pre>
+</div>
+</div>
+<p>Another possibility is to use a test that is specifically designed for more than two possible groups. We will get to know such a test in the next section.</p>
+</section>
+</section>
+<section id="anova" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="anova"><span class="header-section-number">7.7</span> ANOVA</h2>
+<p>The idea of ANOVA (ANalysis Of VAriances) is very similar to that of the t-test. Here too, the variance within samples (groups) is compared with the variance between these groups. The variance between the groups is again determined by the mean value. An ANOVA can only be used if you have a metrically scaled target variable and a grouping variable with more than two values results in more than two samples.</p>
+<section id="facts-sheet-anova" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="facts-sheet-anova"><span class="header-section-number">7.7.1</span> Facts sheet ANOVA</h3>
+<p>Analysis of the differences between the mean values of samples from different groups.</p>
+<p>If the variance of the mean values of the groups is greater than the variance within the groups, then it can be assumed that the grouping has an influence on the mean values.</p>
+<p><strong>requirements</strong>: one metric scaled target variable (dependent) and one grouping variable (independent)</p>
+<p><span class="math inline">\(H_0\)</span> The populations of the samples have the same mean (within the group variance)</p>
+<p><span class="math inline">\(H_1\)</span> The populations of the samples have a different mean (within the group variance)</p>
+<p>Basic idea: If the variance of the means of the samples is bigger than the variance within the sample to a certain degree, than the difference in mean is meaninful</p>
+<section id="what-do-these-facts-mean-2" class="level4" data-number="7.7.1.1">
+<h4 data-number="7.7.1.1" class="anchored" data-anchor-id="what-do-these-facts-mean-2"><span class="header-section-number">7.7.1.1</span> What do these facts mean</h4>
+<p>From the basic description and the information on the key data of the test, it seems that it is very similar to the t-test. And that is no coincidence. The basic idea is definitely the same: the difference between the mean values of the individual samples in relation to the variability within the samples. The main distinction lies in the fact that we are not dealing directly with the difference between two mean values. This is mainly because with more than two values, a difference can no longer be meaningfully used as a measure of distinctness.</p>
+<p><span class="math inline">\(t = \frac{difference\ between\ group\ means}{variability\ of\ groups}\)</span></p>
+<p>Instead, this test focuses very intensively on variance. This is where its name comes from. The summed variance within the groups is used as a measure of the variability of the groups themselves. However, the variance of the means of the individual groups in relation to the overall mean is used as the measure of distinctiveness.</p>
+<p><span class="math inline">\(t = \frac{variability\ of\ the\ group\ means}{variability\ of\ groups}\)</span></p>
+</section>
+</section>
+<section id="doing-anova-by-hand" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="doing-anova-by-hand"><span class="header-section-number">7.7.2</span> Doing Anova by hand</h3>
+<p>We remember: the variance is calculated by summing the squares of the deviations from the mean. If we are talking about a population mean, then the formula is simple:</p>
+<p><span class="math inline">\(S^2 = \frac{\sum_{i=1}^{n} (\bar x - x_i)^2}{N}\)</span></p>
+<p>The upper part in the denominator is also called the sum of the squares, the whole mean sum of the squares (MSS). We will now calculate the mean sum of squares for the individual means of the groups, and divide by the mean sum of squares for the groups. The resulting test statistic is called the F statistic, and it is compared against the F distribution, just as in the F test.</p>
+<p><span class="math inline">\(F = \frac{MSS_{between}}{MSS_{within}}\)</span></p>
+<p>Let’s approach this with our data set. First we need the mean values. These look like this:</p>
+<ul>
+<li>Humid <span class="math inline">\(\mu_h\)</span>: 29.77</li>
+<li>Arid <span class="math inline">\(\mu_a\)</span>: 9.39</li>
+<li>medium <span class="math inline">\(\mu_m\)</span>: 26.27</li>
+</ul>
+<p>Furthermore, we need the total mean value to be able to determine the variance of the group means:</p>
+<ul>
+<li>Total mean <span class="math inline">\(\mu_t\)</span>: 21.81</li>
+</ul>
+<p>First, we calculate exactly this variance of the group means. To do this, we subtract the total mean value from each of our groups and square the result. Then we divide it by the sum of the degrees of freedom, since we are dealing with an empirical, estimated value and not with the value for the population.</p>
+<p><span class="math inline">\(MSS_{between} = \frac{\sum_{i=1}^{n} (\mu_i-\mu_t)^2}{n-1}\)</span></p>
+<p>If we put in our values (df=2, because we have 3 mean values, less one), we get the following:</p>
+<p><span class="math inline">\(MSS_{between} = \frac{(\mu_h-\mu_t)^2 + (\mu_a-\mu_t)^2 + (\mu_m-\mu_t)^2}{3-1} = \frac{(29.77-21.81)^2 + (9.39-21.81)^2 + (26.27 - 21.81)^2}{3-1} = 1782.1032449\)</span></p>
+<p>Second, we need to calculate the mean sum of squares for the variability within the groups. Again for this we determine the mean of the individual variances, this time within the groups.</p>
+<p><span class="math inline">\(MSS_{within} = \frac{\sum_{j=1}^{n}\sum_{i=1}^{n_j} (x_i - \bar{x})^2}{n-n_j}\)</span></p>
+<p>Wow, stop! Two sums of signs in a row! Don’t panic, we’ll quickly take that apart: we have three cases, and over these three cases we have to determine the variances in each case with respect to the means of each of these groups. This is done in the inner summation sign. In the outer sign, these variances are then added together. With three cases, the whole thing can also be written as follows without any problems:</p>
+<p><span class="math inline">\(MSS_{within} = \frac{\sum_{i=1}^{n_h} (h_i - \bar{h})^2 + \sum_{i=1}^{n_a} (a_i - \bar{a})^2 + \sum_{i=1}^{n_h} (m_i - \bar{m})^2}{45-3} = 77.08975\)</span></p>
+<p>Here h, a &amp; m stand for our humid, arid and medium groups respectively. I will spare us all the trouble of writing out the individual measured values here. Practically, it just means that we subtract each individual value from the mean value for each group, square the result and add up the total for all entries. The degrees of freedom result from the total number of cases in our data set, minus the number 3, which stands for the three groups, or the mean values calculated from these groups.</p>
+<p>Now we have the mean sum of squares for the mean values of the groups, as a measure of the difference between the groups, and the mean sum of squares for the groups themselves, as a measure of the dispersion of the data as a whole. Now you can relate the two values by dividing the difference between the groups by the difference within the groups.</p>
+<p><span class="math inline">\(F = \frac{MSS_{between}}{MSS_{within}} = 23.1172529\)</span></p>
+<p>With this we have calculated our F value for the Anova. By the way, the whole thing could look like this in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subdivide the data set</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>humid <span class="ot">&lt;-</span> <span class="fu">subset</span>(settlements, wetness<span class="sc">==</span><span class="st">"humid"</span>)<span class="sc">$</span>size</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>arid <span class="ot">&lt;-</span> <span class="fu">subset</span>(settlements, wetness<span class="sc">==</span><span class="st">"arid"</span>)<span class="sc">$</span>size</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>medium <span class="ot">&lt;-</span> <span class="fu">subset</span>(settlements, wetness<span class="sc">==</span><span class="st">"medium"</span>)<span class="sc">$</span>size</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the group means</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>m_h <span class="ot">&lt;-</span> <span class="fu">mean</span>(humid)</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>m_a <span class="ot">&lt;-</span> <span class="fu">mean</span>(arid)</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>m_m <span class="ot">&lt;-</span> <span class="fu">mean</span>(medium)</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the overall mean</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>m_o <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(m_h,m_a,m_m))</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Numerator, the Mean Sum of Squares of the Group Means</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>mssb <span class="ot">&lt;-</span> ((m_o <span class="sc">-</span> m_h)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fu">length</span>(humid) <span class="sc">+</span> (m_o <span class="sc">-</span> m_a)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fu">length</span>(arid) <span class="sc">+</span> (m_o <span class="sc">-</span> m_m)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fu">length</span>(medium))<span class="sc">/</span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>   <span class="dv">2</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Denominator, the Mean Sum of Squares of the within the Groups</span></span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>mssw <span class="ot">&lt;-</span> <span class="fu">sum</span>((humid <span class="sc">-</span> m_h)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (arid <span class="sc">-</span> m_a)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (medium <span class="sc">-</span> m_m)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span></span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>   (<span class="fu">nrow</span>(settlements)<span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Final Result</span></span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>mssb<span class="sc">/</span>mssw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23.11725</code></pre>
+</div>
+</div>
+<p>Well, of course it can also be much shorter in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(size<span class="sc">~</span>wetness, <span class="at">data=</span>settlements))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)    
+wetness      2   3564  1782.1   23.12 1.7e-07 ***
+Residuals   42   3238    77.1                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>As you can see, we find here the values that we calculated by hand. We have not written out the square sums themselves, but we have determined the mean sum of the squares as well as the F value. The decisive factor is of course, as always, the P value, which is listed here under ‘Pr(&gt;F)’. We also see three stars at the end, which indicates that we are dealing with highly significant results.</p>
+<p>Although there is no table for the ANOVA in Steven Shennan’s book, one can be found, for example, <a href="https://web.ma.utexas.edu/users/davis/375/popecol/tables/f005.html">under this link</a>. This shows that with a degree of freedom of 1 (group means) = 2 and a degree of freedom of 2 (within groups) = 42, the threshold value is about 4.08. Our F value is much higher, so even without the computer, it is statistically significant. Admittedly, it is easier with R…</p>
+</section>
+<section id="anova-in-r-more-advanced-topics" class="level3" data-number="7.7.3">
+<h3 data-number="7.7.3" class="anchored" data-anchor-id="anova-in-r-more-advanced-topics"><span class="header-section-number">7.7.3</span> ANOVA in R, more advanced topics</h3>
+<section id="more-detailed-output-and-changing-the-control-group" class="level4" data-number="7.7.3.1">
+<h4 data-number="7.7.3.1" class="anchored" data-anchor-id="more-detailed-output-and-changing-the-control-group"><span class="header-section-number">7.7.3.1</span> More detailed output and changing the control group</h4>
+<p>So now we know that humidity is a significant factor in the size of settlements. Let’s look at the distribution of the data using a box plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size<span class="sc">~</span>wetness, <span class="at">data=</span>settlements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In fact, this should always be one of the first steps before starting the actual data analysis. It is important to look at the distribution of the data first. Es ist offensichtlich, dass arid hier den Ausreisser darstellt. Das hatte uns ja auch schon der korrigierte t-test gezeigt. Wie aber kommen wir jetzt zu einer Teststatistik, die uns auch das mit Hilfe der ANOVA vorweisen kann?</p>
+<p>To do this, you have to fit a model to the values and use it to do an analysis of variances. What exactly happens in the process, not to mention how it could be done by hand, is far beyond our course. It doesn’t matter, because we will simply look at the result. To do this, we put the result of the ANOVA into the command `summary.lm’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(<span class="fu">aov</span>(size<span class="sc">~</span>wetness, <span class="at">data=</span>settlements))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+aov(formula = size ~ wetness, data = settlements)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.097  -7.252   1.236   4.627  21.244 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      9.388      2.267   4.141 0.000163 ***
+wetnesshumid    20.386      3.206   6.359 1.21e-07 ***
+wetnessmedium   16.880      3.206   5.265 4.48e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.78 on 42 degrees of freedom
+Multiple R-squared:  0.524, Adjusted R-squared:  0.5013 
+F-statistic: 23.12 on 2 and 42 DF,  p-value: 1.698e-07</code></pre>
+</div>
+</div>
+<p>The first group (arid) is the so called control group. This means, that the others are compared to this group. Therefore, we only see humid and medium in the coefficients. And of the two, arid is obviously significantly different. If we are interested in the differences between medium and other soils, we have to change the control group to ‘medium’. However, this is not a separate new test that would require a P value correction. We just run the same test again and change the perspective on the result.</p>
+<p>To change the control group, we can reassign the levels for the factor variable. This is done with the command <code>relevel()</code>. In this case, however, I do not actually overwrite the original variable, but move the result into the new variable. You don’t have to do this, but it is an additional possibility. In the command itself, I enter the factor value that I want to use as the new control group as a parameter. All analyses are then carried out with reference to this group and its properties.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>wetness.new<span class="ot">&lt;-</span><span class="fu">relevel</span>(settlements<span class="sc">$</span>wetness, <span class="at">ref =</span><span class="st">"medium"</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(<span class="fu">aov</span>(settlements<span class="sc">$</span>size<span class="sc">~</span>wetness.new))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+aov(formula = settlements$size ~ wetness.new)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.097  -7.252   1.236   4.627  21.244 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        26.268      2.267  11.587 1.16e-14 ***
+wetness.newarid   -16.880      3.206  -5.265 4.48e-06 ***
+wetness.newhumid    3.506      3.206   1.094     0.28    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.78 on 42 degrees of freedom
+Multiple R-squared:  0.524, Adjusted R-squared:  0.5013 
+F-statistic: 23.12 on 2 and 42 DF,  p-value: 1.698e-07</code></pre>
+</div>
+</div>
+<p>There is a significant difference between the control (medium) and arid soils. However, there is no significant difference compared to the “Humid” group.</p>
+</section>
+<section id="two-factorial-anova" class="level4" data-number="7.7.3.2">
+<h4 data-number="7.7.3.2" class="anchored" data-anchor-id="two-factorial-anova"><span class="header-section-number">7.7.3.2</span> two-factorial ANOVA</h4>
+<p>The following can indeed only be a preview, intended to show you the direction in which one can go with ANOVA. Despite the basic simplicity of the procedure, it can be a very versatile tool. For example, one can also analyse the influence of two or more grouping variables, and in doing so, address mutual conditionalities of the variables.</p>
+<p>If we are interested in the influence of two grouping variables, we simply begin by visualising. The data set also has a regional allocation of the individual sites. We can also display this by means of a box plot. Since there are quite a lot of regions, this is quite confusing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size<span class="sc">~</span>regions, <span class="at">data=</span>settlements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Eine Hypothese könnte ja sein, dass sich Feuchtigkeit in unterschiedlichen Regionen unterschiedlich stark ausprägt. An der Küste könnte ein feuchter Untergrund zu anderen Siedlungsprozesse und führen als zum Beispiel im Binnenland. Um das Zusammenspiel von zwei nominalen variablen darzustellen, eignet sich ein so genannter <code>interaction.plot()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>   settlements<span class="sc">$</span>wetness,</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>   settlements<span class="sc">$</span>regions,</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>   settlements<span class="sc">$</span>size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-chapter_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here we have the mean values displayed in relation to the first category, and the second category is indicated, for example, by the line style. By looking at this plot, we can see, for example, whether the values are moving in the same direction in all regions, or whether there are regional differences. Again, admittedly, the amount of regional categories is too high to achieve a satisfactory representation. But one can draw conclusions from the basic arrangement: if the different categories had the same effect on settlement size everywhere, then the lines would all run more or less parallel.</p>
+<p>A more detailed analysis allows the two-factor ANOVA. Instead of assuming the dependence of the size only for wetness, we now make the size dependent on wetness and region. Here we now start to think in terms of models. Let it be said that all modelling and are only more complex versions of this reasoning. Now we have to decide whether we assume that humidity and region influence each other or whether both factors are independent of each other. In our example it is clear that the humidity also depends on the region. Therefore, we connect both parameters with a timesign (*). If we assume that the variables are independent, then we only add up their influences and therefore they would be connected by a + in the formula.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(size <span class="sc">~</span> wetness <span class="sc">*</span> regions, <span class="at">data =</span> settlements))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+wetness          2   3564  1782.1  29.331 3.08e-06 ***
+regions         13   1372   105.6   1.738    0.142    
+wetness:regions 12    832    69.4   1.142    0.391    
+Residuals       17   1033    60.8                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p><strong>Notation in the formula</strong></p>
+<p>*: Interaction of the grouping variables are considered</p>
+<p>+: grouping variables are considered as indipendent</p>
+<p>The result of this analysis shows that size is dependent on wetness, but not on region. Also, the interaction of wetness and region has no significance in influence. This is pretty much the way I simulated this data.</p>
+<p>But this is not all. There is a third variant of the ANOVA. In total, the following variants exist:</p>
+<ul>
+<li><p><strong>uni-factorial ANOVA</strong>: one independent factor (grouping variable), one dependent variable (measurement). This is the variant that we calculated first and also by hand.</p></li>
+<li><p><strong>two-/multi-factorial ANOVA</strong>: two/multiple independent factor (grouping variable), one dependent variable (measurement). This is the variant that I demonstrated just above.</p></li>
+<li><p><strong>multivariate ANOVA (MANOVA)</strong>: two/multiple independent factor (grouping variable), multiple dependent variable (measurements). Here we can check the effect of several grouping variables on several measured variables at the same time and find significant relationships. This can also be called a shotgun approach, because it is a way of trying to detect large numbers of statistically significant differences as quickly as possible. However, it must be noted that statistical significance is not necessarily scientific significance. Here, too, a significance level of 0.05 remains. Every 20th significant result is therefore a random effect (on statistical average…).</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="summary" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.8</span> Summary</h2>
+<p>We have seen a lot in this chapter. Starting with simple pre-tests for the parametric conditions of more advanced tests, we have come across the t-test and ANOVA, which are statistical tests that can show us differences between groups very well. This is the reason why both tests are workhorses of scientific research disciplines. At the end, ANOVA gave us a little insight into the world of modelling. We will continue with that. In the next chapter we will look at regression analysis. This means that we want to find out how two variables are related to each other. We will deal with simple linear modelling. But this already opens the door to a new world of possible research and analysis methods.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06-chapter.html" class="pagination-link" aria-label="Basic Probability Theory">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Probability Theory</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./08-chapter.html" class="pagination-link" aria-label="Regression Analysis and Correlation">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regression Analysis and Correlation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

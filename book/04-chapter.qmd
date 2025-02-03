@@ -18,7 +18,7 @@ A distribution is the collection of all the outcomes in the sample. More precise
 
 After their final exam, the students of a mathematical class go to the football field, and line them self up according to their scores in the exam. Starting from the 0 yard line, they move so many yards as they have scored points in the test. Now, if we count the number of students in certain areas of the football field, we get their frequency distribution among the values. So, with a distribution, we are not talking about the individual value, but about their general distribution. From this it is clear, that it only makes sense to talk about distributions if we have more than one value (although technically also individual value is a distribution).
 
-![source: Phillips 1997](../images/04_session/distr_football_field.png)
+![source: Phillips 1997](images/04_session/distr_football_field.png)
 
 But not only students can form distributions, also other data sets can. You will see, that depending on the data type, different manifestations of distributions are possible. Nevertheless, all these versions are data distributions. The characteristics of the different distribution can be described using certain parameters.
 
@@ -164,7 +164,7 @@ which.max(table(c(1,2,2,3,3,3,4,4,4,4,5,5,5,6,6,7)))
 
 We haven't talked about symmetry so much, but also when it comes to distributions, this concept is quite intuitive. When we have a small amount of items with small values, a major amount of items with intermediate values, and again a small amount of items with small values, then we have something that can be considered as a symmetrical distribution. When we have more small values then intermediate or higher values, or more high values then intermediate in small values, then we have a skewed distribution, which is not symmetrical. You can see examples of this in the image below. Here, you can also see, what happens to the different parameters of central tendency in respect to each other, when we have a positive or negative skewed distribution.
 
-![](../images/04_session/dist_comp_1.png)
+![](images/04_session/dist_comp_1.png)
 
 In case of a positive skew, the median will be smaller than the mean, since the meeting is strongly influenced by outliers. So a small number of high values will 'drag' mean towards the higher values. Conversely, if we have more high values than low values, then the main will be smaller than the median, for the same, but inverted reasons. This means, just by comparing these two parameters of central tendency, we can already make a statement about the shape of the distribution, without even having to plot it.
 
@@ -197,7 +197,7 @@ which.max(table(tassen$x))
 
 In the previous chapter, we have learnt different ways how to express to central tendency of the dataset. But with specifying the location, we have not sufficiently described our dataset yet. One of the more relevant characteristics of the dataset is, if the data are rather close together, or if they are distributed over a larger range of the values. Consider for example the distributions below:
 
-![source: Phillips 1997](../images/04_session/dist_comp_2.png)
+![source: Phillips 1997](images/04_session/dist_comp_2.png)
 
 The upper image shows two distributions with the same centre, but with different spreads. The figures below show the same situation, but this time with actual values. You can see, that both distributions are centred around the value zero, but the upper distribution ranges from -45 to 45, while the distribution below is much more centred.
 
@@ -311,7 +311,7 @@ Let's assume, we have 13 values from 1 to 13. If we sort them and marked the beg
 
 If we now plot our data on an X axis with the actual values, we can mark the positions of the quantile stare. Such a plot could look like this:
 
-![Phillips 1997](../images/04_session/dist_skewed_left.png)
+![Phillips 1997](images/04_session/dist_skewed_left.png)
 
 In R, the command to calculate the quantiles is quantile. To make the confusion total, the default setting of the quantiles is to calculate the quartiles.
 
@@ -375,7 +375,7 @@ As interesting as it might be, as difficult it is to describe the shape of a dis
 
 Below, there is an image from Bortz 2006 dead visualise some of these possible parameters.
 
-![Shape of distributions (after Bortz 2006)](../images/04_session/dist_shapes.png)
+![Shape of distributions (after Bortz 2006)](images/04_session/dist_shapes.png)
 
 As already announced, we will discuss here to shape parameters that can be calculated: First, the skewness, of which we have already seen that it can be positive or negative. But there is also a way to calculate the value of the positivity or negativity. The second parameter is called Curtosis (curvature). This parameter indicates if the distribution is a letter or a steeper, compared to the so-called standard normal distribution.
 
@@ -383,7 +383,7 @@ In both cases, it might make sense to plot data and then calculate the values to
 
 ### Skewness
 
-![](../images/04_session/dist_comp_1.png)
+![](images/04_session/dist_comp_1.png)
 
 It's already introduced, skewness is a measure of how skewed your dataset is. On the one hand, it can be distinguished between positive and negative skew. This can be estimated by comparing the mean and median of the dataset. Also, you can try to describe how intense the skewing of the dataset is. For this, probably the easiest option is to look at the plot and describe it. But there is also a way to calculate that, given by the formula below:
 
@@ -421,7 +421,7 @@ With this basic concept, you can structure and reuse parts of your code all over
 
 The second parameter that we may talk about in this context is to kurtosis. It describes the curvature of the distribution in relationship to the standard normal distribution.
 
-![](../images/04_session/dist_curtosis.png)
+![](images/04_session/dist_curtosis.png)
 
 Positive values of kurtosis means, that the distribution is steeper than a normal distribution, while negative values mean, that it is flatter than a standard normal distribution. Of course, you can read the curvature from a plot, but also there is a way to calculate this. If you look to the formula, it will be quite familiar to you, because it resembles very much the formula for skewness. The only difference is, that instead of to the power of three no we calculate to the power of four.
 

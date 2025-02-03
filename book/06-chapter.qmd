@@ -221,7 +221,7 @@ $p(A) = \frac{1}{8}$
 That's easy isn't it? But now let's assume, that Queen and hearts are trump cards. How likely is it to draw a trump card? We cannot simply multiply nor add up the probabilities, because they are not mutually exclusive.
 
 
-![](../images/07_session/set_image.png)
+![](images/07_session/set_image.png)
 
 Imagine come out that in this image A represents all the hearts, and B represents all the Queens. The Queen of hearts is present in both sets. When calculating the probability of this combination, we have to consider this fact.
 
@@ -641,7 +641,7 @@ $3_{first\ coin}*2_{second\ coin} = 6$
 
 If we want to ignore the order, we have to remove those possibilities that are equivalent to us. Remember the image from the set theory (although it is not perfectly equivalent):
 
-![](../images/07_session/set_image.png)
+![](images/07_session/set_image.png)
 
 Do union of the number of cases is the number of cases from A times the number of cases from B minus the number, where A and B both a present. Since in the case of the first trial, we have two equivalent coins, we have to divide the number by two. Consequently, we also have to go to divide the second number of cases by one, which in practice does not change the result.
 
