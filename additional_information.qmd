@@ -57,7 +57,7 @@ All of the software we will be using is free and platform independent, meaning s
 
 # Teaching methodology
 
-This course will introduce new material primarily through prepared slides and videos. What is learned is then applied under supervision. Students will be expected to work both individually and collaboratively during this time and also in general; course content and evaluation will emphasize the communication of ideas and the ability to think critically more so than a specific pathway or method. Other areas of this website provide an overview of the topics to be covered, including links to lecture materials, computer labs, and homework assignments.
+This course will introduce new material primarily in the presence session, supported through prepared slides and videos. What is learned is applied under supervision. Students will be expected to work both individually and collaboratively during this time and also in general; course content and evaluation will emphasize the communication of ideas and the ability to think critically more so than a specific pathway or method. Other areas of this website provide an overview of the topics to be covered, including links to lecture materials, computer labs, and homework assignments.
 
 # Communication
 
@@ -67,17 +67,21 @@ This course will involve a *lot* of communication between and among students and
 
 The exact terms of evaluation will be decided within the first week of the course. Here is what has been the rule for earlier courses in a similar setting:
 
-Students will be evaluated on their knowledge of course content and their ability to communicate their understanding of the material via individual homework assignments (60%) and class participation (40%). There will be 12 homework assignments, each of which will count toward 5% of the final grade. Please note, **all assignments must be turned in to achieve a passing grade**.
+Students will be evaluated on their knowledge of course content and their ability to communicate their understanding of the material via individual homework assignments (30%) and class participation (10%) as well as in a final test (60%). There will be 12 homework assignments, each of which will count toward 2.5% of the final grade. Please note, **all assignments must be turned in to achieve a passing grade**.
 
-### Homework (60%)
+### Homework (30%)
 
 The "homework" is due by 17:59 on the following Tuesday. It will consist of some small tasks and practical approaches based on topics covered. There will be 12 assignments worth 5% each.  Your learning in the class will be greatly enhanced by doing the "homework" which consist of applying the material you learn in each lecture to a data set.
 
-### Participation (40%)
+### Participation (10%)
 
 We expect a certain amount of engagement from each student, which includes independently preparing the course content and attending and participating in the computer labs.
 
 Students should discuss any potential schedule conflicts with the instructor during the first week of class.
+
+### Final Test (60%)
+
+The course concludes with a final test consisting of a “theoretical” section followed by a “practical” part (conducted on a computer). The questions in the test are structurally very similar to the content covered in the assignments, meaning that successfully completing the assignments almost guarantees passing the test.
 
 <br>
 
