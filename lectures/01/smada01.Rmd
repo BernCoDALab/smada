@@ -194,19 +194,20 @@ library(magrittr)
 library(kableExtra)
 
 schedule <- c(
-  "24.02.2021", "Session: Introduction](01_session/session_1_introduction.html)", "1+2",
-"03.03.2021", "Session: Introduction into R", "-",
-"10.03.2021", "Session: Explorative Statistics/Graph. Display", "3",
-"17.03.2021", "Session: Descriptive Statistics", "4",
-"24.03.2021", "Session: Nonparametric Tests", "5",
-"31.03.2021", "Session: Chi-square test", "7",
-"14.04.2021", "Session: Probability Theory and Distributions", "5",
-"21.04.2021", "Session: Distributions", "6",
-"28.04.2021", "Session: Parametric Tests", "6",
-"05.05.2021", "Session: Regression & Correlation", "8",
-"12.05.2021", "Session: Cluster Analysis", "11",
-"26.05.2021", "Session: Correspondence Analysis", "13",
-"02.06.2021",  "Test", "-"
+"18.02.2025", "Session: Introduction", "1+2",
+"25.02.2025", "Session: Introduction into R", "-",
+"04.03.2025", "Session: Explorative Statistics/Graph. Display", "3",
+"11.03.2025", "Session: Descriptive Statistics", "4",
+"18.03.2025", "Session: Nonparametric Tests", "5 & 7",
+"25.03.2025", "*no class*", "",
+"01.04.2025", "Basic Probability Theory", "5",
+"08.04.2025", "Session: Parametric Tests", "6",
+"15.04.2025", "Session: Regression & Correlation", "8",
+"22.04.2025", "*no class*", "",
+"29.04.2025", "Session: Cluster Analysis", "11",
+"06.05.2025", "*no class*", "",
+"13.05.2025", "Session: Correspondence Analysis", "13",
+"27.05.2025", "Test", "-"
 )
 
 schedule <- as.data.frame(matrix(schedule,ncol=3, byrow = T))
