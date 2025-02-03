@@ -49,7 +49,7 @@ Students who expect to miss class or assignments as a consequence of their relig
 
 This course will revolve around hands-on computing exercises that demonstrate the topics of interest. Therefore, students are strongly recommended to bring their own laptop to class, although students are certainly free to work with one another. **For students without access to a personal laptop**: Please let us know in time, and we will try to find a solution.
 
-All of the software we will be using is free and platform independent, meaning students may use macOS, Linux, or Windows operating systems. In addition to a web browser, we will be using the free statistical software [**R**](https://www.r-project.org) and the free editor for R, (RStudio)[https://posit.co/download/rstudio-desktop/]. The instructor will be available to help students troubleshoot any software installation problems.
+All of the software we will be using is free and platform independent, meaning students may use macOS, Linux, or Windows operating systems. In addition to a web browser, we will be using the free statistical software [**R**](https://www.r-project.org) and the free editor for R, [**RStudio**](https://posit.co/download/rstudio-desktop/). The instructor will be available to help students troubleshoot any software installation problems.
 
 # Teaching methodology
 
