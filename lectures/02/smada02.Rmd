@@ -4,15 +4,16 @@ subtitle: "02 - Introduction into R"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "03.03.2021"
+date: "25.02.2025"
 output:
   xaringan::moon_reader:
-    chakra: "../libs/remark-latest.min.js"
-    css: ["../libs/default.css", "../libs/default-fonts.css", "../libs/customize.css"]
+    self_contained: true
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/default.css", "../../libs/default-fonts.css", "../../libs/customize.css"]
     lib_dir: "libs"
     seal: false
     nature:
-      beforeInit: "../libs/macros.js"
+      beforeInit: "../../libs/macros.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -246,10 +247,10 @@ mtcars
 ---
 ## Download data for further tasks
 
-* [height.RData](height.RData)
-* [kursmatrix.txt](kursmatrix.txt)
-* [kursdata.txt](kursdata.txt)
-* [kursdata.csv](kursdata.csv)
+* [height.RData](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/02/height.RData)
+* [kursmatrix.txt](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/02/kursmatrix.txt)
+* [kursdata.txt](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/02/kursdata.txt)
+* [kursdata.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/02/kursdata.csv)
 
 ---
 ## Data import through reading of files
@@ -376,7 +377,7 @@ height.in.m
 but:
 
 ```{r}
-test<-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+test<-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14)
 height.in.m + test
 ```
 
@@ -444,7 +445,7 @@ height[-(1:3)]
 Access by name:
 
 ```{r}
-height["Clara"]
+height["Frodo"]
 ```
 ]
 
@@ -462,7 +463,7 @@ height
 
 Entry by name:
 ```{r}
-height["Till"] <- 181
+height["Bilbo"] <- 181
 height
 ```
 ]
@@ -492,8 +493,8 @@ sum(height>175)/length(height)
 # Factors
 For encoding nominal values:
 ```{r}
-sex <- factor(c("m", "m", "m", "f", "m", "f", "f",
-                "f", "f", "m", "m", "f", "m", "f", "f"))
+sex <- factor(c("m", "m", "m", "m", "m", "m", "m",
+                "m", "m", "f", "f", "m", "m", "m"))
 
 sex
 
@@ -506,7 +507,7 @@ sex
 Problem: values are missing
 
 ```{r}
-height["Marlen"] <- 0
+height["Arwen"] <- 0
 
 mean(height)
 
@@ -515,7 +516,7 @@ sum(height)/13
 
 therefore: code as N(ot)A(vailable)
 ```{r}
-height["Marlen"] <- NA
+height["Arwen"] <- NA
 
 mean(height)
 
@@ -558,7 +559,7 @@ kursmatrix[, 1] / 100
 ```
 
 ```{r}
-kursmatrix / c(1:15, rep(2, 15))
+kursmatrix / c(1:14, rep(2, 14))
 ```
 ]
 
