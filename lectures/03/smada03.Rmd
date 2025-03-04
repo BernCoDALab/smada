@@ -4,22 +4,21 @@ subtitle: "03 - Explorative statistics & graphical display"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "10.03.2021"
+date: "04.03.2025"
 output:
   xaringan::moon_reader:
-    chakra: "../libs/remark-latest.min.js"
-    css: ["../libs/default.css", "../libs/default-fonts.css", "../libs/customize.css"]
+    self_contained: true
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/default.css", "../../libs/default-fonts.css", "../../libs/customize.css"]
     lib_dir: "libs"
     seal: false
     nature:
-      beforeInit: "../libs/macros.js"
+      beforeInit: "../../libs/macros.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       fig_caption: yes
       ratio: "16:10"
-editor_options: 
-  chunk_output_type: console
 ---
 class: title-slide, center, middle
 
@@ -47,10 +46,6 @@ cat('#### ', rmarkdown::metadata$institute)
 cat(rmarkdown::metadata$date)
 ```
 
-```{r, echo = FALSE, results="asis"}
-cat(rmarkdown::metadata$date)
-```
-
 .footnote[
 .right[
 .tiny[
@@ -63,7 +58,7 @@ You can download a [pdf of this presentation](smada03.pdf).
 ## Loading data for the following steps
 
 ### download data
-* [muensingen_fib.csv](muensingen_fib.csv)
+* [muensingen_fib.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/03/muensingen_fib.csv)
 
 
 ### Read the Data on Muensingen Fibulae
@@ -648,7 +643,7 @@ lines(density(muensingen$Length))
 
 ### Stay honest!
 
-* [dax.csv](dax.csv)
+* [dax.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/03/dax.csv)
 
 Choice of display has a strong influence on the statement.
 
