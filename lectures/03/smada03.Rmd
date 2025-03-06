@@ -4,7 +4,7 @@ subtitle: "03 - Explorative statistics & graphical display"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "04.03.2025"
+date: "11.03.2025"
 output:
   xaringan::moon_reader:
     self_contained: true
