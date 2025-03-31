@@ -4,22 +4,21 @@ subtitle: "05 - Nonparametric Tests"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "14.04.2021"
+date: "01.04.2025"
 output:
   xaringan::moon_reader:
-    chakra: "../libs/remark-latest.min.js"
-    css: ["../libs/default.css", "../libs/default-fonts.css", "../libs/customize.css"]
+    self_contained: true
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/default.css", "../../libs/default-fonts.css", "../../libs/customize.css"]
     lib_dir: "libs"
     seal: false
     nature:
-      beforeInit: "../libs/macros.js"
+      beforeInit: "../../libs/macros.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       fig_caption: yes
       ratio: "16:10"
-editor_options: 
-  chunk_output_type: console
 ---
 class: title-slide, center, middle
 
@@ -757,8 +756,7 @@ https://de.wikipedia.org/wiki/Datei:Smirnoff_vodka.jpg
 
 Female bronze age burials in a grave yard by age
 
-* `r xfun::embed_file('graeberbrz.csv', text = "graeberbrz.csv")`
-
+* [graeberbrz.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/05/graeberbrz.csv)
 
 ```{r echo=FALSE}
 graeberbrz <- read.csv2("graeberbrz.csv", row.names = 1)
@@ -942,7 +940,8 @@ class:inverse
 
 Analyse with the Kolmogorov-Smirnov-Test if the heigths of cups with and without corner points differ significant on a 0.05-level.
 
-File: `r xfun::embed_file('mueller2001.csv', text = "mueller2001.csv")`
+File: [mueller2001.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/05/mueller2001.csv)
+
 ---
 
 ## Interpretation of significance tests
