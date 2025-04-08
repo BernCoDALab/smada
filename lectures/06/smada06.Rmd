@@ -4,22 +4,21 @@ subtitle: "06 - Basic Probability Theory"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "14.04.2021"
+date: "8.04.2025"
 output:
   xaringan::moon_reader:
-    chakra: "../libs/remark-latest.min.js"
-    css: ["../libs/default.css", "../libs/default-fonts.css", "../libs/customize.css"]
+    self_contained: true
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/default.css", "../../libs/default-fonts.css", "../../libs/customize.css"]
     lib_dir: "libs"
     seal: false
     nature:
-      beforeInit: "../libs/macros.js"
+      beforeInit: "../../libs/macros.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       fig_caption: yes
       ratio: "16:10"
-editor_options: 
-  chunk_output_type: console
 ---
 class: title-slide, center, middle
 

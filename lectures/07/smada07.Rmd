@@ -4,22 +4,21 @@ subtitle: "07 - Parametric tests"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "21.04.2021"
+date: "08.04.2025"
 output:
   xaringan::moon_reader:
-    chakra: "../libs/remark-latest.min.js"
-    css: ["../libs/default.css", "../libs/default-fonts.css", "../libs/customize.css"]
+    self_contained: true
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/default.css", "../../libs/default-fonts.css", "../../libs/customize.css"]
     lib_dir: "libs"
     seal: false
     nature:
-      beforeInit: "../libs/macros.js"
+      beforeInit: "../../libs/macros.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       fig_caption: yes
       ratio: "16:10"
-editor_options: 
-  chunk_output_type: console
 ---
 class: title-slide, center, middle
 
@@ -230,7 +229,8 @@ The length of the handles of different amphora are given. Test with the appropri
 
 * 
 
-**file**: `r xfun::embed_file('henkel_amphoren.csv', text = "henkel_amphoren.csv")`
+**file**:
+* [henkel_amphoren.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/07/henkel_amphoren.csv)
 
 ---
 class: middle, center
@@ -293,7 +293,7 @@ threshold at $df_1$ = 19, $df_2$ = 24, $\alpha$=0.05: 2.114
 
 ###F-Test in R
 
-`r xfun::embed_file('blade_length.csv', text = "blade_length.csv")`
+* [blade_length.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/07/blade_length.csv)
 
 ```{r}
 blade_length <- read.csv("blade_length.csv")
@@ -314,7 +314,7 @@ Given are the (logarithmic) sizes of ritual enclosures in two valleys at the Soc
 
 Please check whether the variances in both valleys are different!
 
-**file**: `r xfun::embed_file('marae.csv', text = "marae.csv")`
+* [marae.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/07/marae.csv)
 
 ---
 class: middle, center
@@ -437,7 +437,8 @@ Given are the (logarithmic) sizes of ritual enclosures in two valleys at the Soc
 
 Please check whether both valleys are different in respect to the mean sizes of the enclosures!
 
-**file**: `r xfun::embed_file('marae.csv', text = "marae.csv")`
+**file**: 
+* [marae.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/07/marae.csv)
 
 ---
 
@@ -447,7 +448,8 @@ Please check whether both valleys are different in respect to the mean sizes of 
 
 approximation of the results by correction of degrees of freedom
 
-`r xfun::embed_file('blade_length3.csv', text = "blade_length3.csv")`
+* [blade_length3.csv](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/07/blade_length3.csv)
+
 
 .pull-left[
 .tiny[
@@ -506,7 +508,8 @@ In most of the cases (with small sample size), the Welch test will be slightly m
 
 What, if one compares more than two groups?
 
-Given are the `r xfun::embed_file('settlements.csv', text = "hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness")`.
+Given are the 
+* [hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness](https://raw.githubusercontent.com/BernCoDALab/smada/refs/heads/main/lectures/07/settlements.csv)
 
 ```{r}
 settlements <- read.csv("settlements.csv")
