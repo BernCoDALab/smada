@@ -21,11 +21,10 @@ schedule$video <- sapply(schedule$video, function(x) {
   l <- length(x)
   if(l>0)
   {
-    paste0("[Video ", 1:l, "](", x, ")")
+    paste0(paste0("[Video ", 1:l, "](", x, ")"),collapse="; ")
   } else {
-    ""
-}}
-)
+    " "
+  }})
 
 n_lectures <- nrow(schedule)
 
@@ -45,7 +44,7 @@ schedule$lab_video <- sapply(schedule$lab_video, function(x) {
   l <- length(x)
   if(l>0)
   {
-    paste0("[Video ", 1:l, "](", x, ")")
+    paste0(paste0("[Video ", 1:l, "](", x, ")"),collapse="; ")
   } else {
     ""
   }})
@@ -55,11 +54,12 @@ columns_for_display <- c("date",
                         "topics",
                         "slides",
                         "slides_pdf",
-                        "reading")
+                        "reading",
+                        "video")
 
 schedule_for_display <- schedule[,columns_for_display]
 ```
 
 ```{r generate_table, echo=FALSE, warning=FALSE}
-gt::gt(data=schedule_for_display) %>% gt::fmt_markdown(columns = c(slides, slides_pdf, reading))
+gt::gt(data=schedule_for_display) %>% gt::fmt_markdown(columns = c(slides, slides_pdf, reading, video))
 ```
