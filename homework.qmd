@@ -44,3 +44,6 @@ Send your homework before the homework date to [martin.hinz\@unibe.ch](mailto:ma
 | Homework via interactive tutorial:\                                                                                                    | 13.05.2025    | provided       |
 | <https://martinhinz.shinyapps.io/smada_homework07/>                                                                                    |               |                |
 +----------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------+
+| Homework via interactive tutorial:\                                                                                                    | 27.05.2025    | provided       |
+| <https://martinhinz.shinyapps.io/smada_homework08/>                                                                                    |               |                |
++----------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------+
